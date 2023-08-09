@@ -2,7 +2,6 @@
 	"name": "@affinity-lab/graphane",
 	"version": "0.0.4",
 	"files": ["./**/*"],
-	"exports": {".": "./dist/"},
 	"devDependencies": {
 		"@apollo/server": "^4.7.1",
 		"@types/graphql-upload": "^16.0.0",
