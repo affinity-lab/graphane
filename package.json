@@ -1,6 +1,6 @@
 {
 	"name": "@affinity-lab/graphane",
-	"main": "index.js",
+	"main": "./index",
 	"_moduleAliases": {
 		"@lib": "lib"
 	},
