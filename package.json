@@ -1,13 +1,12 @@
 {
-  "name": "graphane",
+  "name": "@affinity-lab/graphane",
   "description": "",
   "version": "2",
-  "author": {},
   "repository": {
     "type": "git",
     "url": "https://github.com/affinity-lab/graphane.git"
   },
-  "main": "index.ts",
+  "main": "index.js",
   "keywords": [
     "typescript",
     "graphql",
