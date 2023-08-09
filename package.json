@@ -1,0 +1,24 @@
+{
+  "name": "graphane",
+  "description": "",
+  "version": "2",
+  "author": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/affinity-lab/graphane.git"
+  },
+  "keywords": [
+    "typescript",
+    "graphql",
+    "typeorm"
+  ],
+  "license": "MIT",
+  "bugs": {
+  },
+  "scripts": {
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+  }
+}
