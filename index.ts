@@ -1,2 +1,2 @@
-export {default as Atom} from "./lib/carbonite/atom";
-export {AtomWithAttachments} from "./lib/carbonite/atom";
+export {default as Atom} from "./src/carbonite/atom";
+export {AtomWithAttachments} from "./src/carbonite/atom";
