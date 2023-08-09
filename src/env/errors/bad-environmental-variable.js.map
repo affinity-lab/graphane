@@ -1,0 +1,1 @@
+{"version":3,"file":"bad-environmental-variable.js","sourceRoot":"","sources":["bad-environmental-variable.ts"],"names":[],"mappings":"AAAA,OAAO,SAAS,MAAM,4BAA4B,CAAC;AAGnD,MAAM,CAAC,OAAO,OAAO,wBAAyB,SAAQ,SAAS;IAC3D,YAAY,GAAW,EAAE,IAAY;QACjC,KAAK,CACD,GAAG,GAAG,wCAAwC,IAAI,GAAG,EACrD;YACI,GAAG;YACH,IAAI;SACP,CACJ,CAAC;IACN,CAAC;IAAA,CAAC;CACL;AAAA,CAAC"}

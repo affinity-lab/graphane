@@ -1,0 +1,1 @@
+{"version":3,"file":"console-writer.js","sourceRoot":"","sources":["console-writer.ts"],"names":[],"mappings":"AAAA,OAAO,MAAM,MAAM,UAAU,CAAC;AAG9B,MAAM,CAAC,OAAO,OAAO,aAAc,SAAQ,MAAM;IAC7C,KAAK,CAAC,SAAiB;QACnB,OAAO,CAAC,GAAG,CAAC,GAAG,SAAS,EAAE,CAAC,CAAC;IAChC,CAAC;IAAA,CAAC;CACL"}

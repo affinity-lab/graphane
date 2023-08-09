@@ -19,7 +19,7 @@ export default class Module<RolesType = {}> {
         this.code = this.code.toUpperCase();
         this.px = new PrefixedModule(this.code);
         for (const roleKey in this.roles) {
-            this.roles[roleKey] = this.px.prefixer(roleKey) as RolesType[typeof roleKey];
+            this.roles[roleKey] = this.px.prefixer(roleKey) as unknown as RolesType[typeof roleKey];
         }
         this.logger = typeof logger === "function" ? logger(this) : logger;
         Module.addModule(this);

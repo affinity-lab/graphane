@@ -1,0 +1,1 @@
+{"version":3,"file":"delete-restriction-error.js","sourceRoot":"","sources":["delete-restriction-error.ts"],"names":[],"mappings":"AAAA,OAAO,SAAS,MAAM,4BAA4B,CAAC;AAInD,MAAM,CAAC,OAAO,OAAO,sBAAuB,SAAQ,SAAS;IACzD,YAAY,IAAiB,EAAE,OAAoB;QAC/C,KAAK,CACD,iBAAiB,IAAI,CAAC,IAAI,qCAAqC,OAAO,CAAC,IAAI,GAAG,EAC9E;YACI,IAAI;YACJ,OAAO;SACV,CACJ,CAAC;IACN,CAAC;IAAA,CAAC;CACL"}

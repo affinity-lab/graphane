@@ -1,0 +1,1 @@
+{"version":3,"file":"file-doesnot-exist-error.js","sourceRoot":"","sources":["file-doesnot-exist-error.ts"],"names":[],"mappings":"AAAA,OAAO,SAAS,MAAM,+BAA+B,CAAC;AAItD,MAAM,CAAC,OAAO,OAAO,qBAAsB,SAAQ,SAAS;IACxD,YAAY,MAA2B,EAAE,OAAe,EAAE,QAAgB;QACtE,KAAK,CACD,GAAG,MAAM,CAAC,KAAK,sCAAsC,QAAQ,GAAG,EAChE;YACI,MAAM;YACN,OAAO;YACP,QAAQ;SACX,CACJ,CAAC;IACN,CAAC;IAAA,CAAC;CACL"}

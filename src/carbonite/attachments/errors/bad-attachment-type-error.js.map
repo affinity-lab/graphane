@@ -1,0 +1,1 @@
+{"version":3,"file":"bad-attachment-type-error.js","sourceRoot":"","sources":["bad-attachment-type-error.ts"],"names":[],"mappings":"AAAA,OAAO,SAAS,MAAM,+BAA+B,CAAC;AAGtD,MAAM,CAAC,OAAO,OAAO,sBAAuB,SAAQ,SAAS;IACzD,YAAY,QAAgB,EAAE,QAAgB;QAC1C,KAAK,CACD,+BAA+B,QAAQ,iBAAiB,QAAQ,EAAE,EAClE;YACI,QAAQ,EAAE,QAAQ;YAClB,QAAQ,EAAE,QAAQ;SACrB,CACJ,CAAC;IACN,CAAC;CACJ"}
