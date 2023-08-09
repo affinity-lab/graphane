@@ -1,10 +1,8 @@
 {
 	"name": "@affinity-lab/graphane",
 	"version": "0.0.4",
-	"main": "dist/index.js",
-	"types": "dist/index.d.ts",
-	"files": ["dist/**/*"],
-	"exports": {"./": "./dist/"},
+	"files": ["./**/*"],
+	"exports": {".": "./dist/"},
 	"devDependencies": {
 		"@apollo/server": "^4.7.1",
 		"@types/graphql-upload": "^16.0.0",
