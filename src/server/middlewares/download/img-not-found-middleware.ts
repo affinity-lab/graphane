@@ -2,6 +2,7 @@ import {Request, Response} from "express";
 import * as fs from "fs";
 import path from "path";
 import sharp from "sharp";
+import {Img} from "../../../util/file-descriptor";
 
 
 export default function imgNotFoundMiddleware(fileStoragePath: string, imgStoragePath: string) {
@@ -12,8 +13,25 @@ export default function imgNotFoundMiddleware(fileStoragePath: string, imgStorag
             res.sendStatus(404);
             return;
         }
+        sharp.cache({files: 0});
+        let img: sharp.Sharp = sharp(fileStoragePath + inp);
+        let meta: Img = await Promise.all([img.metadata(), img.stats()])
+            .then((res: [sharp.Metadata, sharp.Stats]): Img => ({meta: res[0], stats: res[1]}));
+        let width: number = parseInt(req.params["width"]);
+        let height: number = parseInt(req.params["height"]);
+        let oWidth: number = meta.meta.width!;
+        let oHeight: number = meta.meta.height!;
+        if (oWidth < width) {
+            height = Math.floor(height * oWidth / width);
+            width = oWidth;
+        }
+        if (oHeight < height) {
+            width = Math.floor(width * oHeight / height);
+            height = oHeight;
+        }
+        // TODO: SymLink if there's already a pic in the required dimensions
         await sharp(fileStoragePath + inp, {animated: true})
-            .resize(parseInt(req.params["width"]), parseInt(req.params["height"]), {
+            .resize(width, height, {
                 kernel: sharp.kernel.lanczos3,
                 fit: "cover",
                 position: req.params["focus"],
