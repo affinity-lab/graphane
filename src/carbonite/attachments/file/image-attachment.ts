@@ -1,5 +1,5 @@
-import Catalog from "../../../carbonite/attachments/catalog";
-import NotImageError from "../../../carbonite/attachments/errors/not-image-error";
+import Catalog from "../catalog";
+import NotImageError from "../errors/not-image-error";
 import {RGB} from "../../../util/color";
 import FileDescriptor, {Img} from "../../../util/file-descriptor";
 import {Dimension} from "../../../util/geometry";

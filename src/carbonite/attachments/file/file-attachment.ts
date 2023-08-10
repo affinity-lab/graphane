@@ -1,4 +1,4 @@
-import Catalog from "../../../carbonite/attachments/catalog";
+import Catalog from "../catalog";
 import FileDescriptor from "../../../util/file-descriptor";
 import {Field, ObjectType} from "type-graphql";
 

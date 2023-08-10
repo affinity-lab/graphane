@@ -1,4 +1,4 @@
-import UnrealEntityTargetError from "../carbonite/errors/unreal-entity-target-error";
+import UnrealEntityTargetError from "./errors/unreal-entity-target-error";
 import {BaseEntity, DataSource, DeepPartial, FindManyOptions, FindOneOptions, FindOptionsWhere, In} from "typeorm";
 import {RelationMetadata} from "typeorm/metadata/RelationMetadata";
 import Atom from "./atom";

@@ -1,7 +1,7 @@
-import BadAttachmentTypeError from "../../carbonite/attachments/errors/bad-attachment-type-error";
-import {CannotRenameFileError} from "../../carbonite/attachments/errors/cannot-rename-file-error";
-import FileDoesNotExistError from "../../carbonite/attachments/errors/file-doesnot-exist-error";
-import ImageAttachment, {ImgFocus} from "../../carbonite/attachments/file/image-attachment";
+import BadAttachmentTypeError from "./errors/bad-attachment-type-error";
+import {CannotRenameFileError} from "./errors/cannot-rename-file-error";
+import FileDoesNotExistError from "./errors/file-doesnot-exist-error";
+import ImageAttachment, {ImgFocus} from "./file/image-attachment";
 import FileDescriptor from "../../util/file-descriptor";
 import * as fs from "fs";
 import micromatch from "micromatch";

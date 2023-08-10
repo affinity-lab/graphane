@@ -1,4 +1,4 @@
-import ModuleAlreadyRegisteredError from "../application/errors/module-already-registered-error";
+import ModuleAlreadyRegisteredError from "./errors/module-already-registered-error";
 import Atom from "../carbonite/atom";
 import LoggerInterface from "./loggerInteface";
 import {PrefixedModule} from "./prefixed-module";

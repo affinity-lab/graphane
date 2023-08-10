@@ -1,4 +1,4 @@
-import {ImgFocus} from "../../carbonite/attachments/file/image-attachment";
+import {ImgFocus} from "./file/image-attachment";
 import SanitizeHTML from "../../validate-and-format-input/formatters/sanitize-html";
 import {IsInt, IsOptional, IsPositive} from "class-validator";
 import {ArgsType, Field, InputType} from "type-graphql";
