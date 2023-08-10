@@ -1,1 +1,0 @@
-{"version":3,"file":"auth-checker.js","sourceRoot":"","sources":["auth-checker.ts"],"names":[],"mappings":"AAGA,MAAM,CAAC,OAAO,CAAC,KAAK,UAAU,WAAW,CAAC,EAAC,OAAO,EAAqB,EAAE,KAAe;IACpF,IAAI,OAAO,CAAC,YAAY,EAAE;QACtB,OAAO,OAAO,CAAC,YAAY,CAAC,OAAO,CAAC,KAAK,CAAC,CAAC;KAC9C;IACD,OAAO,KAAK,CAAC;AACjB,CAAC"}

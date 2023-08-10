@@ -1,1 +1,0 @@
-{"version":3,"file":"mimetype-mismatch.js","sourceRoot":"","sources":["mimetype-mismatch.ts"],"names":[],"mappings":"AAAA,OAAO,SAAS,MAAM,+BAA+B,CAAC;AAItD,MAAM,CAAC,OAAO,OAAO,gBAAiB,SAAQ,SAAS;IACnD,YAAY,OAAgB,EAAE,QAA2B,EAAE,QAAgB;QACvE,KAAK,CACD,oBAAoB,GAAG,OAAO,CAAC,KAAK,CAAC,KAAK,EAC1C;YACI,QAAQ;YACR,QAAQ;SACX,CACJ,CAAC;IACN,CAAC;IAAA,CAAC;CACL"}

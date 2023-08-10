@@ -1,7 +1,7 @@
-import Catalog from "../catalog";
 import { RGB } from "../../../util/color";
 import FileDescriptor from "../../../util/file-descriptor";
 import { Dimension } from "../../../util/geometry";
+import Catalog from "../catalog";
 import FileAttachment from "./file-attachment";
 export declare enum ImgFocus {
     CENTRE = "centre",

@@ -1,1 +1,0 @@
-{"version":3,"file":"bad-relation-type-error.js","sourceRoot":"","sources":["bad-relation-type-error.ts"],"names":[],"mappings":"AAAA,OAAO,SAAS,MAAM,4BAA4B,CAAC;AAInD,MAAM,CAAC,OAAO,OAAO,oBAAqB,SAAQ,SAAS;IACvD,YAAY,GAAqB;QAC7B,KAAK,CACD,8CAA8C,GAAG,EAAE,EACnD;YACI,QAAQ,EAAE,GAAG;SAChB,CACJ,CAAC;IACN,CAAC;IAAA,CAAC;CACL"}

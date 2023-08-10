@@ -1,9 +1,9 @@
+import {Request, Response} from "express";
+import * as fs from "fs";
 import Module from "../../../application/module";
 import Atom, {AtomWithAttachments} from "../../../carbonite/atom";
 import Catalog from "../../../carbonite/attachments/catalog";
 import {SentFile} from "../../../carbonite/attachments/sent-file";
-import {Request, Response} from "express";
-import * as fs from "fs";
 import FailedUploadError from "../../errors/failed-upload-error";
 import {UploadTokenPayload} from "../../upload-token-payload";
 

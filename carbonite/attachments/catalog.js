@@ -26,17 +26,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const fs = __importStar(require("fs"));
+const micromatch_1 = __importDefault(require("micromatch"));
+const file_descriptor_1 = __importDefault(require("../../util/file-descriptor"));
 const bad_attachment_type_error_1 = __importDefault(require("./errors/bad-attachment-type-error"));
 const cannot_rename_file_error_1 = require("./errors/cannot-rename-file-error");
 const file_doesnot_exist_error_1 = __importDefault(require("./errors/file-doesnot-exist-error"));
-const image_attachment_1 = __importDefault(require("./file/image-attachment"));
-const file_descriptor_1 = __importDefault(require("../../util/file-descriptor"));
-const fs = __importStar(require("fs"));
-const micromatch_1 = __importDefault(require("micromatch"));
 const file_error_1 = __importDefault(require("./errors/file-error"));
 const mimetype_mismatch_1 = __importDefault(require("./errors/mimetype-mismatch"));
 const too_large_attachment_1 = __importDefault(require("./errors/too-large-attachment"));
 const too_many_attachments_1 = __importDefault(require("./errors/too-many-attachments"));
+const image_attachment_1 = __importDefault(require("./file/image-attachment"));
 class Catalog {
     constructor(name, type, owner, storage, options) {
         this.name = name;

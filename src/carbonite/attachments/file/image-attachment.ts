@@ -1,9 +1,9 @@
-import Catalog from "../catalog";
-import NotImageError from "../errors/not-image-error";
+import {Field, ObjectType} from "type-graphql";
 import {RGB} from "../../../util/color";
 import FileDescriptor, {Img} from "../../../util/file-descriptor";
 import {Dimension} from "../../../util/geometry";
-import {Field, ObjectType} from "type-graphql";
+import Catalog from "../catalog";
+import NotImageError from "../errors/not-image-error";
 import FileAttachment from "./file-attachment";
 
 

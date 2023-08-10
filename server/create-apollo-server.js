@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const server_1 = require("@apollo/server");
-const datasource_manager_1 = require("../util/datasource-manager");
 const type_graphql_dataloader_1 = require("type-graphql-dataloader");
+const datasource_manager_1 = require("../util/datasource-manager");
 async function createApolloServer(schema, gqlConfig, start = true) {
     let server = new server_1.ApolloServer({
         schema,

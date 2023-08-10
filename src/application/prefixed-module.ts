@@ -1,10 +1,10 @@
-import Atom from "../carbonite/atom";
 import {snakeCase} from "snake-case";
 import {Field, ID} from "type-graphql";
 import {ObjectTypeOptions} from "type-graphql/dist/decorators/ObjectType";
 import {MethodAndPropDecorator} from "type-graphql/dist/decorators/types";
 import {Entity} from "typeorm";
 import {EntityOptions} from "typeorm/decorator/options/EntityOptions";
+import Atom from "../carbonite/atom";
 import Module from "./module";
 import {Prefixed} from "./prefixed";
 

@@ -1,1 +1,0 @@
-{"version":3,"file":"cannot-rename-file-error.js","sourceRoot":"","sources":["cannot-rename-file-error.ts"],"names":[],"mappings":"AAAA,OAAO,SAAS,MAAM,+BAA+B,CAAC;AAGtD,MAAM,OAAO,qBAAsB,SAAQ,SAAS;IAChD,YAAY,QAAgB,EAAE,OAAe;QACzC,KAAK,CACD,iBAAiB,QAAQ,KAAK,OAAO,mBAAmB,EACxD;YACI,IAAI,EAAE,QAAQ;YACd,OAAO,EAAE,OAAO;SACnB,CACJ,CAAC;IACN,CAAC;CACJ"}

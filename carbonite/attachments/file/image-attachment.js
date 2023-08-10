@@ -14,9 +14,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 var ImageAttachment_1;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ImgFocus = void 0;
-const not_image_error_1 = __importDefault(require("../errors/not-image-error"));
-const geometry_1 = require("../../../util/geometry");
 const type_graphql_1 = require("type-graphql");
+const geometry_1 = require("../../../util/geometry");
+const not_image_error_1 = __importDefault(require("../errors/not-image-error"));
 const file_attachment_1 = __importDefault(require("./file-attachment"));
 let ImgDimension = class ImgDimension {
 };

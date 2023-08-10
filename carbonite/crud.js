@@ -4,9 +4,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.BasicCrud = void 0;
-const unreal_entity_target_error_1 = __importDefault(require("./errors/unreal-entity-target-error"));
 const typeorm_1 = require("typeorm");
 const bad_relation_type_error_1 = __importDefault(require("./errors/bad-relation-type-error"));
+const unreal_entity_target_error_1 = __importDefault(require("./errors/unreal-entity-target-error"));
 class BasicCrud {
     constructor(entity, getDataSource) {
         this.entity = entity;

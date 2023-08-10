@@ -1,6 +1,6 @@
-import Atom from "../carbonite/atom";
 import { ObjectTypeOptions } from "type-graphql/dist/decorators/ObjectType";
 import { EntityOptions } from "typeorm/decorator/options/EntityOptions";
+import Atom from "../carbonite/atom";
 import { Prefixed } from "./prefixed";
 type GQLEntityOptions = {
     objectType?: ObjectTypeOptions;

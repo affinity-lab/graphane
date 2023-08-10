@@ -1,5 +1,5 @@
-import decodeJWT from "../../../util/decode-jwt";
 import {NextFunction, Request, Response} from "express";
+import decodeJWT from "../../../util/decode-jwt";
 import {Context} from "../../context";
 import BadUploadTokenError from "../../errors/bad-upload-token";
 import {UploadTokenPayload} from "../../upload-token-payload";

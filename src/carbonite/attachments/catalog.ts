@@ -1,16 +1,16 @@
+import * as fs from "fs";
+import micromatch from "micromatch";
+import FileDescriptor from "../../util/file-descriptor";
+import {AtomWithAttachments} from "../atom";
 import BadAttachmentTypeError from "./errors/bad-attachment-type-error";
 import {CannotRenameFileError} from "./errors/cannot-rename-file-error";
 import FileDoesNotExistError from "./errors/file-doesnot-exist-error";
-import ImageAttachment, {ImgFocus} from "./file/image-attachment";
-import FileDescriptor from "../../util/file-descriptor";
-import * as fs from "fs";
-import micromatch from "micromatch";
-import {AtomWithAttachments} from "../atom";
 import FileError from "./errors/file-error";
 import MimeTypeMismatch from "./errors/mimetype-mismatch";
 import TooLargeAttachment from "./errors/too-large-attachment";
 import TooManyAttachments from "./errors/too-many-attachments";
 import FileAttachment from "./file/file-attachment";
+import ImageAttachment, {ImgFocus} from "./file/image-attachment";
 import StorageInterface from "./storage/storage";
 
 

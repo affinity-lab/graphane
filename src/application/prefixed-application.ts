@@ -1,7 +1,7 @@
-import {ValidateAndFormatInput} from "../validate-and-format-input/validate-and-format-input";
 import {Authorized, InputType, InputTypeOptions, Mutation, Query} from "type-graphql";
 import {AdvancedOptions, ReturnTypeFunc} from "type-graphql/dist/decorators/types";
 import {getTypeDecoratorParams} from "type-graphql/dist/helpers/decorators";
+import {ValidateAndFormatInput} from "../validate-and-format-input/validate-and-format-input";
 import {Prefixed} from "./prefixed";
 
 

@@ -1,7 +1,7 @@
 import {ApolloServer} from "@apollo/server";
-import {getDataSource} from "../util/datasource-manager";
 import {GraphQLSchema} from "graphql/type/schema";
 import {ApolloServerLoaderPlugin} from "type-graphql-dataloader";
+import {getDataSource} from "../util/datasource-manager";
 import {Context} from "./context";
 
 

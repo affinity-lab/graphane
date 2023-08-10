@@ -1,1 +1,0 @@
-{"version":3,"file":"too-many-attachments.js","sourceRoot":"","sources":["too-many-attachments.ts"],"names":[],"mappings":"AAAA,OAAO,SAAS,MAAM,+BAA+B,CAAC;AAItD,MAAM,CAAC,OAAO,OAAO,kBAAmB,SAAQ,SAAS;IACrD,YAAY,OAAgB,EAAE,YAAoB;QAC9C,KAAK,CACD,uBAAuB,GAAG,OAAO,CAAC,KAAK,CAAC,KAAK,EAC7C;YACI,YAAY;SACf,CACJ,CAAC;IACN,CAAC;IAAA,CAAC;CACL"}
