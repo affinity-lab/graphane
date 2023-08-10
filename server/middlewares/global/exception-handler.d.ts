@@ -1,2 +1,3 @@
 import { NextFunction, Request, Response } from "express";
-export default function exceptionHandler(): (req: Request, res: Response, next: NextFunction) => void;
+import LoggerInterface from "../../../application/loggerInteface";
+export default function exceptionHandler(mainLogger: LoggerInterface): (req: Request, res: Response, next: NextFunction) => void;

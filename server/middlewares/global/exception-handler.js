@@ -1,14 +1,16 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-function exceptionHandler() {
+function exceptionHandler(mainLogger) {
     return (req, res, next) => {
         try {
             next();
         }
         catch (e) {
-            console.log("-------------------------------------");
-            console.log(e);
-            console.log("-------------------------------------");
+            const app = req.context.get("app");
+            if (typeof app == "undefined")
+                mainLogger.error(e);
+            else
+                app.logger?.error(e);
             res.status(400).send(e);
         }
     };
