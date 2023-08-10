@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const module_already_registered_error_1 = __importDefault(require("../application/errors/module-already-registered-error"));
+const module_already_registered_error_1 = __importDefault(require("./errors/module-already-registered-error"));
 const prefixed_module_1 = require("./prefixed-module");
 class Module {
     constructor(code, logger = null, roles = {}) {
@@ -36,6 +36,6 @@ class Module {
     }
     ;
 }
-exports.default = Module;
 Module.modules = [];
 Module.codeMap = {};
+exports.default = Module;

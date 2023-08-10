@@ -1,4 +1,4 @@
-import Catalog from "../../../carbonite/attachments/catalog";
+import Catalog from "../catalog";
 import { RGB } from "../../../util/color";
 import FileDescriptor from "../../../util/file-descriptor";
 import { Dimension } from "../../../util/geometry";

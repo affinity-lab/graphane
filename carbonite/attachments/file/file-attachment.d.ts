@@ -1,4 +1,4 @@
-import Catalog from "../../../carbonite/attachments/catalog";
+import Catalog from "../catalog";
 import FileDescriptor from "../../../util/file-descriptor";
 export default class FileAttachment {
     static mimeTypePattern: string | string[];

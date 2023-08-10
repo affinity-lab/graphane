@@ -21,11 +21,11 @@ class Atom extends typeorm_1.BaseEntity {
     }
     ;
 }
+exports.default = Atom;
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)(),
     __metadata("design:type", Number)
 ], Atom.prototype, "id", void 0);
-exports.default = Atom;
 class AtomWithAttachments extends Atom {
     constructor() {
         super(...arguments);
@@ -36,8 +36,8 @@ class AtomWithAttachments extends Atom {
     }
     ;
 }
+exports.AtomWithAttachments = AtomWithAttachments;
 __decorate([
     (0, typeorm_1.Column)({ type: "json" }),
     __metadata("design:type", Object)
 ], AtomWithAttachments.prototype, "attachments", void 0);
-exports.AtomWithAttachments = AtomWithAttachments;

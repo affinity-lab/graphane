@@ -37,8 +37,25 @@ function imgNotFoundMiddleware(fileStoragePath, imgStoragePath) {
             res.sendStatus(404);
             return;
         }
+        sharp_1.default.cache({ files: 0 });
+        let img = (0, sharp_1.default)(fileStoragePath + inp);
+        let meta = await Promise.all([img.metadata(), img.stats()])
+            .then((res) => ({ meta: res[0], stats: res[1] }));
+        let width = parseInt(req.params["width"]);
+        let height = parseInt(req.params["height"]);
+        let oWidth = meta.meta.width;
+        let oHeight = meta.meta.height;
+        if (oWidth < width) {
+            height = Math.floor(height * oWidth / width);
+            width = oWidth;
+        }
+        if (oHeight < height) {
+            width = Math.floor(width * oHeight / height);
+            height = oHeight;
+        }
+        // TODO: SymLink if there's already a pic in the required dimensions
         await (0, sharp_1.default)(fileStoragePath + inp, { animated: true })
-            .resize(parseInt(req.params["width"]), parseInt(req.params["height"]), {
+            .resize(width, height, {
             kernel: sharp_1.default.kernel.lanczos3,
             fit: "cover",
             position: req.params["focus"],

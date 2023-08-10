@@ -14,7 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 var ImageAttachment_1;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ImgFocus = void 0;
-const not_image_error_1 = __importDefault(require("../../../carbonite/attachments/errors/not-image-error"));
+const not_image_error_1 = __importDefault(require("../errors/not-image-error"));
 const geometry_1 = require("../../../util/geometry");
 const type_graphql_1 = require("type-graphql");
 const file_attachment_1 = __importDefault(require("./file-attachment"));
@@ -57,7 +57,7 @@ var ImgFocus;
     ImgFocus["RIGHT"] = "right";
     ImgFocus["ENTROPY"] = "entropy";
     ImgFocus["ATTENTION"] = "attention";
-})(ImgFocus = exports.ImgFocus || (exports.ImgFocus = {}));
+})(ImgFocus || (exports.ImgFocus = ImgFocus = {}));
 let ImageAttachment = ImageAttachment_1 = class ImageAttachment extends file_attachment_1.default {
     constructor() {
         super(...arguments);

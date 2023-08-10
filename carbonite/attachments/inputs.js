@@ -13,12 +13,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ChangeFileInput = exports.FileInputVariables = void 0;
-const image_attachment_1 = require("../../carbonite/attachments/file/image-attachment");
+const image_attachment_1 = require("./file/image-attachment");
 const sanitize_html_1 = __importDefault(require("../../validate-and-format-input/formatters/sanitize-html"));
 const class_validator_1 = require("class-validator");
 const type_graphql_1 = require("type-graphql");
 const id_input_1 = require("../id-input");
-let FileInputVariables = class FileInputVariables {
+let FileInputVariables = exports.FileInputVariables = class FileInputVariables {
 };
 __decorate([
     (0, type_graphql_1.Field)({ nullable: true }),
@@ -47,11 +47,10 @@ __decorate([
     sanitize_html_1.default,
     __metadata("design:type", String)
 ], FileInputVariables.prototype, "imageFocus", void 0);
-FileInputVariables = __decorate([
+exports.FileInputVariables = FileInputVariables = __decorate([
     (0, type_graphql_1.InputType)()
 ], FileInputVariables);
-exports.FileInputVariables = FileInputVariables;
-let ChangeFileInput = class ChangeFileInput extends id_input_1.IdInput {
+let ChangeFileInput = exports.ChangeFileInput = class ChangeFileInput extends id_input_1.IdInput {
 };
 __decorate([
     (0, type_graphql_1.Field)(() => String),
@@ -63,7 +62,6 @@ __decorate([
     sanitize_html_1.default,
     __metadata("design:type", String)
 ], ChangeFileInput.prototype, "catalog", void 0);
-ChangeFileInput = __decorate([
+exports.ChangeFileInput = ChangeFileInput = __decorate([
     (0, type_graphql_1.ArgsType)()
 ], ChangeFileInput);
-exports.ChangeFileInput = ChangeFileInput;

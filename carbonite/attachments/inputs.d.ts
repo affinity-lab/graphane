@@ -1,4 +1,4 @@
-import { ImgFocus } from "../../carbonite/attachments/file/image-attachment";
+import { ImgFocus } from "./file/image-attachment";
 import { IdInput } from "../id-input";
 export declare class FileInputVariables {
     fileName?: string;

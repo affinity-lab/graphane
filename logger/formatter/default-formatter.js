@@ -13,7 +13,7 @@ class DefaultFormatter extends formatter_1.default {
             return JSON.stringify(message);
         }
         catch (e) {
-            return "Cannot stringify message.";
+            return "Cannot stringify message to be logged.";
         }
     }
     ;

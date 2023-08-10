@@ -26,10 +26,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const bad_attachment_type_error_1 = __importDefault(require("../../carbonite/attachments/errors/bad-attachment-type-error"));
-const cannot_rename_file_error_1 = require("../../carbonite/attachments/errors/cannot-rename-file-error");
-const file_doesnot_exist_error_1 = __importDefault(require("../../carbonite/attachments/errors/file-doesnot-exist-error"));
-const image_attachment_1 = __importDefault(require("../../carbonite/attachments/file/image-attachment"));
+const bad_attachment_type_error_1 = __importDefault(require("./errors/bad-attachment-type-error"));
+const cannot_rename_file_error_1 = require("./errors/cannot-rename-file-error");
+const file_doesnot_exist_error_1 = __importDefault(require("./errors/file-doesnot-exist-error"));
+const image_attachment_1 = __importDefault(require("./file/image-attachment"));
 const file_descriptor_1 = __importDefault(require("../../util/file-descriptor"));
 const fs = __importStar(require("fs"));
 const micromatch_1 = __importDefault(require("micromatch"));

@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.IdInput = void 0;
 const class_validator_1 = require("class-validator");
 const type_graphql_1 = require("type-graphql");
-let IdInput = class IdInput {
+let IdInput = exports.IdInput = class IdInput {
 };
 __decorate([
     (0, type_graphql_1.Field)(),
@@ -20,7 +20,6 @@ __decorate([
     (0, class_validator_1.IsInt)(),
     __metadata("design:type", Number)
 ], IdInput.prototype, "id", void 0);
-IdInput = __decorate([
+exports.IdInput = IdInput = __decorate([
     (0, type_graphql_1.ArgsType)()
 ], IdInput);
-exports.IdInput = IdInput;
