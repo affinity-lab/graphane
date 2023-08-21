@@ -8,6 +8,7 @@ class AbstractGuard {
     constructor(user) {
         this.user = user;
     }
+    ;
     get roles() {
         const result = {};
         if (!Reflect.hasMetadata("client-role", this)) {
@@ -24,18 +25,21 @@ class AbstractGuard {
         }
         return result;
     }
+    ;
     isAuthenticated() {
         if (this.user === undefined) {
             throw graphane_error_1.default.guard.unauthorized();
         }
         return true;
     }
+    ;
     isNotAuthenticated() {
         if (this.user !== undefined) {
             throw graphane_error_1.default.guard.forbidden();
         }
         return true;
     }
+    ;
     hasRole(...roles) {
         this.isAuthenticated();
         if (this.user.hasRole(roles)) {
@@ -43,5 +47,6 @@ class AbstractGuard {
         }
         throw graphane_error_1.default.guard.forbidden();
     }
+    ;
 }
 exports.default = AbstractGuard;

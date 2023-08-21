@@ -24,21 +24,21 @@ export default abstract class AbstractGuard {
         return result;
     };
 
-    isAuthenticated() {
+    isAuthenticated(): boolean {
         if (this.user === undefined) {
             throw GraphaneError.guard.unauthorized();
         }
         return true;
     };
 
-    isNotAuthenticated() {
+    isNotAuthenticated(): boolean {
         if (this.user !== undefined) {
             throw GraphaneError.guard.forbidden();
         }
         return true;
     };
 
-    hasRole(...roles: NonEmptyArray<string>) {
+    hasRole(...roles: NonEmptyArray<string>): boolean {
         this.isAuthenticated();
         if (this.user!.hasRole(roles as string[])) {
             return true;
