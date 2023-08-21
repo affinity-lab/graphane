@@ -26,7 +26,7 @@ error.preprocess = (errors: {[p: string]: any}, prefix = "") => {
                 const error = new GraphQLError(graphane.message);
                 error.extensions.graphane = graphane;
                 return error;
-            }
+            };
         }
     }
-}
+};

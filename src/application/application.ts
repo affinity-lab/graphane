@@ -1,5 +1,5 @@
-import {Request} from "express";
 import GraphaneError from "@src/error/graphane-error";
+import {Request} from "express";
 import Authorizable from "./auth/authorizable";
 import LoggerInterface from "./loggerInteface";
 import {PrefixedApplication} from "./prefixed-application";

@@ -1,6 +1,6 @@
-import {NextFunction, Request, Response} from "express";
 import Application from "@src/application/application";
 import LoggerInterface from "@src/application/loggerInteface";
+import {NextFunction, Request, Response} from "express";
 
 
 export default function exceptionHandler(mainLogger: LoggerInterface) {

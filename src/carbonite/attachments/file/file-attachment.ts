@@ -1,5 +1,5 @@
-import {Field, ObjectType} from "type-graphql";
 import FileDescriptor from "@src/util/file-descriptor";
+import {Field, ObjectType} from "type-graphql";
 import Catalog from "../catalog";
 
 

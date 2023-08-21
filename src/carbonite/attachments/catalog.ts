@@ -1,7 +1,7 @@
-import * as fs from "fs";
-import micromatch from "micromatch";
 import GraphaneError from "@src/error/graphane-error";
 import FileDescriptor from "@src/util/file-descriptor";
+import * as fs from "fs";
+import micromatch from "micromatch";
 import {AtomWithAttachments} from "../atom";
 import FileAttachment from "./file/file-attachment";
 import ImageAttachment, {ImgFocus} from "./file/image-attachment";

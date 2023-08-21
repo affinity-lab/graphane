@@ -1,10 +1,10 @@
-import {Request, Response} from "express";
-import * as fs from "fs";
 import Module from "@src/application/module";
 import Atom, {AtomWithAttachments} from "@src/carbonite/atom";
 import Catalog from "@src/carbonite/attachments/catalog";
 import {SentFile} from "@src/carbonite/attachments/sent-file";
 import GraphaneError from "@src/error/graphane-error";
+import {Request, Response} from "express";
+import * as fs from "fs";
 import {UploadTokenPayload} from "../../upload-token-payload";
 
 

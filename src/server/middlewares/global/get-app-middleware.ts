@@ -1,5 +1,5 @@
-import {NextFunction, Request, Response} from "express";
 import Application from "@src/application/application";
+import {NextFunction, Request, Response} from "express";
 
 
 export default function getAppMiddleware(guard: boolean = false) {

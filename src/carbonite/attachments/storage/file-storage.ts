@@ -1,6 +1,6 @@
+import FileDescriptor from "@src/util/file-descriptor";
 import * as fs from "fs";
 import path from "path";
-import FileDescriptor from "@src/util/file-descriptor";
 import Catalog from "../catalog";
 import StorageInterface from "./storage";
 

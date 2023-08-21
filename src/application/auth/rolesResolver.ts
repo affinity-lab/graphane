@@ -1,6 +1,6 @@
+import {Context} from "@src/server/context";
 import {GraphQLJSONObject} from "graphql-type-json";
 import {createUnionType, Ctx, Field, ObjectType, Resolver} from "type-graphql";
-import {Context} from "@src/server/context";
 import Application from "../application";
 
 

@@ -1,8 +1,8 @@
-import {Field, ObjectType} from "type-graphql";
 import GraphaneError from "@src/error/graphane-error";
 import {RGB} from "@src/util/color";
 import FileDescriptor, {Img} from "@src/util/file-descriptor";
 import {Dimension} from "@src/util/geometry";
+import {Field, ObjectType} from "type-graphql";
 import Catalog from "../catalog";
 import FileAttachment from "./file-attachment";
 

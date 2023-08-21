@@ -1,8 +1,8 @@
+import {Img} from "@src/util/file-descriptor";
 import {Request, Response} from "express";
 import * as fs from "fs";
 import path from "path";
 import sharp from "sharp";
-import {Img} from "@src/util/file-descriptor";
 
 
 export default function imgNotFoundMiddleware(fileStoragePath: string, imgStoragePath: string) {

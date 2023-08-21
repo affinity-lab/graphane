@@ -25,6 +25,6 @@ export default class Storage<T> {
         if (typeof result === "undefined") {
             throw GraphaneError.fatal(`Storage key (${key}) not found`, {key});
         }
-        return result
+        return result;
     };
 }
