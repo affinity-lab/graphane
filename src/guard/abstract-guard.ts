@@ -5,8 +5,8 @@ import RoleResolver from "./role-resolver-interface";
 
 export default abstract class AbstractGuard {
 
-    protected constructor(public user: undefined | RoleResolver) {
-    }
+    constructor(public user: undefined | RoleResolver) {
+    };
 
     get roles(): {[p: string]: boolean} {
         const result: {[p: string]: boolean} = {};
@@ -22,21 +22,21 @@ export default abstract class AbstractGuard {
             }
         }
         return result;
-    }
+    };
 
     isAuthenticated() {
         if (this.user === undefined) {
             throw GraphaneError.guard.unauthorized();
         }
         return true;
-    }
+    };
 
     isNotAuthenticated() {
         if (this.user !== undefined) {
             throw GraphaneError.guard.forbidden();
         }
         return true;
-    }
+    };
 
     hasRole(...roles: NonEmptyArray<string>) {
         this.isAuthenticated();
@@ -44,5 +44,5 @@ export default abstract class AbstractGuard {
             return true;
         }
         throw GraphaneError.guard.forbidden();
-    }
+    };
 }
