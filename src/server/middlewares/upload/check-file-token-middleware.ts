@@ -1,5 +1,5 @@
-import GraphaneError from "@src/error/graphane-error";
-import decodeJWT from "@src/util/decode-jwt";
+import GraphaneError from "../../../error/graphane-error";
+import decodeJWT from "../../../util/decode-jwt";
 import {NextFunction, Request, Response} from "express";
 import {Context} from "../../context";
 import {UploadTokenPayload} from "../../upload-token-payload";

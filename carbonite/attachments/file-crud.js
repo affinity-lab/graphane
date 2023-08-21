@@ -3,8 +3,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const graphane_error_1 = __importDefault(require("@src/error/graphane-error"));
-const create_upload_token_1 = require("@src/server/create-upload-token");
+const graphane_error_1 = __importDefault(require("../../error/graphane-error"));
+const create_upload_token_1 = require("../../server/create-upload-token");
 class FileCrud {
     constructor(entity, uploadTokenKey) {
         this.entity = entity;

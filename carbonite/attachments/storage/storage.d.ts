@@ -1,4 +1,4 @@
-import FileDescriptor from "@src/util/file-descriptor";
+import FileDescriptor from "../../../util/file-descriptor";
 import Catalog from "../catalog";
 export default interface StorageInterface {
     addFile(catalog: Catalog, file: FileDescriptor): void;

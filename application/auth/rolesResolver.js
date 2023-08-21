@@ -13,7 +13,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.createRolesResolver = void 0;
-const context_1 = require("@src/server/context");
+const context_1 = require("../../server/context");
 const graphql_type_json_1 = require("graphql-type-json");
 const type_graphql_1 = require("type-graphql");
 let Roles = class Roles {

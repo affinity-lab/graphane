@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const graphane_error_1 = __importDefault(require("@src/error/graphane-error"));
+const graphane_error_1 = __importDefault(require("../error/graphane-error"));
 const prefixed_module_1 = require("./prefixed-module");
 class Module {
     constructor(code, logger = null, roles = {}) {

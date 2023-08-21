@@ -1,5 +1,5 @@
-import Application from "@src/application/application";
 import {NextFunction, Request, Response} from "express";
+import Application from "../../../application/application";
 import {Context} from "../../context";
 
 

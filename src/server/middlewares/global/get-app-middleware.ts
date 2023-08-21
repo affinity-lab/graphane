@@ -1,4 +1,4 @@
-import Application from "@src/application/application";
+import Application from "../../../application/application";
 import {NextFunction, Request, Response} from "express";
 
 

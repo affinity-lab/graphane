@@ -1,4 +1,4 @@
-import FileDescriptor from "@src/util/file-descriptor";
+import FileDescriptor from "../../../util/file-descriptor";
 import * as fs from "fs";
 import path from "path";
 import Catalog from "../catalog";

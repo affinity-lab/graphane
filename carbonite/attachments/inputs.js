@@ -13,7 +13,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ChangeFileInput = exports.FileInputVariables = void 0;
-const sanitize_html_1 = __importDefault(require("@src/validate-and-format-input/formatters/sanitize-html"));
+const sanitize_html_1 = __importDefault(require("../../validate-and-format-input/formatters/sanitize-html"));
 const class_validator_1 = require("class-validator");
 const type_graphql_1 = require("type-graphql");
 const id_input_1 = require("../id-input");

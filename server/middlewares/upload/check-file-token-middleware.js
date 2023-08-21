@@ -3,8 +3,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const graphane_error_1 = __importDefault(require("@src/error/graphane-error"));
-const decode_jwt_1 = __importDefault(require("@src/util/decode-jwt"));
+const graphane_error_1 = __importDefault(require("../../../error/graphane-error"));
+const decode_jwt_1 = __importDefault(require("../../../util/decode-jwt"));
 function checkFileTokenMiddleware(uploadTokenKey) {
     return (req, res, next) => {
         const context = req.context.get("context");

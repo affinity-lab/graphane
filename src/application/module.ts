@@ -1,5 +1,5 @@
-import Atom from "@src/carbonite/atom";
-import GraphaneError from "@src/error/graphane-error";
+import Atom from "../carbonite/atom";
+import GraphaneError from "../error/graphane-error";
 import LoggerInterface from "./loggerInteface";
 import {PrefixedModule} from "./prefixed-module";
 

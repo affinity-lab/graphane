@@ -1,5 +1,5 @@
-import GraphaneError from "@src/error/graphane-error";
 import {NextFunction, Request, Response} from "express";
+import GraphaneError from "../../../error/graphane-error";
 
 
 export default function appGuardMiddleware() {

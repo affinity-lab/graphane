@@ -1,4 +1,4 @@
-import SanitizeHTML from "@src/validate-and-format-input/formatters/sanitize-html";
+import SanitizeHTML from "../../validate-and-format-input/formatters/sanitize-html";
 import {IsInt, IsOptional, IsPositive} from "class-validator";
 import {ArgsType, Field, InputType} from "type-graphql";
 import {IdInput} from "../id-input";

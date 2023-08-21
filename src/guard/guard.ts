@@ -1,4 +1,4 @@
-import GraphaneError from "@src/error/graphane-error";
+import GraphaneError from "../error/graphane-error";
 import AbstractGuard from "./abstract-guard";
 
 

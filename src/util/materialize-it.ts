@@ -1,4 +1,4 @@
-import GraphaneError from "@src/error/graphane-error";
+import GraphaneError from "../error/graphane-error";
 
 
 interface CachePropertyDescriptor<T, R> extends PropertyDescriptor {

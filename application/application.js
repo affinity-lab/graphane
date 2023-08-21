@@ -4,7 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
-const graphane_error_1 = __importDefault(require("@src/error/graphane-error"));
+const graphane_error_1 = __importDefault(require("../error/graphane-error"));
 const prefixed_application_1 = require("./prefixed-application");
 class Application {
     constructor(id, code, secret, name, roles, logger = undefined, authorizeFunctions = []) {

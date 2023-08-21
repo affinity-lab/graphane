@@ -1,4 +1,4 @@
-import { NonEmptyArray } from "@src/util/types";
+import { NonEmptyArray } from "../util/types";
 import RoleResolver from "./role-resolver-interface";
 export default abstract class AbstractGuard {
     user: undefined | RoleResolver;

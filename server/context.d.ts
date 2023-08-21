@@ -1,8 +1,8 @@
 import { BaseContext } from "@apollo/server";
-import Application from "@src/application/application";
-import Authorizable from "@src/application/auth/authorizable";
+import Authorizable from "../application/auth/authorizable";
 import { Request } from "express";
 import { TgdContext } from "type-graphql-dataloader/dist/types/TgdContext";
+import Application from "../application/application";
 export declare class Context implements BaseContext {
     readonly app: Application | undefined;
     readonly authorizable: Authorizable | undefined;

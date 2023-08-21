@@ -1,4 +1,4 @@
-import Atom from "@src/carbonite/atom";
+import Atom from "../carbonite/atom";
 import LoggerInterface from "./loggerInteface";
 import { PrefixedModule } from "./prefixed-module";
 export default class Module<RolesType = {}> {

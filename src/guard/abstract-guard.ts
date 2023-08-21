@@ -1,5 +1,5 @@
-import GraphaneError from "@src/error/graphane-error";
-import {NonEmptyArray} from "@src/util/types";
+import GraphaneError from "../error/graphane-error";
+import {NonEmptyArray} from "../util/types";
 import RoleResolver from "./role-resolver-interface";
 
 

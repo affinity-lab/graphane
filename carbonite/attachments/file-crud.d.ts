@@ -1,4 +1,4 @@
-import { Context } from "@src/server/context";
+import { Context } from "../../server/context";
 import { AtomWithAttachments } from "../atom";
 import { ChangeFileInput, FileInputVariables } from "./inputs";
 export default class FileCrud<Entity extends AtomWithAttachments> {

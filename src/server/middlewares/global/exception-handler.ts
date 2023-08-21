@@ -1,5 +1,5 @@
-import Application from "@src/application/application";
-import LoggerInterface from "@src/application/loggerInteface";
+import Application from "../../../application/application";
+import LoggerInterface from "../../../application/loggerInteface";
 import {NextFunction, Request, Response} from "express";
 
 

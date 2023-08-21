@@ -1,4 +1,4 @@
-import {SentFile} from "@src/carbonite/attachments/sent-file";
+import {SentFile} from "../../carbonite/attachments/sent-file";
 
 
 export {};

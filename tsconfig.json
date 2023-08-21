@@ -17,11 +17,6 @@
             "./src/@types"
         ],
         "baseUrl": "./",
-        "paths": {
-            "@src/*": [
-                "src/*"
-            ]
-        }
     },
     "include": [
         "./src/**/*"

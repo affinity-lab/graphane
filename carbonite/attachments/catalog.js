@@ -26,10 +26,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const graphane_error_1 = __importDefault(require("@src/error/graphane-error"));
-const file_descriptor_1 = __importDefault(require("@src/util/file-descriptor"));
+const file_descriptor_1 = __importDefault(require("../../util/file-descriptor"));
 const fs = __importStar(require("fs"));
 const micromatch_1 = __importDefault(require("micromatch"));
+const graphane_error_1 = __importDefault(require("../../error/graphane-error"));
 const image_attachment_1 = __importDefault(require("./file/image-attachment"));
 class Catalog {
     constructor(name, type, owner, storage, options) {
