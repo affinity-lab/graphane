@@ -18,7 +18,7 @@ const type_graphql_1 = require("type-graphql");
 const sanitize_html_1 = __importDefault(require("../../validate-and-format-input/formatters/sanitize-html"));
 const id_input_1 = require("../id-input");
 const image_attachment_1 = require("./file/image-attachment");
-let FileInputVariables = exports.FileInputVariables = class FileInputVariables {
+let FileInputVariables = class FileInputVariables {
 };
 __decorate([
     (0, type_graphql_1.Field)({ nullable: true }),
@@ -47,10 +47,11 @@ __decorate([
     sanitize_html_1.default,
     __metadata("design:type", String)
 ], FileInputVariables.prototype, "imageFocus", void 0);
-exports.FileInputVariables = FileInputVariables = __decorate([
+FileInputVariables = __decorate([
     (0, type_graphql_1.InputType)()
 ], FileInputVariables);
-let ChangeFileInput = exports.ChangeFileInput = class ChangeFileInput extends id_input_1.IdInput {
+exports.FileInputVariables = FileInputVariables;
+let ChangeFileInput = class ChangeFileInput extends id_input_1.IdInput {
 };
 __decorate([
     (0, type_graphql_1.Field)(() => String),
@@ -62,6 +63,7 @@ __decorate([
     sanitize_html_1.default,
     __metadata("design:type", String)
 ], ChangeFileInput.prototype, "catalog", void 0);
-exports.ChangeFileInput = ChangeFileInput = __decorate([
+ChangeFileInput = __decorate([
     (0, type_graphql_1.ArgsType)()
 ], ChangeFileInput);
+exports.ChangeFileInput = ChangeFileInput;

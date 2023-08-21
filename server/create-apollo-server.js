@@ -2,11 +2,10 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const server_1 = require("@apollo/server");
 const type_graphql_dataloader_1 = require("type-graphql-dataloader");
-const datasource_manager_1 = require("../util/datasource-manager");
-async function createApolloServer(schema, gqlConfig, start = true) {
+async function createApolloServer(schema, gqlConfig, getDataSource, start = true) {
     let server = new server_1.ApolloServer({
         schema,
-        plugins: [(0, type_graphql_dataloader_1.ApolloServerLoaderPlugin)({ typeormGetConnection: datasource_manager_1.getDataSource })],
+        plugins: [(0, type_graphql_dataloader_1.ApolloServerLoaderPlugin)({ typeormGetConnection: getDataSource })],
         includeStacktraceInErrorResponses: gqlConfig.includeStacktraceInErrorResponses,
         introspection: gqlConfig.introspection
     });

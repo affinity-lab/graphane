@@ -4,32 +4,32 @@ import Module from "../../../application/module";
 import Atom, {AtomWithAttachments} from "../../../carbonite/atom";
 import Catalog from "../../../carbonite/attachments/catalog";
 import {SentFile} from "../../../carbonite/attachments/sent-file";
-import FailedUploadError from "../../errors/failed-upload-error";
 import {UploadTokenPayload} from "../../upload-token-payload";
+import GraphaneError from "../../../graphane-error";
 
 
 export default function handleFileMiddleware() {
     return async (req: Request, res: Response): Promise<void> => {
         if (!req.files || Object.keys(req.files).length === 0) {
-            throw new FailedUploadError("Unsuccessful file upload");
+            throw GraphaneError.upload.failed("Unsuccessful file upload");
         }
         const token: UploadTokenPayload = req.context.get("uploadTokenPayload");
         const entityType: typeof Atom | undefined = Module.get(token.module)?.entities[token.entity];
         if (typeof entityType === "undefined") {
-            throw new FailedUploadError(`Upload to not existing entityType: ${token.module}/${token.entity}`);
+            throw GraphaneError.upload.failed(`Upload to not existing entityType: ${token.module}/${token.entity}`);
         }
         if (!(entityType.prototype instanceof AtomWithAttachments)) {
-            throw new FailedUploadError(`Upload to entity with no attachments: ${entityType.Ident}`);
+            throw GraphaneError.upload.failed(`Upload to entity with no attachments: ${entityType.Ident}`);
         }
         const withAttachments = entityType as typeof AtomWithAttachments;
         const entity: AtomWithAttachments | null = await withAttachments.findOneBy({id: token.id});
         if (entity == null) {
-            throw new FailedUploadError(`Upload to not existing entity: ${entityType.Ident}#${token.id}`);
+            throw GraphaneError.upload.failed(`Upload to not existing entity: ${entityType.Ident}#${token.id}`);
         }
         let file: SentFile;
         const catalog: Catalog | undefined = entity.getCatalog(token.catalog);
         if (typeof catalog === "undefined") {
-            throw new FailedUploadError(`Entity: ${entity.ident} has no Catalog: ${token.catalog}`);
+            throw GraphaneError.upload.failed(`Entity: ${entity.ident} has no Catalog: ${token.catalog}`);
         }
         for (let key in req.files) {
             file = req.files[key];

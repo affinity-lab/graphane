@@ -4,7 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const decode_jwt_1 = __importDefault(require("../../../util/decode-jwt"));
-const bad_upload_token_1 = __importDefault(require("../../errors/bad-upload-token"));
+const graphane_error_1 = __importDefault(require("../../../graphane-error"));
 function checkFileTokenMiddleware(uploadTokenKey) {
     return (req, res, next) => {
         const context = req.context.get("context");
@@ -14,7 +14,7 @@ function checkFileTokenMiddleware(uploadTokenKey) {
             next();
         }
         else {
-            throw new bad_upload_token_1.default();
+            throw graphane_error_1.default.upload.badToken();
         }
     };
 }

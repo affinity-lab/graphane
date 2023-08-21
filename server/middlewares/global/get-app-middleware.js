@@ -11,7 +11,7 @@ function getAppMiddleware(guard = false) {
             app = application_1.default.get.byId(req.getHeader("api-key"));
         }
         if (guard && !app) {
-            res.setHeader("error", "api-guard: api-key not found").sendStatus(401);
+            res.setHeader("error", "api-key not found").sendStatus(401);
         }
         req.context.set("app", app);
         return next();

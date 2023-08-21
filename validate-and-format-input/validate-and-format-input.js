@@ -4,8 +4,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ValidateAndFormatInput = void 0;
+const graphane_error_1 = __importDefault(require("../graphane-error"));
 const format_object_1 = __importDefault(require("./format/format-object"));
-const input_validation_error_1 = __importDefault(require("./validate/input-validation-error"));
 const validate_object_1 = __importDefault(require("./validate/validate-object"));
 function ValidateAndFormatInput(target, propertyKey, descriptor) {
     const originalMethod = descriptor.value;
@@ -13,7 +13,7 @@ function ValidateAndFormatInput(target, propertyKey, descriptor) {
         for (const arg of args) {
             (0, format_object_1.default)(arg);
             await (0, validate_object_1.default)(arg, (response) => {
-                throw new input_validation_error_1.default(response.message, response.fields);
+                throw graphane_error_1.default.input.validation(response.message, response.fields);
             });
         }
         return originalMethod.apply(this, arguments);

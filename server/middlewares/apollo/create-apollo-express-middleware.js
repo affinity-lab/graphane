@@ -8,7 +8,7 @@ const create_apollo_server_1 = __importDefault(require("../../create-apollo-serv
 async function getApolloContext({ req }) {
     return req.context.get("context");
 }
-async function createApolloExpressMiddleware(schema, gqlConfig) {
-    return (0, express4_1.expressMiddleware)(await (0, create_apollo_server_1.default)(schema, gqlConfig, true), { context: getApolloContext });
+async function createApolloExpressMiddleware(schema, gqlConfig, getDataSource) {
+    return (0, express4_1.expressMiddleware)(await (0, create_apollo_server_1.default)(schema, gqlConfig, getDataSource, true), { context: getApolloContext });
 }
 exports.default = createApolloExpressMiddleware;

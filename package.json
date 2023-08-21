@@ -1,30 +1,33 @@
 {
-    "name": "@affinity-lab/graphane",
-    "version": "0.0.4",
-    "author": "Affinity Lab",
-    "files": [
-        "./**/*"
-    ],
-    "dependencies": {
-        "@apollo/server": "^4.7.1",
-        "micromatch": "^4.0.5",
-        "mime-types": "^2.1.35",
-        "sanitize-html": "^2.11.0",
-        "class-validator": "^0.14.0",
-        "express-fileupload": "^1.4.0",
-        "graphql-type-json": "^0.3.2",
-        "jwt-simple": "^0.5.6",
-        "rotating-file-stream": "^3.1.0",
-        "sharp": "^0.32.4",
-        "snake-case": "^3.0.4",
-        "type-graphql": "^2.0.0-beta.2",
-        "type-graphql-dataloader": "github:affinity-lab/type-graphql-dataloader",
-        "typeorm": "^0.3.16"
-    },
-    "devDependencies": {
-        "@types/micromatch": "^4.0.2",
-        "@types/mime-types": "^2.1.1",
-        "@types/sanitize-html": "^2.9.0",
-        "typescript": "^5.1.6"
-    }
+	"name": "@affinity-lab/graphane",
+	"version": "0.0.4",
+	"author": "Affinity Lab",
+	"files": [
+		"./**/*"
+	],
+	"dependencies": {
+		"@apollo/server": "^4.7.1",
+		"micromatch": "^4.0.5",
+		"mime-types": "^2.1.35",
+		"sanitize-html": "^2.11.0",
+		"class-validator": "^0.14.0",
+		"express-fileupload": "^1.4.0",
+		"graphql-type-json": "^0.3.2",
+		"jwt-simple": "^0.5.6",
+		"rotating-file-stream": "^3.1.0",
+		"sharp": "^0.32.4",
+		"snake-case": "^3.0.4",
+		"type-graphql": "^2.0.0-beta.2",
+		"type-graphql-dataloader": "github:affinity-lab/type-graphql-dataloader",
+		"typeorm": "^0.3.16"
+	},
+	"devDependencies": {
+		"@types/micromatch": "^4.0.2",
+		"@types/mime-types": "^2.1.1",
+		"@types/sanitize-html": "^2.9.0",
+		"typescript": "^5.1.6"
+	},
+	"_moduleAliases": {
+		"@src": "src"
+	}
 }

@@ -7,4 +7,6 @@ function resolveFileLocationMiddleware() {
         next();
     };
 }
+resolveFileLocationMiddleware.locationParams = "/:module/:entity/:id/:catalog/:file";
+resolveFileLocationMiddleware.route = (baseUrl) => baseUrl + "/:module/:entity/:id/:catalog/:file";
 exports.default = resolveFileLocationMiddleware;

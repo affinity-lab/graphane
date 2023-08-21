@@ -6,9 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const BaseError_1 = __importDefault(require("../../base-error/BaseError"));
 class MissingEnvironmentalVariableError extends BaseError_1.default {
     constructor(key) {
-        super(`${key} environmental variable must be set.`, {
-            key
-        });
+        super(`${key} environmental variable must be set.`, { key });
     }
     ;
 }

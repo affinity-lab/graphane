@@ -29,14 +29,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const fs = __importStar(require("fs"));
 const micromatch_1 = __importDefault(require("micromatch"));
 const file_descriptor_1 = __importDefault(require("../../util/file-descriptor"));
-const bad_attachment_type_error_1 = __importDefault(require("./errors/bad-attachment-type-error"));
-const cannot_rename_file_error_1 = require("./errors/cannot-rename-file-error");
-const file_doesnot_exist_error_1 = __importDefault(require("./errors/file-doesnot-exist-error"));
-const file_error_1 = __importDefault(require("./errors/file-error"));
-const mimetype_mismatch_1 = __importDefault(require("./errors/mimetype-mismatch"));
-const too_large_attachment_1 = __importDefault(require("./errors/too-large-attachment"));
-const too_many_attachments_1 = __importDefault(require("./errors/too-many-attachments"));
 const image_attachment_1 = __importDefault(require("./file/image-attachment"));
+const graphane_error_1 = __importDefault(require("../../graphane-error"));
 class Catalog {
     constructor(name, type, owner, storage, options) {
         this.name = name;
@@ -66,7 +60,7 @@ class Catalog {
             filename = [filename];
         }
         if (this.owner.attachments[this.name].length + filename.length > this.options.maxFileCount) {
-            throw new too_many_attachments_1.default(this, this.options.maxFileCount);
+            throw graphane_error_1.default.upload.validation.tooManyAttachments(this.options.maxFileCount);
         }
         await Promise.all(filename.map((value) => this.addFile(value)));
         await this.owner.save();
@@ -120,11 +114,11 @@ class Catalog {
     ;
     async renameFile(fileName, newName) {
         if (this.hasFile(newName)) {
-            throw new cannot_rename_file_error_1.CannotRenameFileError(fileName, newName);
+            throw graphane_error_1.default.attachment.fileCrud.fileAlreadyExists(newName);
         }
         const file = this.getFile(fileName);
         if (typeof file === "undefined") {
-            throw new file_doesnot_exist_error_1.default(this.owner, this.name, fileName);
+            throw graphane_error_1.default.attachment.fileCrud.fileNotExists();
         }
         file.name = newName;
         await this.owner.save();
@@ -133,7 +127,7 @@ class Catalog {
     async giveTitleToFile(fileName, title) {
         const file = this.getFile(fileName);
         if (typeof file === "undefined") {
-            throw new file_doesnot_exist_error_1.default(this.owner, this.name, fileName);
+            throw graphane_error_1.default.attachment.fileCrud.fileNotExists();
         }
         file.title = title;
         await this.owner.save();
@@ -142,7 +136,7 @@ class Catalog {
     async reorderFiles(fileName, index) {
         const file = this.getFile(fileName);
         if (typeof file === "undefined") {
-            throw new file_doesnot_exist_error_1.default(this.owner, this.name, fileName);
+            throw graphane_error_1.default.attachment.fileCrud.fileNotExists();
         }
         this.owner.attachments[this.name].splice(this.owner.attachments[this.name].indexOf(file), 1);
         this.owner.attachments[this.name].splice(index, 0, file);
@@ -152,11 +146,10 @@ class Catalog {
     async changeImageFocus(fileName, focus) {
         const file = this.getFile(fileName);
         if (typeof file === "undefined") {
-            throw new file_doesnot_exist_error_1.default(this.owner, this.name, fileName);
+            throw graphane_error_1.default.attachment.fileCrud.fileNotExists();
         }
-        if (!(file instanceof image_attachment_1.default)) {
-            throw new bad_attachment_type_error_1.default("Image", file.constructor.name);
-        }
+        if (!(file instanceof image_attachment_1.default))
+            throw graphane_error_1.default.attachment.imageExpected();
         file.focus = focus;
         await this.owner.save();
     }
@@ -164,13 +157,13 @@ class Catalog {
     async addFile(filename) {
         let descriptor = new file_descriptor_1.default(filename);
         if (!await descriptor.exists) {
-            throw new file_error_1.default(this, filename);
+            throw graphane_error_1.default.attachment.fileCrud.fileNotExists();
         }
         if (!micromatch_1.default.isMatch(descriptor.mimeType.toString(), this.options.mimeTypePattern)) {
-            throw new mimetype_mismatch_1.default(this, this.options.mimeTypePattern, descriptor.mimeType.toString());
+            throw graphane_error_1.default.upload.validation.mimeTypeMismatch(this.options.mimeTypePattern);
         }
         if (await descriptor.size > this.options.maxFileSize) {
-            throw new too_large_attachment_1.default(this, this.options.maxFileSize, descriptor.file, await descriptor.size);
+            throw graphane_error_1.default.upload.validation.tooLarge(this.options.maxFileSize);
         }
         let name = descriptor.name;
         let counter = 1;
@@ -188,7 +181,7 @@ class Catalog {
     ;
     removeFile(fileName) {
         if (typeof this.getFile(fileName) === "undefined") {
-            throw new file_doesnot_exist_error_1.default(this.owner, this.name, fileName);
+            throw graphane_error_1.default.attachment.fileCrud.fileNotExists();
         }
         this.storage.removeFile(this, new file_descriptor_1.default(fileName));
         this.owner.attachments[this.name] = this.owner.attachments[this.name].filter((item) => item.name !== fileName);

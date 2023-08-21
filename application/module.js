@@ -3,8 +3,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const module_already_registered_error_1 = __importDefault(require("./errors/module-already-registered-error"));
 const prefixed_module_1 = require("./prefixed-module");
+const graphane_error_1 = __importDefault(require("../graphane-error"));
 class Module {
     constructor(code, logger = null, roles = {}) {
         this.code = code;
@@ -29,13 +29,13 @@ class Module {
     ;
     static addModule(module) {
         if (this.codeMap.hasOwnProperty(module.code)) {
-            throw new module_already_registered_error_1.default(module.code);
+            throw graphane_error_1.default.module.alreadyRegistered(module.code);
         }
         this.modules.push(module);
         this.codeMap[module.code] = module;
     }
     ;
 }
+exports.default = Module;
 Module.modules = [];
 Module.codeMap = {};
-exports.default = Module;

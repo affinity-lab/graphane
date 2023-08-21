@@ -29,29 +29,29 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const fs = __importStar(require("fs"));
 const module_1 = __importDefault(require("../../../application/module"));
 const atom_1 = require("../../../carbonite/atom");
-const failed_upload_error_1 = __importDefault(require("../../errors/failed-upload-error"));
+const graphane_error_1 = __importDefault(require("../../../graphane-error"));
 function handleFileMiddleware() {
     return async (req, res) => {
         if (!req.files || Object.keys(req.files).length === 0) {
-            throw new failed_upload_error_1.default("Unsuccessful file upload");
+            throw graphane_error_1.default.upload.failed("Unsuccessful file upload");
         }
         const token = req.context.get("uploadTokenPayload");
         const entityType = module_1.default.get(token.module)?.entities[token.entity];
         if (typeof entityType === "undefined") {
-            throw new failed_upload_error_1.default(`Upload to not existing entityType: ${token.module}/${token.entity}`);
+            throw graphane_error_1.default.upload.failed(`Upload to not existing entityType: ${token.module}/${token.entity}`);
         }
         if (!(entityType.prototype instanceof atom_1.AtomWithAttachments)) {
-            throw new failed_upload_error_1.default(`Upload to entity with no attachments: ${entityType.Ident}`);
+            throw graphane_error_1.default.upload.failed(`Upload to entity with no attachments: ${entityType.Ident}`);
         }
         const withAttachments = entityType;
         const entity = await withAttachments.findOneBy({ id: token.id });
         if (entity == null) {
-            throw new failed_upload_error_1.default(`Upload to not existing entity: ${entityType.Ident}#${token.id}`);
+            throw graphane_error_1.default.upload.failed(`Upload to not existing entity: ${entityType.Ident}#${token.id}`);
         }
         let file;
         const catalog = entity.getCatalog(token.catalog);
         if (typeof catalog === "undefined") {
-            throw new failed_upload_error_1.default(`Entity: ${entity.ident} has no Catalog: ${token.catalog}`);
+            throw graphane_error_1.default.upload.failed(`Entity: ${entity.ident} has no Catalog: ${token.catalog}`);
         }
         for (let key in req.files) {
             file = req.files[key];

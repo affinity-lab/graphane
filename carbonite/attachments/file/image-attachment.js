@@ -16,8 +16,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ImgFocus = void 0;
 const type_graphql_1 = require("type-graphql");
 const geometry_1 = require("../../../util/geometry");
-const not_image_error_1 = __importDefault(require("../errors/not-image-error"));
 const file_attachment_1 = __importDefault(require("./file-attachment"));
+const graphane_error_1 = __importDefault(require("../../../graphane-error"));
 let ImgDimension = class ImgDimension {
 };
 __decorate([
@@ -57,7 +57,7 @@ var ImgFocus;
     ImgFocus["RIGHT"] = "right";
     ImgFocus["ENTROPY"] = "entropy";
     ImgFocus["ATTENTION"] = "attention";
-})(ImgFocus || (exports.ImgFocus = ImgFocus = {}));
+})(ImgFocus = exports.ImgFocus || (exports.ImgFocus = {}));
 let ImageAttachment = ImageAttachment_1 = class ImageAttachment extends file_attachment_1.default {
     constructor() {
         super(...arguments);
@@ -70,13 +70,11 @@ let ImageAttachment = ImageAttachment_1 = class ImageAttachment extends file_att
     }
     ;
     static async setup(image, descriptor, catalog) {
-        if (!descriptor.isImage) {
-            throw new not_image_error_1.default(descriptor);
-        }
+        if (!descriptor.isImage)
+            throw graphane_error_1.default.attachment.imageExpected();
         let img = await descriptor.image;
-        if (img === null) {
-            throw new not_image_error_1.default(descriptor);
-        }
+        if (img === null)
+            throw graphane_error_1.default.attachment.imageExpected();
         await super.setup(image, descriptor, catalog);
         image.dimensions = new geometry_1.Dimension(img.meta.width || 0, img.meta.height || 0);
         image.dominant = img.stats.dominant;

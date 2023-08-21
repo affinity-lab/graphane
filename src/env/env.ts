@@ -1,73 +1,82 @@
-import BadEnvironmentalVariable from "./errors/bad-environmental-variable";
-import MissingEnvironmentalVariableError from "./errors/missing-environmental-variable-error";
-
+import path          from "path";
+import GraphaneError from "../graphane-error";
 
 export class Env {
-    private readonly isTest: boolean;
+	public readonly isTest: boolean;
 
-    constructor(private readonly env: Record<string, string | undefined>) {
-        this.isTest = this.boolean("IS_TEST", false);
-    };
+	public info: Array<{
+		key: string,
+		type: "string" | "int" | "float" | "boolean" | "path",
+		defaultValue: any,
+		value: any
+	}> = [];
 
-    value(key: string): string | undefined {
-        if (this.isTest && this.env.hasOwnProperty("TEST_" + key)) {
-            return this.env["TEST_" + key];
-        }
-        if (this.env.hasOwnProperty(key)) {
-            return this.env[key];
-        }
-        return undefined;
-    };
+	constructor(private readonly env: Record<string, string | undefined>, isTestKey: string = "IS_TEST", private testPrefix = "TEST_") {
+		this.isTest = this.boolean(isTestKey, false);
+	};
 
-    string(key: string, default_?: string): string {
-        let value: string | undefined = this.value(key);
-        if (typeof value == "undefined") {
-            if (typeof default_ == "undefined") {
-                throw new MissingEnvironmentalVariableError(key);
-            }
-            return default_;
-        }
-        return value;
-    };
+	private value(key: string): string | undefined {
+		key = this.isTest ? this.testPrefix + key : key;
+		if (this.env.hasOwnProperty(key)) return this.env[key];
+		return undefined;
+	};
 
-    int(key: string, default_?: number): number {
-        let value: string | undefined = this.value(key);
-        if (typeof value == "undefined") {
-            if (typeof default_ == "undefined") {
-                throw new MissingEnvironmentalVariableError(key);
-            }
-            return default_;
-        }
-        let returnValue = parseInt(value);
-        if (isNaN(returnValue)) {
-            throw new BadEnvironmentalVariable(key, "integer");
-        }
-        return returnValue;
-    };
+	string(key: string, defaultValue?: string): string {
+		let rawValue = this.value(key);
+		let value = typeof rawValue === "undefined"
+			? defaultValue
+			: rawValue.trim();
 
-    float(key: string, default_?: number): number {
-        let value: string | undefined = this.value(key);
-        if (typeof value == "undefined") {
-            if (typeof default_ == "undefined") {
-                throw new MissingEnvironmentalVariableError(key);
-            }
-            return default_;
-        }
-        let returnValue = parseFloat(value);
-        if (isNaN(returnValue)) {
-            throw new BadEnvironmentalVariable(key, "float");
-        }
-        return returnValue;
-    };
+		if (typeof value === "undefined") throw GraphaneError.fatal(`Missing Env variable ${key}`);
+		this.info.push({key: key, type: "string", defaultValue, value});
+		return value;
+	};
 
-    boolean(key: string, default_?: boolean): boolean {
-        let value: string | undefined = this.value(key);
-        if (typeof value == "undefined") {
-            if (typeof default_ == "undefined") {
-                throw new MissingEnvironmentalVariableError(key);
-            }
-            return default_;
-        }
-        return ["1", "yes", "true"].indexOf(value.toLowerCase().trim()) != -1;
-    };
+	path(key: string, defaultValue?: string): string {
+		let rawValue = this.value(key);
+		let value = typeof rawValue === "undefined"
+			? defaultValue
+			: rawValue.trim();
+		if (typeof value === "undefined") throw GraphaneError.fatal(`Missing Env variable ${key}`);
+		this.info.push({key: key, type: "path", defaultValue, value});
+		value = path.resolve(process.cwd(), value);
+		return value;
+	};
+
+	int(key: string, defaultValue?: number): number {
+		let rawValue = this.value(key);
+		let value =
+			typeof rawValue === "undefined"
+				? defaultValue
+				: parseInt(rawValue);
+
+		if (typeof value === "undefined") throw GraphaneError.fatal(`Missing Env variable ${key}`);
+		if (isNaN(value)) throw GraphaneError.fatal(`Env variable type failed ${key} (int)`);
+		this.info.push({key: key, type: "int", defaultValue, value});
+		return value;
+	};
+
+	float(key: string, defaultValue?: number): number {
+		let rawValue = this.value(key);
+		let value =
+			typeof rawValue === "undefined"
+				? defaultValue
+				: parseFloat(rawValue);
+		if (typeof value === "undefined") throw GraphaneError.fatal(`Missing Env variable ${key}`);
+		if (isNaN(value)) throw GraphaneError.fatal(`Env variable type failed ${key} (float)`);
+		this.info.push({key: key, type: "float", defaultValue, value});
+		return value;
+	};
+
+	boolean(key: string, defaultValue?: boolean): boolean {
+		let rawValue = this.value(key);
+		let value =
+			typeof rawValue === "undefined"
+				? defaultValue
+				: ["1", "yes", "true"].indexOf(rawValue.toLowerCase().trim()) != -1
+		;
+		if (typeof value === "undefined") throw GraphaneError.fatal(`Missing Env variable ${key}`);
+		this.info.push({key: key, type: "boolean", defaultValue, value});
+		return value;
+	};
 }

@@ -4,8 +4,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
-const application_already_registered_error_1 = __importDefault(require("./errors/application-already-registered-error"));
 const prefixed_application_1 = require("./prefixed-application");
+const graphane_error_1 = __importDefault(require("../graphane-error"));
 class Application {
     constructor(id, code, secret, name, roles, logger = undefined, authorizeFunctions = []) {
         this.id = id;
@@ -25,7 +25,7 @@ class Application {
     ;
     static addApplication(application) {
         if (this.codeMap.hasOwnProperty(application.code)) {
-            throw new application_already_registered_error_1.default(application.code);
+            throw graphane_error_1.default.application.alreadyRegistered(application.code);
         }
         this.applications.push(application);
         this.codeMap[application.code] = application;
@@ -44,6 +44,7 @@ class Application {
     }
     ;
 }
+exports.default = Application;
 _a = Application;
 Application.applications = [];
 Application.codeMap = {};
@@ -54,4 +55,3 @@ Application.get = {
         return _a.idMap.hasOwnProperty(id) ? _a.idMap[id] : undefined;
     }
 };
-exports.default = Application;

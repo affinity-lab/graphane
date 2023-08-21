@@ -3,7 +3,7 @@
 import * as fs from "fs";
 import * as path from "path";
 import sharp from "sharp";
-export type Img = {
+export declare type Img = {
     meta: sharp.Metadata;
     stats: sharp.Stats;
 };

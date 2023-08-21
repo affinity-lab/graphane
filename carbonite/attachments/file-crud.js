@@ -1,8 +1,10 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const create_upload_token_1 = require("../../server/create-upload-token");
-const file_crud_bad_input_error_1 = require("./errors/file-crud-bad-input-error");
-const unknown_file_command_error_1 = require("./errors/unknown-file-command-error");
+const graphane_error_1 = __importDefault(require("../../graphane-error"));
 class FileCrud {
     constructor(entity, uploadTokenKey) {
         this.entity = entity;
@@ -11,10 +13,10 @@ class FileCrud {
     ;
     checkVariablesExist(variables) {
         if (typeof variables === "undefined") {
-            throw new file_crud_bad_input_error_1.fileCrudBadInputError("variables");
+            throw graphane_error_1.default.attachment.fileCrud.badInput("variables");
         }
         if (typeof variables.fileName === "undefined") {
-            throw new file_crud_bad_input_error_1.fileCrudBadInputError("fileName");
+            throw graphane_error_1.default.attachment.fileCrud.badInput("fileName");
         }
     }
     ;
@@ -30,40 +32,40 @@ class FileCrud {
             case "rename":
                 this.checkVariablesExist(variables);
                 if (typeof variables.newName === "undefined") {
-                    throw new file_crud_bad_input_error_1.fileCrudBadInputError("newName");
+                    throw graphane_error_1.default.attachment.fileCrud.badInput("newName");
                 }
                 await catalogInstance.renameFile(variables.fileName, variables.newName);
                 return;
             case "reorder":
                 this.checkVariablesExist(variables);
                 if (typeof variables.index === "undefined") {
-                    throw new file_crud_bad_input_error_1.fileCrudBadInputError("index");
+                    throw graphane_error_1.default.attachment.fileCrud.badInput("index");
                 }
                 await catalogInstance.reorderFiles(variables.fileName, variables.index);
                 return;
             case "giveTitle":
                 this.checkVariablesExist(variables);
                 if (typeof variables.title === "undefined") {
-                    throw new file_crud_bad_input_error_1.fileCrudBadInputError("title");
+                    throw graphane_error_1.default.attachment.fileCrud.badInput("title");
                 }
                 await catalogInstance.giveTitleToFile(variables.fileName, variables.title);
                 return;
             case "changeImageFocus":
                 this.checkVariablesExist(variables);
                 if (typeof variables.imageFocus === "undefined") {
-                    throw new file_crud_bad_input_error_1.fileCrudBadInputError("imageFocus");
+                    throw graphane_error_1.default.attachment.fileCrud.badInput("imageFocus");
                 }
                 await catalogInstance.changeImageFocus(variables.fileName, variables.imageFocus);
                 return;
             default:
-                throw new unknown_file_command_error_1.UnknownFileCommandError(command, this.entity, id, catalog, variables);
+                throw graphane_error_1.default.attachment.fileCrud.unkonwCommand(command);
         }
     }
     ;
     async getCatalog(id, catalogName) {
         const catalogInstance = (await this.entity.crud.readOneByIdOrFail(id)).getCatalog(catalogName);
         if (typeof catalogInstance === "undefined") {
-            throw new file_crud_bad_input_error_1.fileCrudBadInputError("catalog");
+            throw graphane_error_1.default.attachment.fileCrud.badInput("catalog");
         }
         return catalogInstance;
     }

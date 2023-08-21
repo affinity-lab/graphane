@@ -1,10 +1,10 @@
 import { InputTypeOptions, Mutation, Query } from "type-graphql";
 import { AdvancedOptions, ReturnTypeFunc } from "type-graphql/dist/decorators/types";
 import { Prefixed } from "./prefixed";
-export type EnhancedOptions = AdvancedOptions & {
+export declare type EnhancedOptions = AdvancedOptions & {
     authorized?: string[] | boolean;
 };
-type cMReturnType = {
+declare type cMReturnType = {
     middlewares: MethodDecorator[];
     name: string | undefined;
 };

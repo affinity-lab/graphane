@@ -1,4 +1,4 @@
-export type ValidationErrorResponse = {
+export declare type ValidationErrorResponse = {
     message: string;
     fields: Record<string, string>;
 };

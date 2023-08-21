@@ -1,8 +1,7 @@
 import {BaseEntity, DataSource, DeepPartial, FindManyOptions, FindOneOptions, FindOptionsWhere, In} from "typeorm";
 import {RelationMetadata} from "typeorm/metadata/RelationMetadata";
 import Atom from "./atom";
-import BadRelationTypeError from "./errors/bad-relation-type-error";
-import UnrealEntityTargetError from "./errors/unreal-entity-target-error";
+import GraphaneError                                                                                from "../graphane-error";
 
 
 /**
@@ -59,7 +58,7 @@ export class BasicCrud<Entity extends Atom> {
         for (rel of this.getDataSource().getMetadata(this.entity).relations) {
             const target: string | Function = rel.inverseEntityMetadata.target;
             if (typeof target === "string") {
-                throw new UnrealEntityTargetError(rel.inverseEntityMetadata);
+                throw GraphaneError.crud.unrealEntityTarget(rel.inverseEntityMetadata.target);
             }
             const inverseEntity = target as typeof Atom;
             if (rel.isOneToOne || rel.isManyToOne) {
@@ -71,7 +70,7 @@ export class BasicCrud<Entity extends Atom> {
                     data[rel.propertyName] = await inverseEntity.findBy({id: In(data[rel.propertyName])});
                 }
             } else {
-                throw new BadRelationTypeError(rel);
+                throw GraphaneError.crud.badRelationType();
             }
         }
         return data as DeepPartial<Entity>;
