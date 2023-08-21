@@ -27,9 +27,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const fs = __importStar(require("fs"));
-const module_1 = __importDefault(require("../../../application/module"));
-const atom_1 = require("../../../carbonite/atom");
-const graphane_error_1 = __importDefault(require("../../../graphane-error"));
+const module_1 = __importDefault(require("@src/application/module"));
+const atom_1 = require("@src/carbonite/atom");
+const graphane_error_1 = __importDefault(require("@src/error/graphane-error"));
 function handleFileMiddleware() {
     return async (req, res) => {
         if (!req.files || Object.keys(req.files).length === 0) {

@@ -1,3 +1,3 @@
 export default interface RoleResolver {
-	hasRole(roles: string[]): boolean;
+    hasRole(roles: string[]): boolean;
 }

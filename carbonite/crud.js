@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.BasicCrud = void 0;
 const typeorm_1 = require("typeorm");
-const graphane_error_1 = __importDefault(require("../graphane-error"));
+const graphane_error_1 = __importDefault(require("@src/error/graphane-error"));
 class BasicCrud {
     constructor(entity, getDataSource) {
         this.entity = entity;

@@ -1,7 +1,7 @@
 import { Generator } from "rotating-file-stream";
 import { LOGLEVEL } from "../logger";
 import Writer from "./writer";
-export declare type StreamOptions = {
+export type StreamOptions = {
     size: string;
     interval: string;
     compress: string;

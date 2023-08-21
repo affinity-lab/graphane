@@ -1,7 +1,7 @@
 import {BaseEntity, DataSource, DeepPartial, FindManyOptions, FindOneOptions, FindOptionsWhere, In} from "typeorm";
 import {RelationMetadata} from "typeorm/metadata/RelationMetadata";
+import GraphaneError from "@src/error/graphane-error";
 import Atom from "./atom";
-import GraphaneError                                                                                from "../graphane-error";
 
 
 /**

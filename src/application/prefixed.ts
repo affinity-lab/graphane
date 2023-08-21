@@ -1,5 +1,4 @@
-import {ObjectType} from "type-graphql";
-import {ObjectTypeOptions} from "type-graphql/dist/decorators/ObjectType";
+import {ObjectType, ObjectTypeOptions} from "type-graphql";
 
 
 export class Prefixed {

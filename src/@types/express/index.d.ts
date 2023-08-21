@@ -1,16 +1,20 @@
-import {SentFile} from "../../carbonite/attachments/sent-file";
+import {SentFile} from "@src/carbonite/attachments/sent-file";
+
 
 export {};
 
 declare global {
-	namespace Express {
-		export interface Request {
-			context: Map<string, any>;
-			getHeader: (header: string) => string | undefined;
-			getNumHeader: (header: string) => number | undefined;
-			files?: Record<string, SentFile>;
+    namespace Express {
+        export interface Request {
+            context: Map<string, any>;
 
-			hasHeader(header: string): boolean;
-		}
-	}
+            getHeader: (header: string) => string | undefined;
+
+            getNumHeader: (header: string) => number | undefined;
+
+            files?: Record<string, SentFile>;
+
+            hasHeader(header: string): boolean;
+        }
+    }
 }

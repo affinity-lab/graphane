@@ -1,6 +1,6 @@
 import {NextFunction, Request, Response} from "express";
-import Application from "../../../application/application";
-import Authorizable from "../../../application/auth/authorizable";
+import Application from "@src/application/application";
+import Authorizable from "@src/application/auth/authorizable";
 
 
 export default function getUserMiddleware() {

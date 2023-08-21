@@ -1,4 +1,4 @@
-import { ObjectTypeOptions } from "type-graphql/dist/decorators/ObjectType";
+import { ObjectTypeOptions } from "type-graphql";
 export declare class Prefixed {
     protected prefix: string;
     constructor(prefix: string);

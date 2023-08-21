@@ -1,4 +1,12 @@
 declare const GraphaneError: {
+    fatal: (message?: string, info?: Record<string, any>) => {
+        info?: {
+            [p: string]: any;
+        } | undefined;
+        message?: string | undefined;
+        status: number;
+        silent: boolean;
+    };
     application: {
         notFound: () => {
             info?: {
@@ -34,14 +42,6 @@ declare const GraphaneError: {
             status: number;
             silent: boolean;
         };
-    };
-    fatal: (message?: string, info?: Record<string, any>) => {
-        info?: {
-            [p: string]: any;
-        } | undefined;
-        message?: string | undefined;
-        status: number;
-        silent: boolean;
     };
     input: {
         validation: (message: string, fields: Record<string, string>) => {

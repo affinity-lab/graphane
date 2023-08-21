@@ -24,7 +24,6 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const fs = __importStar(require("fs"));
-// export const imgLocationParams = "/:module/:entity/:id/:catalog/:width.:height.:focus.:ver.:originalExt/:file.:ext";
 function resolveImgLocationMiddleware(storagePath) {
     return (req, res, next) => {
         let b36 = parseInt(req.params["id"]).toString(36).padStart(6, "0");

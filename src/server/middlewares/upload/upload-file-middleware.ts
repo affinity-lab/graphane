@@ -1,5 +1,5 @@
 import {NextFunction, Request, Response} from "express";
-import LoggerInterface from "../../../application/loggerInteface";
+import LoggerInterface from "@src/application/loggerInteface";
 
 
 const isEligibleRequest = require("express-fileupload/lib/isEligibleRequest");

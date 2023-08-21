@@ -28,9 +28,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const fs = __importStar(require("fs"));
 const micromatch_1 = __importDefault(require("micromatch"));
-const file_descriptor_1 = __importDefault(require("../../util/file-descriptor"));
+const graphane_error_1 = __importDefault(require("@src/error/graphane-error"));
+const file_descriptor_1 = __importDefault(require("@src/util/file-descriptor"));
 const image_attachment_1 = __importDefault(require("./file/image-attachment"));
-const graphane_error_1 = __importDefault(require("../../graphane-error"));
 class Catalog {
     constructor(name, type, owner, storage, options) {
         this.name = name;
@@ -148,8 +148,9 @@ class Catalog {
         if (typeof file === "undefined") {
             throw graphane_error_1.default.attachment.fileCrud.fileNotExists();
         }
-        if (!(file instanceof image_attachment_1.default))
+        if (!(file instanceof image_attachment_1.default)) {
             throw graphane_error_1.default.attachment.imageExpected();
+        }
         file.focus = focus;
         await this.owner.save();
     }

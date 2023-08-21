@@ -3,8 +3,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const error_1 = __importDefault(require("./error/error"));
+const error_1 = __importDefault(require("./error"));
 const GraphaneError = {
+    fatal: (message, info) => (0, error_1.default)({ message, info }),
     application: {
         notFound: () => (0, error_1.default)(),
         alreadyRegistered: (app) => (0, error_1.default)({ app })
@@ -13,7 +14,6 @@ const GraphaneError = {
         notFound: () => (0, error_1.default)(),
         alreadyRegistered: (module) => (0, error_1.default)({ module })
     },
-    fatal: (message, info) => (0, error_1.default)({ message, info }),
     input: {
         validation: (message, fields) => (0, error_1.default)({ fields }, message)
     },
@@ -41,7 +41,7 @@ const GraphaneError = {
     },
     guard: {
         unauthorized: () => (0, error_1.default)(undefined, undefined, 401),
-        forbidden: () => (0, error_1.default)(undefined, undefined, 403),
+        forbidden: () => (0, error_1.default)(undefined, undefined, 403)
     }
 };
 error_1.default.preprocess(GraphaneError, "GRAPHANE");

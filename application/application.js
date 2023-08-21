@@ -4,8 +4,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
+const graphane_error_1 = __importDefault(require("@src/error/graphane-error"));
 const prefixed_application_1 = require("./prefixed-application");
-const graphane_error_1 = __importDefault(require("../graphane-error"));
 class Application {
     constructor(id, code, secret, name, roles, logger = undefined, authorizeFunctions = []) {
         this.id = id;
@@ -44,7 +44,6 @@ class Application {
     }
     ;
 }
-exports.default = Application;
 _a = Application;
 Application.applications = [];
 Application.codeMap = {};
@@ -55,3 +54,4 @@ Application.get = {
         return _a.idMap.hasOwnProperty(id) ? _a.idMap[id] : undefined;
     }
 };
+exports.default = Application;

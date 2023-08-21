@@ -1,4 +1,4 @@
-import GraphaneError from "../graphane-error";
+import GraphaneError from "../error/graphane-error";
 import formatObject from "./format/format-object";
 import validateObject, {ValidationErrorResponse} from "./validate/validate-object";
 

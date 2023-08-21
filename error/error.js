@@ -1,13 +1,15 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const snake_case_1 = require("snake-case");
 const index_1 = require("graphql/index");
+const snake_case_1 = require("snake-case");
 function error(info, message, status = 500, silent = false) {
     const error = { status, silent };
-    if (typeof info !== "undefined")
+    if (typeof info !== "undefined") {
         error.info = info;
-    if (typeof message !== "undefined")
+    }
+    if (typeof message !== "undefined") {
         error.message = message;
+    }
     return error;
 }
 exports.default = error;

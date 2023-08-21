@@ -1,6 +1,6 @@
-import { RGB } from "../../../util/color";
-import FileDescriptor from "../../../util/file-descriptor";
-import { Dimension } from "../../../util/geometry";
+import { RGB } from "@src/util/color";
+import FileDescriptor from "@src/util/file-descriptor";
+import { Dimension } from "@src/util/geometry";
 import Catalog from "../catalog";
 import FileAttachment from "./file-attachment";
 export declare enum ImgFocus {

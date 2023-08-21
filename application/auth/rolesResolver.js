@@ -15,7 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.createRolesResolver = void 0;
 const graphql_type_json_1 = require("graphql-type-json");
 const type_graphql_1 = require("type-graphql");
-const context_1 = require("../../server/context");
+const context_1 = require("@src/server/context");
 let Roles = class Roles {
     constructor(roles) {
         this.roles = roles;

@@ -7,10 +7,12 @@ function exceptionHandler(mainLogger) {
         }
         catch (e) {
             const app = req.context.get("app");
-            if (typeof app == "undefined")
+            if (typeof app == "undefined") {
                 mainLogger.error(e);
-            else
+            }
+            else {
                 app.logger?.error(e);
+            }
             res.status(400).send(e);
         }
     };

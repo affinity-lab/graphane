@@ -1,7 +1,6 @@
 import {snakeCase} from "snake-case";
-import {Field, ID} from "type-graphql";
-import {ObjectTypeOptions} from "type-graphql/dist/decorators/ObjectType";
-import {MethodAndPropDecorator} from "type-graphql/dist/decorators/types";
+import {Field, ID, ObjectTypeOptions} from "type-graphql";
+import {MethodAndPropDecorator} from "type-graphql/build/typings/decorators/types";
 import {Entity} from "typeorm";
 import {EntityOptions} from "typeorm/decorator/options/EntityOptions";
 import Atom from "../carbonite/atom";
