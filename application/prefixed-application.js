@@ -1,9 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PrefixedApplication = void 0;
+const validate_and_format_input_1 = require("@src/validate-and-format-input/validate-and-format-input");
 const type_graphql_1 = require("type-graphql");
 const decorators_1 = require("type-graphql/build/typings/helpers/decorators");
-const validate_and_format_input_1 = require("@src/validate-and-format-input/validate-and-format-input");
 const prefixed_1 = require("./prefixed");
 class PrefixedApplication extends prefixed_1.Prefixed {
     constructor(prefix) {

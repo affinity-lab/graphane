@@ -4,5 +4,5 @@ export default class Storage<T> {
     constructor(defaultKey?: string | undefined);
     set(key: string, value: T): void;
     get(key?: string): T | undefined;
-    getOrFail(key?: string): T | undefined | never;
+    getOrFail(key?: string): T | never;
 }

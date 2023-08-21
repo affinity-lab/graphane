@@ -4,8 +4,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Env = void 0;
-const path_1 = __importDefault(require("path"));
 const graphane_error_1 = __importDefault(require("@src/error/graphane-error"));
+const path_1 = __importDefault(require("path"));
 class Env {
     constructor(env, isTestKey = "IS_TEST", testPrefix = "TEST_") {
         this.env = env;
