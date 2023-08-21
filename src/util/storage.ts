@@ -20,7 +20,7 @@ export default class Storage<T> {
         return (this.storage.hasOwnProperty(key)) ? this.storage[key] : undefined;
     };
 
-    getOrFail(key?: string): T | undefined | never {
+    getOrFail(key?: string): T | never {
         const result: T | undefined = this.get(key);
         if (typeof result === "undefined") {
             throw GraphaneError.fatal(`Storage key (${key}) not found`, {key});
