@@ -5,5 +5,5 @@ export default interface Authorizable {
 
     getRoles(): string[];
 
-    getUser(): any;
+    getUser(...info: any[]): any;
 }
