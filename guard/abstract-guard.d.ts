@@ -1,8 +1,8 @@
 import { NonEmptyArray } from "../util/types";
-import RoleResolver from "./role-resolver-interface";
+import Authorizable from "../application/authorizable";
 export default abstract class AbstractGuard {
-    user: undefined | RoleResolver;
-    constructor(user: undefined | RoleResolver);
+    user: Authorizable | undefined;
+    constructor(user: Authorizable | undefined);
     get roles(): {
         [p: string]: boolean;
     };

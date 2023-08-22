@@ -1,10 +1,10 @@
 import GraphaneError from "../error/graphane-error";
 import {NonEmptyArray} from "../util/types";
-import RoleResolver from "./role-resolver-interface";
+import Authorizable from "../application/authorizable";
 
 
 export default abstract class AbstractGuard {
-    constructor(public user: undefined | RoleResolver) {
+    constructor(public user: Authorizable | undefined) {
     };
 
     get roles(): {[p: string]: boolean} {
