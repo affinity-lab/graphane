@@ -1,5 +1,5 @@
 import Application from "../../../application/application";
-import Authorizable from "../../../application/auth/authorizable";
+import Authorizable from "../../../application/authorizable";
 import {NextFunction, Request, Response} from "express";
 
 

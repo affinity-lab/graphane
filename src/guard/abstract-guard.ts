@@ -4,7 +4,6 @@ import RoleResolver from "./role-resolver-interface";
 
 
 export default abstract class AbstractGuard {
-
     constructor(public user: undefined | RoleResolver) {
     };
 

@@ -1,5 +1,5 @@
 import {BaseContext} from "@apollo/server";
-import Authorizable from "../application/auth/authorizable";
+import Authorizable from "../application/authorizable";
 import {Request} from "express";
 import {TgdContext} from "type-graphql-dataloader/dist/types/TgdContext";
 import Application from "../application/application";

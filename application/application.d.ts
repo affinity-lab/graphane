@@ -1,5 +1,5 @@
 import { Request } from "express";
-import Authorizable from "./auth/authorizable";
+import Authorizable from "./authorizable";
 import LoggerInterface from "./loggerInteface";
 import { PrefixedApplication } from "./prefixed-application";
 export default class Application<RolesType extends Record<string, string> = Record<string, string>> {

@@ -1,4 +1,4 @@
-import Authorizable from "../application/auth/authorizable";
+import Authorizable from "../application/authorizable";
 import Atom from "../carbonite/atom";
 import {encode} from "jwt-simple";
 

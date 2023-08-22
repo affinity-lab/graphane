@@ -1,11 +1,9 @@
-import {Authorized, InputType, InputTypeOptions, Mutation, Query} from "type-graphql";
+import {InputType, InputTypeOptions, Mutation, Query} from "type-graphql";
 import {AdvancedOptions, ReturnTypeFunc} from "type-graphql/dist/decorators/types";
 import {getTypeDecoratorParams} from "type-graphql/dist/helpers/decorators";
 import {ValidateAndFormatInput} from "../validate-and-format-input/validate-and-format-input";
 import {Prefixed} from "./prefixed";
 
-
-export type EnhancedOptions = AdvancedOptions & {authorized?: string[] | boolean};
 
 type cMReturnType = {
     middlewares: MethodDecorator[],
@@ -14,21 +12,17 @@ type cMReturnType = {
 
 
 export class PrefixedApplication extends Prefixed {
-    constructor(prefix: string) {
-        super(prefix);
-    };
-
     Mutation(): MethodDecorator;
-    Mutation(options: EnhancedOptions): MethodDecorator;
-    Mutation(returnTypeFunc: ReturnTypeFunc, options?: EnhancedOptions): MethodDecorator;
-    Mutation(returnTypeFuncOrOptions?: ReturnTypeFunc | EnhancedOptions, maybeOptions?: EnhancedOptions): MethodDecorator {
+    Mutation(options: AdvancedOptions): MethodDecorator;
+    Mutation(returnTypeFunc: ReturnTypeFunc, options?: AdvancedOptions): MethodDecorator;
+    Mutation(returnTypeFuncOrOptions?: ReturnTypeFunc | AdvancedOptions, maybeOptions?: AdvancedOptions): MethodDecorator {
         return this.QueryOrMutation(Mutation, returnTypeFuncOrOptions, maybeOptions);
     };
 
     Query(): MethodDecorator;
-    Query(options: EnhancedOptions): MethodDecorator;
-    Query(returnTypeFunc: ReturnTypeFunc, options?: EnhancedOptions): MethodDecorator;
-    Query(returnTypeFuncOrOptions?: ReturnTypeFunc | EnhancedOptions, maybeOptions?: EnhancedOptions): MethodDecorator {
+    Query(options: AdvancedOptions): MethodDecorator;
+    Query(returnTypeFunc: ReturnTypeFunc, options?: AdvancedOptions): MethodDecorator;
+    Query(returnTypeFuncOrOptions?: ReturnTypeFunc | AdvancedOptions, maybeOptions?: AdvancedOptions): MethodDecorator {
         return this.QueryOrMutation(Query, returnTypeFuncOrOptions, maybeOptions);
     };
 
@@ -38,7 +32,7 @@ export class PrefixedApplication extends Prefixed {
         };
     };
 
-    protected QueryOrMutation(which: typeof Query | typeof Mutation, returnTypeFuncOrOptions?: ReturnTypeFunc | EnhancedOptions, maybeOptions?: EnhancedOptions): MethodDecorator {
+    protected QueryOrMutation(which: typeof Query | typeof Mutation, returnTypeFuncOrOptions?: ReturnTypeFunc | AdvancedOptions, maybeOptions?: AdvancedOptions): MethodDecorator {
         let {
             middlewares,
             name
@@ -57,21 +51,14 @@ export class PrefixedApplication extends Prefixed {
     /**
      * The middlewares are run in the order they are in the list.
      */
-    protected createMiddlewares(which: typeof Query | typeof Mutation, name: string | false, returnTypeFuncOrOptions?: ReturnTypeFunc | EnhancedOptions, maybeOptions?: EnhancedOptions): cMReturnType {
+    protected createMiddlewares(which: typeof Query | typeof Mutation, name: string | false, returnTypeFuncOrOptions?: ReturnTypeFunc | AdvancedOptions, maybeOptions?: AdvancedOptions): cMReturnType {
         let {options, returnTypeFunc}: {
-            options: Partial<EnhancedOptions>,
+            options: Partial<AdvancedOptions>,
             returnTypeFunc?: ReturnTypeFunc
         } = getTypeDecoratorParams(returnTypeFuncOrOptions, maybeOptions);
-        if (options === undefined) {
-            options = {};
-        }
-        if (typeof name === "string") {
-            options.name = name;
-        }
+        if (options === undefined) options = {};
+        if (typeof name === "string") options.name = name;
         const middlewares: MethodDecorator[] = [typeof returnTypeFunc == "undefined" ? which(options) : which(returnTypeFunc, options)];
-        if (typeof options.authorized !== "undefined" && options.authorized !== false) {
-            middlewares.push(options.authorized === true ? Authorized([]) : Authorized(options.authorized));
-        }
         middlewares.push(ValidateAndFormatInput);
         return {middlewares, name: options.name};
     };
