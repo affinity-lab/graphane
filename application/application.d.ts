@@ -2,6 +2,8 @@ import { Request } from "express";
 import Authorizable from "./authorizable";
 import LoggerInterface from "./loggerInteface";
 import { PrefixedApplication } from "./prefixed-application";
+import { Context } from "../server/context";
+import AbstractGuard from "../guard/abstract-guard";
 export default class Application<RolesType extends Record<string, string> = Record<string, string>> {
     readonly id: string;
     readonly code: string;
@@ -9,6 +11,7 @@ export default class Application<RolesType extends Record<string, string> = Reco
     readonly name: string;
     readonly roles: RolesType;
     private authorizeFunctions;
+    guard: (ctx: Context) => AbstractGuard;
     static applications: Application<any>[];
     static codeMap: {
         [p: string]: Application<any>;
@@ -22,7 +25,7 @@ export default class Application<RolesType extends Record<string, string> = Reco
     };
     readonly px: PrefixedApplication;
     readonly logger: LoggerInterface | undefined;
-    constructor(id: string, code: string, secret: string, name: string, roles: RolesType, logger?: LoggerInterface | ((app: Application<any>) => LoggerInterface) | undefined, authorizeFunctions?: Array<(req: Request, app: Application) => Promise<Authorizable | undefined | false>>);
+    constructor(id: string, code: string, secret: string, name: string, roles: RolesType, logger: LoggerInterface | ((app: Application<any>) => LoggerInterface) | undefined, authorizeFunctions: Array<(req: Request, app: Application) => Promise<Authorizable | undefined | false>>, guard: (ctx: Context) => AbstractGuard);
     private static addApplication;
     authorize(req: Request): Promise<Authorizable | undefined>;
 }

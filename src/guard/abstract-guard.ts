@@ -7,7 +7,7 @@ export default abstract class AbstractGuard {
     constructor(public user: Authorizable | undefined) {
     };
 
-    get roles(): {[p: string]: boolean} {
+    async getRoles(): Promise<{[p: string]: boolean}> {
         const result: {[p: string]: boolean} = {};
         if (!Reflect.hasMetadata("client-role", this)) {
             return result;
@@ -15,7 +15,7 @@ export default abstract class AbstractGuard {
         const clientRoles: Array<{method: string, as: string}> = Reflect.getMetadata("client-role", this);
         for (const clientRole of clientRoles) {
             try {
-                result[clientRole.as] = (this as unknown as {[key: string]: () => boolean})[clientRole.method]();
+                result[clientRole.as] = await (this as unknown as {[key: string]: () => Promise<boolean>})[clientRole.method]();
             } catch (e) {
                 result[clientRole.as] = false;
             }
@@ -23,23 +23,23 @@ export default abstract class AbstractGuard {
         return result;
     };
 
-    isAuthenticated(): boolean {
+    async isAuthenticated(): Promise<boolean> {
         if (this.user === undefined) {
             throw GraphaneError.guard.unauthorized();
         }
         return true;
     };
 
-    isNotAuthenticated(): boolean {
+    async isNotAuthenticated(): Promise<boolean> {
         if (this.user !== undefined) {
             throw GraphaneError.guard.forbidden();
         }
         return true;
     };
 
-    hasRole(...roles: NonEmptyArray<string>): boolean {
-        this.isAuthenticated();
-        if (this.user!.hasRole(roles as string[])) {
+    async hasRole(...roles: NonEmptyArray<string>): Promise<boolean> {
+        await this.isAuthenticated();
+        if (await this.user!.hasRole(roles as string[])) {
             return true;
         }
         throw GraphaneError.guard.forbidden();

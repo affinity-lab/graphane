@@ -1,9 +1,9 @@
 export default interface Authorizable {
     id: number;
 
-    hasRole(roles: string[]): boolean;
+    hasRole(roles: string[]): Promise<boolean>;
 
-    getRoles(): string[];
+    getRoles(): Promise<string[]>;
 
-    getUser(...info: any[]): any;
+    getUser(...info: any[]): Promise<any>;
 }

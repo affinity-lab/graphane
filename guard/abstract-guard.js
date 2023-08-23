@@ -9,7 +9,7 @@ class AbstractGuard {
         this.user = user;
     }
     ;
-    get roles() {
+    async getRoles() {
         const result = {};
         if (!Reflect.hasMetadata("client-role", this)) {
             return result;
@@ -17,7 +17,7 @@ class AbstractGuard {
         const clientRoles = Reflect.getMetadata("client-role", this);
         for (const clientRole of clientRoles) {
             try {
-                result[clientRole.as] = this[clientRole.method]();
+                result[clientRole.as] = await this[clientRole.method]();
             }
             catch (e) {
                 result[clientRole.as] = false;
@@ -26,23 +26,23 @@ class AbstractGuard {
         return result;
     }
     ;
-    isAuthenticated() {
+    async isAuthenticated() {
         if (this.user === undefined) {
             throw graphane_error_1.default.guard.unauthorized();
         }
         return true;
     }
     ;
-    isNotAuthenticated() {
+    async isNotAuthenticated() {
         if (this.user !== undefined) {
             throw graphane_error_1.default.guard.forbidden();
         }
         return true;
     }
     ;
-    hasRole(...roles) {
-        this.isAuthenticated();
-        if (this.user.hasRole(roles)) {
+    async hasRole(...roles) {
+        await this.isAuthenticated();
+        if (await this.user.hasRole(roles)) {
             return true;
         }
         throw graphane_error_1.default.guard.forbidden();

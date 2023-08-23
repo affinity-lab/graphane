@@ -7,10 +7,10 @@ const graphane_error_1 = __importDefault(require("../error/graphane-error"));
 function Guard(...roles) {
     return (target, propertyKey, descriptor) => {
         const originalMethod = descriptor.value;
-        descriptor.value = function (...args) {
+        descriptor.value = async function (...args) {
             const instance = this;
-            instance.isAuthenticated();
-            if (roles.length > 0 && instance.user.hasRole(roles)) {
+            await instance.isAuthenticated();
+            if (roles.length > 0 && await instance.user.hasRole(roles)) {
                 return true;
             }
             if (originalMethod.apply(instance, args)) {

@@ -3,10 +3,10 @@ import Authorizable from "../application/authorizable";
 export default abstract class AbstractGuard {
     user: Authorizable | undefined;
     constructor(user: Authorizable | undefined);
-    get roles(): {
+    getRoles(): Promise<{
         [p: string]: boolean;
-    };
-    isAuthenticated(): boolean;
-    isNotAuthenticated(): boolean;
-    hasRole(...roles: NonEmptyArray<string>): boolean;
+    }>;
+    isAuthenticated(): Promise<boolean>;
+    isNotAuthenticated(): Promise<boolean>;
+    hasRole(...roles: NonEmptyArray<string>): Promise<boolean>;
 }

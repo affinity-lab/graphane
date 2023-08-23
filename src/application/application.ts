@@ -3,6 +3,8 @@ import {Request} from "express";
 import Authorizable from "./authorizable";
 import LoggerInterface from "./loggerInteface";
 import {PrefixedApplication} from "./prefixed-application";
+import {Context} from "../server/context";
+import AbstractGuard from "../guard/abstract-guard";
 
 
 export default class Application<RolesType extends Record<string, string> = Record<string, string>> {
@@ -30,7 +32,8 @@ export default class Application<RolesType extends Record<string, string> = Reco
         readonly name: string,
         readonly roles: RolesType,
         logger: LoggerInterface | ((app: Application<any>) => LoggerInterface) | undefined = undefined,
-        private authorizeFunctions: Array<(req: Request, app: Application) => Promise<Authorizable | undefined | false>> = []
+        private authorizeFunctions: Array<(req: Request, app: Application) => Promise<Authorizable | undefined | false>> = [],
+        public guard: (ctx: Context) => AbstractGuard
     ) {
         this.code = this.code.toUpperCase();
         this.logger = typeof logger === "function" ? logger(this) : logger;
