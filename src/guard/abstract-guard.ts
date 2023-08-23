@@ -5,7 +5,7 @@ import Application from "../application/application";
 
 
 export default abstract class AbstractGuard {
-    constructor(public user: Authorizable | undefined, public  app: Application) {
+    constructor(public user: Authorizable | undefined, public  app?: Application) {
     };
 
     static  app?: Application;
