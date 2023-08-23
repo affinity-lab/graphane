@@ -21,7 +21,7 @@ class BasicCrud {
     }
     ;
     async readOne(options) {
-        return await this.entity.findOne(options);
+        return await this.entity.findOne(options) ?? undefined;
     }
     ;
     async readOneByIdOrFail(id) {
@@ -29,7 +29,7 @@ class BasicCrud {
     }
     ;
     async readOneById(id) {
-        return await this.entity.findOneBy({ id });
+        return await this.entity.findOneBy({ id }) ?? undefined;
     }
     ;
     async create(data) {

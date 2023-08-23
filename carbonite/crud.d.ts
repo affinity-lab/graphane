@@ -14,9 +14,9 @@ export declare class BasicCrud<Entity extends Atom> {
     } & typeof Atom, getDataSource: (key?: string) => DataSource);
     readAll(options?: FindManyOptions<Entity>): Promise<Entity[]>;
     readOneOrFail(options: FindOneOptions<Entity>): Promise<Entity>;
-    readOne(options: FindOneOptions<Entity>): Promise<Entity | null>;
+    readOne(options: FindOneOptions<Entity>): Promise<Entity | undefined>;
     readOneByIdOrFail(id: number): Promise<Entity>;
-    readOneById(id: number): Promise<Entity | null>;
+    readOneById(id: number): Promise<Entity | undefined>;
     create(data: PartialAtom<Entity>): Promise<Entity>;
     update(id: number, data: PartialAtom<Entity>): Promise<Entity>;
     delete(id: number): Promise<true>;

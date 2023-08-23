@@ -26,16 +26,16 @@ export class BasicCrud<Entity extends Atom> {
         return await this.entity.findOneOrFail<Entity>(options);
     };
 
-    async readOne(options: FindOneOptions<Entity>): Promise<Entity | null> {
-        return await this.entity.findOne<Entity>(options);
+    async readOne(options: FindOneOptions<Entity>): Promise<Entity | undefined> {
+        return await this.entity.findOne<Entity>(options) ?? undefined;
     };
 
     async readOneByIdOrFail(id: number): Promise<Entity> {
         return await this.entity.findOneByOrFail<Entity>({id} as FindOptionsWhere<Entity>);
     };
 
-    async readOneById(id: number): Promise<Entity | null> {
-        return await this.entity.findOneBy<Entity>({id} as FindOptionsWhere<Entity>);
+    async readOneById(id: number): Promise<Entity | undefined> {
+        return await this.entity.findOneBy<Entity>({id} as FindOptionsWhere<Entity>) ?? undefined;
     };
 
     async create(data: PartialAtom<Entity>): Promise<Entity> {
