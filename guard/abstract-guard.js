@@ -5,8 +5,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const graphane_error_1 = __importDefault(require("../error/graphane-error"));
 class AbstractGuard {
-    constructor(user) {
+    constructor(user, app) {
         this.user = user;
+        this.app = app;
     }
     ;
     async getRoles() {

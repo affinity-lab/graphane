@@ -9,6 +9,11 @@ function Guard(...roles) {
         const originalMethod = descriptor.value;
         descriptor.value = async function (...args) {
             const instance = this;
+            if (instance.constructor.app === undefined)
+                throw graphane_error_1.default.fatal("Application not defenied in guard.");
+            if (instance.app.code !== instance.constructor.app.code) {
+                graphane_error_1.default.guard.forbidden();
+            }
             await instance.isAuthenticated();
             if (roles.length > 0 && await instance.user.hasRole(roles)) {
                 return true;

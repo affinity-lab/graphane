@@ -7,14 +7,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const graphane_error_1 = __importDefault(require("../error/graphane-error"));
 const prefixed_application_1 = require("./prefixed-application");
 class Application {
-    constructor(id, code, secret, name, roles, logger = undefined, authorizeFunctions = [], guard) {
+    constructor(id, code, secret, name, roles, logger = undefined, authorizeFunctions = []) {
         this.id = id;
         this.code = code;
         this.secret = secret;
         this.name = name;
         this.roles = roles;
         this.authorizeFunctions = authorizeFunctions;
-        this.guard = guard;
         this.code = this.code.toUpperCase();
         this.logger = typeof logger === "function" ? logger(this) : logger;
         this.px = new prefixed_application_1.PrefixedApplication(this.code);

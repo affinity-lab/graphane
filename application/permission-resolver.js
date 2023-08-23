@@ -30,10 +30,10 @@ Permissions = __decorate([
     (0, type_graphql_1.ObjectType)(),
     __metadata("design:paramtypes", [Object])
 ], Permissions);
-function createRolesResolver(app) {
+function createRolesResolver(app, guard) {
     let PermissionResolver = class PermissionResolver {
         async getMyPermissionsInApp(context) {
-            return new Permissions(await app.guard(context).getRoles());
+            return new Permissions(await guard(context).getRoles());
         }
         ;
     };

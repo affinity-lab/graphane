@@ -1,11 +1,14 @@
 import GraphaneError from "../error/graphane-error";
 import {NonEmptyArray} from "../util/types";
 import Authorizable from "../application/authorizable";
+import Application from "../application/application";
 
 
 export default abstract class AbstractGuard {
-    constructor(public user: Authorizable | undefined) {
+    constructor(public user: Authorizable | undefined, public  app: Application) {
     };
+
+    static  app?: Application;
 
     async getRoles(): Promise<{[p: string]: boolean}> {
         const result: {[p: string]: boolean} = {};
