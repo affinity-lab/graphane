@@ -7,6 +7,8 @@ const graphane_error_1 = __importDefault(require("../error/graphane-error"));
 class AbstractGuard {
     constructor(user, app) {
         this.user = user;
+        if (app === undefined)
+            throw graphane_error_1.default.fatal("Resolver called without application.");
         this.app = app;
     }
     ;

@@ -5,7 +5,10 @@ import Application from "../application/application";
 
 
 export default abstract class AbstractGuard {
-    constructor(public user: Authorizable | undefined, public  app?: Application) {
+    public app: Application;
+    constructor(public user: Authorizable | undefined, app?: Application) {
+        if (app === undefined) throw GraphaneError.fatal("Resolver called without application.");
+        this.app = app;
     };
 
     static  app?: Application;
