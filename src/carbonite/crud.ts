@@ -22,20 +22,28 @@ export class BasicCrud<Entity extends Atom> {
         return await this.entity.find<Entity>(options);
     };
 
-    async readOneOrFail(options: FindOneOptions<Entity>): Promise<Entity> {
-        return await this.entity.findOneOrFail<Entity>(options);
-    };
-
     async readOne(options: FindOneOptions<Entity>): Promise<Entity | undefined> {
         return await this.entity.findOne<Entity>(options) ?? undefined;
     };
 
-    async readOneByIdOrFail(id: number): Promise<Entity> {
-        return await this.entity.findOneByOrFail<Entity>({id} as FindOptionsWhere<Entity>);
+    async readOneOrFail(options: FindOneOptions<Entity>): Promise<Entity> {
+        return await this.entity.findOneOrFail<Entity>(options);
+    };
+
+    async readOneBy(options: FindOptionsWhere<Entity>): Promise<Entity | undefined> {
+        return await this.entity.findOneBy<Entity>(options) ?? undefined;
+    };
+
+    async readOneByOrFail(options: FindOptionsWhere<Entity>): Promise<Entity | undefined> {
+        return await this.entity.findOneByOrFail<Entity>(options) ?? undefined;
     };
 
     async readOneById(id: number): Promise<Entity | undefined> {
         return await this.entity.findOneBy<Entity>({id} as FindOptionsWhere<Entity>) ?? undefined;
+    };
+
+    async readOneByIdOrFail(id: number): Promise<Entity> {
+        return await this.entity.findOneByOrFail<Entity>({id} as FindOptionsWhere<Entity>);
     };
 
     async create(data: PartialAtom<Entity>): Promise<Entity> {

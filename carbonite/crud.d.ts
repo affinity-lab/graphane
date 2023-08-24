@@ -1,4 +1,4 @@
-import { BaseEntity, DataSource, FindManyOptions, FindOneOptions } from "typeorm";
+import { BaseEntity, DataSource, FindManyOptions, FindOneOptions, FindOptionsWhere } from "typeorm";
 import Atom from "./atom";
 /**
  * Same as DeepPartial<T> but it takes in number(s) (to be used as BaseEntity id(s)) instead of BaseEntity(s).
@@ -13,10 +13,12 @@ export declare class BasicCrud<Entity extends Atom> {
         new (): Entity;
     } & typeof Atom, getDataSource: (key?: string) => DataSource);
     readAll(options?: FindManyOptions<Entity>): Promise<Entity[]>;
-    readOneOrFail(options: FindOneOptions<Entity>): Promise<Entity>;
     readOne(options: FindOneOptions<Entity>): Promise<Entity | undefined>;
-    readOneByIdOrFail(id: number): Promise<Entity>;
+    readOneOrFail(options: FindOneOptions<Entity>): Promise<Entity>;
+    readOneBy(options: FindOptionsWhere<Entity>): Promise<Entity | undefined>;
+    readOneByOrFail(options: FindOptionsWhere<Entity>): Promise<Entity | undefined>;
     readOneById(id: number): Promise<Entity | undefined>;
+    readOneByIdOrFail(id: number): Promise<Entity>;
     create(data: PartialAtom<Entity>): Promise<Entity>;
     update(id: number, data: PartialAtom<Entity>): Promise<Entity>;
     delete(id: number): Promise<true>;
