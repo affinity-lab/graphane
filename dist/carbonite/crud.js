@@ -7,9 +7,10 @@ exports.BasicCrud = void 0;
 const graphane_error_1 = __importDefault(require("../error/graphane-error"));
 const typeorm_1 = require("typeorm");
 class BasicCrud {
-    constructor(entity, getDataSource) {
+    constructor(entity, dataSourceStorage, storageKey) {
         this.entity = entity;
-        this.getDataSource = getDataSource;
+        this.dataSourceStorage = dataSourceStorage;
+        this.storageKey = storageKey;
     }
     ;
     async readAll(options) {
@@ -57,7 +58,7 @@ class BasicCrud {
     ;
     async loadRelations(data) {
         let rel;
-        for (rel of this.getDataSource().getMetadata(this.entity).relations) {
+        for (rel of this.dataSourceStorage.getOrFail(this.storageKey).getMetadata(this.entity).relations) {
             const target = rel.inverseEntityMetadata.target;
             if (typeof target === "string") {
                 throw graphane_error_1.default.crud.unrealEntityTarget(rel.inverseEntityMetadata.target);
