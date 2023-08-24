@@ -36,6 +36,6 @@ class Module {
     }
     ;
 }
-exports.default = Module;
 Module.modules = [];
 Module.codeMap = {};
+exports.default = Module;

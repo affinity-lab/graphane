@@ -1,8 +1,1 @@
 /node_modules/
-/@src/
-/package.json
-/tsconfig.json
-/package-lock.json
-/.npmignore
-/.gitignore
-/.idea
