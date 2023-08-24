@@ -184,6 +184,14 @@ declare const GraphaneError: {
             status: number;
             silent: boolean;
         };
+        duplicateEmail: () => {
+            info?: {
+                [p: string]: any;
+            } | undefined;
+            message?: string | undefined;
+            status: number;
+            silent: boolean;
+        };
     };
 };
 export default GraphaneError;

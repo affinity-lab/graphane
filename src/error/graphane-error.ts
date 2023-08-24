@@ -39,7 +39,8 @@ const GraphaneError = {
     guard: {
         unauthorized: () => error(undefined, undefined, 401),
         forbidden: () => error(undefined, undefined, 403),
-        alreadyLoggedIn: () => error(undefined, undefined, 403)
+        alreadyLoggedIn: () => error(undefined, undefined, 403),
+        duplicateEmail: () => error(undefined, undefined, 403)
     }
 };
 
