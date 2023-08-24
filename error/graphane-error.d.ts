@@ -24,6 +24,14 @@ declare const GraphaneError: {
             status: number;
             silent: boolean;
         };
+        alreadyLoggedIn: () => {
+            info?: {
+                [p: string]: any;
+            } | undefined;
+            message?: string | undefined;
+            status: number;
+            silent: boolean;
+        };
     };
     module: {
         notFound: () => {
@@ -115,7 +123,7 @@ declare const GraphaneError: {
                 status: number;
                 silent: boolean;
             };
-            unkonwCommand: (err: string) => {
+            unknownCommand: (err: string) => {
                 info?: {
                     [p: string]: any;
                 } | undefined;

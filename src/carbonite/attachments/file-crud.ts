@@ -68,7 +68,7 @@ export default class FileCrud<Entity extends AtomWithAttachments> {
                 await catalogInstance.changeImageFocus(variables!.fileName as string, variables!.imageFocus as ImgFocus);
                 return;
             default:
-                throw GraphaneError.attachment.fileCrud.unkonwCommand(command);
+                throw GraphaneError.attachment.fileCrud.unknownCommand(command);
         }
     };
 

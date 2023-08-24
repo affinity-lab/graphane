@@ -58,7 +58,7 @@ class FileCrud {
                 await catalogInstance.changeImageFocus(variables.fileName, variables.imageFocus);
                 return;
             default:
-                throw graphane_error_1.default.attachment.fileCrud.unkonwCommand(command);
+                throw graphane_error_1.default.attachment.fileCrud.unknownCommand(command);
         }
     }
     ;

@@ -5,7 +5,8 @@ const GraphaneError = {
     fatal: (message?: string, info?: Record<string, any>) => error({message, info}),
     application: {
         notFound: () => error(),
-        alreadyRegistered: (app: string) => error({app})
+        alreadyRegistered: (app: string) => error({app}),
+        alreadyLoggedIn: () => error()
     },
     module: {
         notFound: () => error(),
@@ -27,7 +28,7 @@ const GraphaneError = {
         imageExpected: () => error(),
         fileCrud: {
             badInput: (err: string) => error({error: err}),
-            unkonwCommand: (err: string) => error({command: err}),
+            unknownCommand: (err: string) => error({command: err}),
             fileNotExists: () => error(),
             fileAlreadyExists: (name: string) => error({name})
         }
