@@ -1,4 +1,4 @@
-export type SentFile = {
+export declare type SentFile = {
     name: string;
     mv: (uploadPath: string, callback?: (error: Error) => any) => Promise<any>;
     mimetype: string;

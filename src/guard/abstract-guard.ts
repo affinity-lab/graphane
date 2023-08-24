@@ -38,7 +38,7 @@ export default abstract class AbstractGuard {
 
     async isNotAuthenticated(): Promise<boolean> {
         if (this.user !== undefined) {
-            throw GraphaneError.guard.alreadyLoggedIn();
+            throw GraphaneError.guard.forbidden();
         }
         return true;
     };

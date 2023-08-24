@@ -7,14 +7,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const graphane_error_1 = __importDefault(require("../error/graphane-error"));
 const prefixed_application_1 = require("./prefixed-application");
 class Application {
-    constructor(id, code, secret, name, roles, logger = undefined, authorizeFunctions = []) {
-        this.id = id;
-        this.code = code;
-        this.secret = secret;
-        this.name = name;
+    constructor(cfg, roles, logger = undefined, authorizeFunctions = []) {
+        this.cfg = cfg;
         this.roles = roles;
         this.authorizeFunctions = authorizeFunctions;
-        this.code = this.code.toUpperCase();
+        this.code = cfg["app"]["code"].toUpperCase();
+        this.id = cfg["app"]["id"];
+        this.secret = cfg["app"]["secret"];
+        this.name = cfg["app"]["name"];
         this.logger = typeof logger === "function" ? logger(this) : logger;
         this.px = new prefixed_application_1.PrefixedApplication(this.code);
         for (const roleKey in this.roles) {
@@ -44,6 +44,7 @@ class Application {
     }
     ;
 }
+exports.default = Application;
 _a = Application;
 Application.applications = [];
 Application.codeMap = {};
@@ -54,4 +55,3 @@ Application.get = {
         return _a.idMap.hasOwnProperty(id) ? _a.idMap[id] : undefined;
     }
 };
-exports.default = Application;

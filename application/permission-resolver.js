@@ -16,7 +16,7 @@ exports.createPermissionResolver = exports.Permissions = void 0;
 const type_graphql_1 = require("type-graphql");
 const graphql_type_json_1 = require("graphql-type-json");
 const context_1 = require("../server/context");
-let Permissions = exports.Permissions = class Permissions {
+let Permissions = class Permissions {
     constructor(roles) {
         this.roles = roles;
     }
@@ -26,10 +26,11 @@ __decorate([
     (0, type_graphql_1.Field)(() => graphql_type_json_1.GraphQLJSONObject),
     __metadata("design:type", Object)
 ], Permissions.prototype, "roles", void 0);
-exports.Permissions = Permissions = __decorate([
+Permissions = __decorate([
     (0, type_graphql_1.ObjectType)(),
     __metadata("design:paramtypes", [Object])
 ], Permissions);
+exports.Permissions = Permissions;
 function createPermissionResolver(app, guard) {
     let PermissionResolver = class PermissionResolver {
         async getMyPermissionsInApp(context) {

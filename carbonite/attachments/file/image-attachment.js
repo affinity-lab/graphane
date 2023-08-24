@@ -57,7 +57,7 @@ var ImgFocus;
     ImgFocus["RIGHT"] = "right";
     ImgFocus["ENTROPY"] = "entropy";
     ImgFocus["ATTENTION"] = "attention";
-})(ImgFocus || (exports.ImgFocus = ImgFocus = {}));
+})(ImgFocus = exports.ImgFocus || (exports.ImgFocus = {}));
 let ImageAttachment = ImageAttachment_1 = class ImageAttachment extends file_attachment_1.default {
     constructor() {
         super(...arguments);

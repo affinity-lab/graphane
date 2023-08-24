@@ -1,7 +1,7 @@
 import { InputTypeOptions, Mutation, Query } from "type-graphql";
 import { AdvancedOptions, ReturnTypeFunc } from "type-graphql/dist/decorators/types";
 import { Prefixed } from "./prefixed";
-type cMReturnType = {
+declare type cMReturnType = {
     middlewares: MethodDecorator[];
     name: string | undefined;
 };
