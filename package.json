@@ -5,7 +5,10 @@
     "files": [
         "./**/*"
     ],
-    "dependencies": {
+	"directories": {
+		"lib": "./dist/"
+	},
+	"dependencies": {
         "@apollo/server": "^4.9.1",
         "micromatch": "^4.0.5",
         "mime-types": "^2.1.35",
