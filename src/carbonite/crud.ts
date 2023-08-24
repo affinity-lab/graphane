@@ -2,6 +2,7 @@ import GraphaneError from "../error/graphane-error";
 import {BaseEntity, DataSource, DeepPartial, FindManyOptions, FindOneOptions, FindOptionsWhere, In} from "typeorm";
 import {RelationMetadata} from "typeorm/metadata/RelationMetadata";
 import Atom from "./atom";
+import Storage from "../util/storage";
 
 
 /**
@@ -14,7 +15,8 @@ export type PartialAtom<T> =
 export class BasicCrud<Entity extends Atom> {
     constructor(
         private readonly entity: {new(): Entity} & typeof Atom,
-        private readonly getDataSource: (key?: string) => DataSource
+        private readonly dataSourceStorage: Storage<DataSource>,
+        private readonly storageKey?: string
     ) {
     };
 
@@ -63,7 +65,7 @@ export class BasicCrud<Entity extends Atom> {
 
     private async loadRelations(data: Record<string, any>): Promise<DeepPartial<Entity>> {
         let rel: RelationMetadata;
-        for (rel of this.getDataSource().getMetadata(this.entity).relations) {
+        for (rel of this.dataSourceStorage.getOrFail(this.storageKey).getMetadata(this.entity).relations) {
             const target: string | Function = rel.inverseEntityMetadata.target;
             if (typeof target === "string") {
                 throw GraphaneError.crud.unrealEntityTarget(rel.inverseEntityMetadata.target);
