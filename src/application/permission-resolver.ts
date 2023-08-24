@@ -15,7 +15,7 @@ class Permissions {
 	};
 }
 
-export function createRolesResolver(app: Application, guard: (ctx: Context) => AbstractGuard): any {
+export function createPermissionResolver(app: Application, guard: (ctx: Context) => AbstractGuard): any {
 	@Resolver(Permissions)
 	class PermissionResolver {
 		@app.px.Query(() => Permissions, {description: "Return the values of all exportRole guards of the app"})
