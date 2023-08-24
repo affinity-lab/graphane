@@ -38,7 +38,7 @@ class AbstractGuard {
     ;
     async isNotAuthenticated() {
         if (this.user !== undefined) {
-            throw graphane_error_1.default.guard.forbidden();
+            throw graphane_error_1.default.guard.alreadyLoggedIn();
         }
         return true;
     }

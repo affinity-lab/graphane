@@ -8,8 +8,7 @@ const GraphaneError = {
     fatal: (message, info) => (0, error_1.default)({ message, info }),
     application: {
         notFound: () => (0, error_1.default)(),
-        alreadyRegistered: (app) => (0, error_1.default)({ app }),
-        alreadyLoggedIn: () => (0, error_1.default)()
+        alreadyRegistered: (app) => (0, error_1.default)({ app })
     },
     module: {
         notFound: () => (0, error_1.default)(),
@@ -42,7 +41,8 @@ const GraphaneError = {
     },
     guard: {
         unauthorized: () => (0, error_1.default)(undefined, undefined, 401),
-        forbidden: () => (0, error_1.default)(undefined, undefined, 403)
+        forbidden: () => (0, error_1.default)(undefined, undefined, 403),
+        alreadyLoggedIn: () => (0, error_1.default)(undefined, undefined, 403)
     }
 };
 error_1.default.preprocess(GraphaneError, "GRAPHANE");

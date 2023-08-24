@@ -5,8 +5,7 @@ const GraphaneError = {
     fatal: (message?: string, info?: Record<string, any>) => error({message, info}),
     application: {
         notFound: () => error(),
-        alreadyRegistered: (app: string) => error({app}),
-        alreadyLoggedIn: () => error()
+        alreadyRegistered: (app: string) => error({app})
     },
     module: {
         notFound: () => error(),
@@ -39,7 +38,8 @@ const GraphaneError = {
     },
     guard: {
         unauthorized: () => error(undefined, undefined, 401),
-        forbidden: () => error(undefined, undefined, 403)
+        forbidden: () => error(undefined, undefined, 403),
+        alreadyLoggedIn: () => error(undefined, undefined, 403)
     }
 };
 

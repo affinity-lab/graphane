@@ -24,14 +24,6 @@ declare const GraphaneError: {
             status: number;
             silent: boolean;
         };
-        alreadyLoggedIn: () => {
-            info?: {
-                [p: string]: any;
-            } | undefined;
-            message?: string | undefined;
-            status: number;
-            silent: boolean;
-        };
     };
     module: {
         notFound: () => {
@@ -177,6 +169,14 @@ declare const GraphaneError: {
             silent: boolean;
         };
         forbidden: () => {
+            info?: {
+                [p: string]: any;
+            } | undefined;
+            message?: string | undefined;
+            status: number;
+            silent: boolean;
+        };
+        alreadyLoggedIn: () => {
             info?: {
                 [p: string]: any;
             } | undefined;
