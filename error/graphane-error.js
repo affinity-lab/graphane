@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const error_1 = __importDefault(require("./error"));
 const GraphaneError = {
-    fatal: (message, info) => (0, error_1.default)({ message, info }),
+    fatal: (message, info) => (0, error_1.default)(info, message),
     application: {
         notFound: () => (0, error_1.default)(),
         alreadyRegistered: (app) => (0, error_1.default)({ app })

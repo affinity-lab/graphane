@@ -20,7 +20,7 @@ class Application {
         for (const roleKey in this.roles) {
             this.roles[roleKey] = this.px.prefixer(roleKey);
         }
-        Application.addApplication(this);
+        _a.addApplication(this);
     }
     ;
     static addApplication(application) {
@@ -44,7 +44,6 @@ class Application {
     }
     ;
 }
-exports.default = Application;
 _a = Application;
 Application.applications = [];
 Application.codeMap = {};
@@ -55,3 +54,4 @@ Application.get = {
         return _a.idMap.hasOwnProperty(id) ? _a.idMap[id] : undefined;
     }
 };
+exports.default = Application;

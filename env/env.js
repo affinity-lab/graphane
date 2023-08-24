@@ -8,9 +8,17 @@ const path_1 = __importDefault(require("path"));
 class Env {
     constructor(env, environment = "PROD", envPostfixMap) {
         this.env = env;
-        this.environment = environment;
         this.envPostfixMap = envPostfixMap;
         this.info = [];
+        this.environment = typeof environment === "object"
+            ? this.string(environment.key, environment.default)
+            : environment;
+    }
+    sub(key) {
+        const subEnv = key.split(".").reduce((a, b) => a[b], this.env);
+        return (typeof subEnv === "object")
+            ? new Env({ ...subEnv }, this.environment, this.envPostfixMap)
+            : undefined;
     }
     string(key, defaultValue) {
         let rawValue = this.value(key);

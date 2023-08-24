@@ -1,2 +1,3 @@
-import dotenv from "dotenv";
-export default function loadEnvVars(file?: string): dotenv.DotenvParseOutput;
+export default function loadEnvVars(file?: string): {
+    [key: string]: any;
+};

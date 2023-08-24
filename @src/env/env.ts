@@ -4,7 +4,7 @@ import path from "path";
 
 export default class Env {
 	public readonly isTest: boolean;
-
+	public readonly environment: string;
 	public info: Array<{
 		key: string,
 		type: "string" | "int" | "float" | "boolean" | "path",
@@ -12,7 +12,22 @@ export default class Env {
 		value: any
 	}> = [];
 
-	constructor(private readonly env: Record<string, string | undefined>, public readonly environment: string = "PROD", public readonly envPostfixMap: Record<string, string | undefined>) {}
+	constructor(
+		readonly env: Record<string, any>,
+		environment: string | { key: string, default: string } = "PROD",
+		public readonly envPostfixMap: Record<string, string | undefined>
+	) {
+		this.environment = typeof environment === "object"
+						   ? this.string(environment.key, environment.default)
+						   : environment;
+	}
+
+	sub(key: string): Env | undefined {
+		const subEnv = key.split(".").reduce((a, b) => a[b], this.env);
+		return (typeof subEnv === "object")
+			   ? new Env({...subEnv}, this.environment, this.envPostfixMap)
+			   : undefined;
+	}
 
 	string(key: string, defaultValue?: string): string {
 		let rawValue = this.value(key);

@@ -28,5 +28,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const dotenv_1 = __importDefault(require("dotenv"));
 const fs = __importStar(require("fs"));
-function loadEnvVars(file = ".env") { return dotenv_1.default.parse(fs.readFileSync(file)); }
+const path = __importStar(require("path"));
+const ini_1 = require("ini");
+function loadEnvVars(file = ".env") {
+    const p = path.parse(file);
+    const fileContents = fs.readFileSync(file).toString();
+    return p.ext === ".ini"
+        ? (0, ini_1.parse)(fileContents)
+        : dotenv_1.default.parse(fileContents);
+}
 exports.default = loadEnvVars;
