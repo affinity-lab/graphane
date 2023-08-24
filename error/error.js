@@ -24,7 +24,7 @@ error.preprocess = (errors, prefix = "") => {
             const code = (0, snake_case_1.snakeCase)(prefix + "_" + prop).toUpperCase();
             errors[prop] = (...args) => {
                 const graphane = { info: null, code, message: code, ...originalMethod(...args) };
-                const error = new index_1.GraphQLError(graphane.message);
+                const error = new index_1.GraphQLError(graphane.code + ": " + graphane.message);
                 error.extensions.graphane = graphane;
                 return error;
             };

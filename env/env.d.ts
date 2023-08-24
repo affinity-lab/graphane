@@ -1,6 +1,7 @@
-export declare class Env {
+export default class Env {
     private readonly env;
-    private testPrefix;
+    readonly environment: string;
+    readonly envPostfixMap: Record<string, string | undefined>;
     readonly isTest: boolean;
     info: Array<{
         key: string;
@@ -8,7 +9,7 @@ export declare class Env {
         defaultValue: any;
         value: any;
     }>;
-    constructor(env: Record<string, string | undefined>, isTestKey?: string, testPrefix?: string);
+    constructor(env: Record<string, string | undefined>, environment: string, envPostfixMap: Record<string, string | undefined>);
     string(key: string, defaultValue?: string): string;
     path(key: string, defaultValue?: string): string;
     int(key: string, defaultValue?: number): number;

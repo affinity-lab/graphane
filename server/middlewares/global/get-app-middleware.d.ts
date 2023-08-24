@@ -1,2 +1,2 @@
 import { NextFunction, Request, Response } from "express";
-export default function getAppMiddleware(guard?: boolean): (req: Request, res: Response, next: NextFunction) => void;
+export default function getAppMiddleware(guarded?: boolean, acceptCode?: boolean): (req: Request, res: Response, next: NextFunction) => void;

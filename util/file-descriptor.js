@@ -84,7 +84,6 @@ class FileDescriptor {
     }
     ;
 }
-exports.default = FileDescriptor;
 __decorate([
     (0, materialize_it_1.default)(),
     __metadata("design:type", Promise),
@@ -110,3 +109,4 @@ __decorate([
     __metadata("design:type", Object),
     __metadata("design:paramtypes", [])
 ], FileDescriptor.prototype, "parsedPath", null);
+exports.default = FileDescriptor;

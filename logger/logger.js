@@ -11,7 +11,7 @@ var LOGLEVEL;
     LOGLEVEL[LOGLEVEL["CRITICAL"] = 5] = "CRITICAL";
     LOGLEVEL[LOGLEVEL["ALERT"] = 6] = "ALERT";
     LOGLEVEL[LOGLEVEL["EMERGENCY"] = 7] = "EMERGENCY";
-})(LOGLEVEL || (exports.LOGLEVEL = LOGLEVEL = {}));
+})(LOGLEVEL = exports.LOGLEVEL || (exports.LOGLEVEL = {}));
 class Logger {
     constructor(level = LOGLEVEL.DEBUG, writers = [], formatters = []) {
         this.level = level;

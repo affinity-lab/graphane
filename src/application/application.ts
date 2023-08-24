@@ -5,7 +5,8 @@ import LoggerInterface from "./loggerInteface";
 import {PrefixedApplication} from "./prefixed-application";
 
 
-export default class Application<RolesType extends Record<string, string> = Record<string, string>> {
+export default class Application<RolesType extends Record<string, string> = Record<string, string>, CfgType extends Record<string, any> = Record<string, any>> {
+	
     static applications: Application<any>[] = [];
 
     static codeMap: {[p: string]: Application<any>} = {};
@@ -22,23 +23,29 @@ export default class Application<RolesType extends Record<string, string> = Reco
     readonly px: PrefixedApplication;
 
     readonly logger: LoggerInterface | undefined;
+	readonly id: string
+	readonly code: string
+	readonly secret: string
+	readonly name: string
 
     constructor(
-        readonly id: string,
-        readonly code: string,
-        readonly secret: string,
-        readonly name: string,
+		readonly  cfg: CfgType,
         readonly roles: RolesType,
         logger: LoggerInterface | ((app: Application<any>) => LoggerInterface) | undefined = undefined,
         private authorizeFunctions: Array<(req: Request, app: Application) => Promise<Authorizable | undefined | false>> = [],
     ) {
-        this.code = this.code.toUpperCase();
+								this.code = cfg["app"]["code"].toUpperCase();
+								this.id = cfg["app"]["id"];
+								this.secret = cfg["app"]["secret"];
+								this.name = cfg["app"]["name"];
+
         this.logger = typeof logger === "function" ? logger(this) : logger;
         this.px = new PrefixedApplication(this.code);
         for (const roleKey in this.roles) {
             this.roles[roleKey] = this.px.prefixer(roleKey) as RolesType[typeof roleKey];
         }
         Application.addApplication(this);
+
     };
 
     private static addApplication(application: Application<any>): void {

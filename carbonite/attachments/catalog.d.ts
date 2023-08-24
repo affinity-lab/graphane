@@ -2,7 +2,7 @@ import { AtomWithAttachments } from "../atom";
 import FileAttachment from "./file/file-attachment";
 import { ImgFocus } from "./file/image-attachment";
 import StorageInterface from "./storage/storage";
-export type CatalogOptions = {
+export declare type CatalogOptions = {
     maxFileCount: number;
     maxFileSize: number;
     mimeTypePattern: string | string[];
