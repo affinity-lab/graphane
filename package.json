@@ -1,13 +1,13 @@
 {
     "name": "@affinity-lab/graphane",
+	"exports": {
+		"./": "./dist/"
+	},
     "version": "0.0.6",
     "author": "Affinity Lab",
     "files": [
         "./**/*"
     ],
-	"directories": {
-		"lib": "./dist/"
-	},
 	"dependencies": {
         "@apollo/server": "^4.9.1",
         "micromatch": "^4.0.5",
