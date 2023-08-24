@@ -1,5 +1,8 @@
 {
     "name": "@affinity-lab/graphane",
+	"exports": {
+		"./": "./dist/"
+	},
     "version": "0.0.5",
     "author": "Affinity Lab",
     "files": [
