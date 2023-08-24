@@ -6,7 +6,7 @@ import AbstractGuard from "../guard/abstract-guard";
 
 
 @ObjectType()
-class Permissions {
+export class Permissions {
 	@Field(() => GraphQLJSONObject)
 	public roles: {[key: string]: boolean};
 

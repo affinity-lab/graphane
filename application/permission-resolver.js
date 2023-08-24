@@ -12,11 +12,11 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createRolesResolver = void 0;
+exports.createPermissionResolver = exports.Permissions = void 0;
 const type_graphql_1 = require("type-graphql");
 const graphql_type_json_1 = require("graphql-type-json");
 const context_1 = require("../server/context");
-let Permissions = class Permissions {
+let Permissions = exports.Permissions = class Permissions {
     constructor(roles) {
         this.roles = roles;
     }
@@ -26,11 +26,11 @@ __decorate([
     (0, type_graphql_1.Field)(() => graphql_type_json_1.GraphQLJSONObject),
     __metadata("design:type", Object)
 ], Permissions.prototype, "roles", void 0);
-Permissions = __decorate([
+exports.Permissions = Permissions = __decorate([
     (0, type_graphql_1.ObjectType)(),
     __metadata("design:paramtypes", [Object])
 ], Permissions);
-function createRolesResolver(app, guard) {
+function createPermissionResolver(app, guard) {
     let PermissionResolver = class PermissionResolver {
         async getMyPermissionsInApp(context) {
             return new Permissions(await guard(context).getRoles());
@@ -49,4 +49,4 @@ function createRolesResolver(app, guard) {
     ], PermissionResolver);
     return PermissionResolver;
 }
-exports.createRolesResolver = createRolesResolver;
+exports.createPermissionResolver = createPermissionResolver;
