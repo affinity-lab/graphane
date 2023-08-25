@@ -4,8 +4,8 @@ import jwt from "jsonwebtoken";
 export class Jwt<T> {
 	constructor(
 		private readonly secret: string,
-		private readonly algorithm: jwt.Algorithm = "HS512",
-		private readonly expires?: string
+		private readonly expires?: string,
+		private readonly algorithm: jwt.Algorithm = "HS512"
 	) {};
 
 	decodeJWT(token: string | undefined): T | undefined {

@@ -6,10 +6,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Jwt = void 0;
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 class Jwt {
-    constructor(secret, algorithm = "HS512", expires) {
+    constructor(secret, expires, algorithm = "HS512") {
         this.secret = secret;
-        this.algorithm = algorithm;
         this.expires = expires;
+        this.algorithm = algorithm;
     }
     ;
     decodeJWT(token) {
