@@ -1,0 +1,9 @@
+{
+	"parserOptions": {
+		"sourceType": "module",
+		"ecmaVersion": "latest"
+	},
+	"rules": {
+		"no-extra-semi": "error"
+	}
+}

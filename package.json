@@ -9,6 +9,19 @@
 	"files": [
 		"./**/*"
 	],
+	"eslintConfig": {
+		"parserOptions": {
+			"sourceType": "module"
+		},
+		"rules": {
+			"no-extra-semi": "error"
+		}
+	},
+	"prettier": {
+		"semi": false,
+		"useTabs": true,
+		"printWidth": 1000
+	},
 	"dependencies": {
 		"@apollo/server": "^4.9.1",
 		"micromatch": "^4.0.5",

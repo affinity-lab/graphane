@@ -34,11 +34,11 @@ export default class RotatingFileWriter extends Writer {
             fs.mkdirSync(Path.dirname(archivePath + "/" + path), {recursive: true});
             return new RotatingFileWriter(level, basePath + "/" + path, archivePath + "/" + path, streamOptions);
         };
-    };
+    }
 
     write(formatted: string): void {
         this.stream.write(formatted + "\n");
-    };
+    }
 
     generator(): Generator {
         return (time: number | Date, index?: number): string => {
@@ -48,5 +48,5 @@ export default class RotatingFileWriter extends Writer {
             time = time as Date;
             return `${this.archivePath}/${time.getFullYear().toString()}-${(time.getMonth() + 1).toString().padStart(2, "0")}-${(time.getDate()).toString().padStart(2, "0")}-${index}`;
         };
-    };
+    }
 }

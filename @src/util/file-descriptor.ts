@@ -4,9 +4,8 @@ import * as path from "path";
 import sharp from "sharp";
 import MaterializeIt from "./materialize-it";
 
-
 export type Img = {
-    meta: sharp.Metadata;
+	meta: sharp.Metadata;
     stats: sharp.Stats;
 };
 

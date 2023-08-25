@@ -4,7 +4,7 @@ import GraphaneError from "../error/graphane-error";
 interface CachePropertyDescriptor<T, R> extends PropertyDescriptor {
     get?: (this: T) => R;
 }
-
+/** A decorator function that materializes a getter property into a value property after the first access. */
 export default function MaterializeIt() {
     return function <T, R>(
         target: any,
