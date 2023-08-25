@@ -6,6 +6,7 @@ var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
 const graphane_error_1 = __importDefault(require("../error/graphane-error"));
 const prefixed_application_1 = require("./prefixed-application");
+const jwt_1 = require("../util/jwt");
 class Application {
     constructor(cfg, roles, logger = undefined, authorizeFunctions = []) {
         this.cfg = cfg;
@@ -20,6 +21,7 @@ class Application {
         for (const roleKey in this.roles) {
             this.roles[roleKey] = this.px.prefixer(roleKey);
         }
+        this.jwt = new jwt_1.Jwt(this.secret);
         _a.addApplication(this);
     }
     ;
