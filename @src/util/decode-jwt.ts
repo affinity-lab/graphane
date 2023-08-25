@@ -1,13 +1,9 @@
-import {decode, TAlgorithm} from "jwt-simple";
+import jwt from "jsonwebtoken"
 
 
-export default function decodeJWT(token: string | undefined, secret: string, algorithm: TAlgorithm = "HS512") {
+export default function decodeJWT(token: string | undefined, secret: string): jwt.Jwt | undefined {
     if (typeof token === "undefined") {
         return undefined;
     }
-    try {
-        return decode(token, secret, false, algorithm);
-    } catch (e) {
-        return undefined;
-    }
+    return jwt.verify(token, secret, {complete: true});
 }
