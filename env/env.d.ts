@@ -1,7 +1,6 @@
 export default class Env {
     readonly env: Record<string, any>;
     readonly envPostfixMap: Record<string, string | undefined>;
-    readonly isTest: boolean;
     readonly environment: string;
     info: Array<{
         key: string;

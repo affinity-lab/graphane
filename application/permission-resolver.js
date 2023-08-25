@@ -22,15 +22,15 @@ let Permissions = class Permissions {
     }
     ;
 };
+exports.Permissions = Permissions;
 __decorate([
     (0, type_graphql_1.Field)(() => graphql_type_json_1.GraphQLJSONObject),
     __metadata("design:type", Object)
 ], Permissions.prototype, "roles", void 0);
-Permissions = __decorate([
+exports.Permissions = Permissions = __decorate([
     (0, type_graphql_1.ObjectType)(),
     __metadata("design:paramtypes", [Object])
 ], Permissions);
-exports.Permissions = Permissions;
 function createPermissionResolver(app, guard) {
     let PermissionResolver = class PermissionResolver {
         async getMyPermissionsInApp(context) {
