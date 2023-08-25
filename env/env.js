@@ -17,7 +17,7 @@ class Env {
     sub(key) {
         const subEnv = key.split(".").reduce((a, b) => a[b], this.env);
         if (typeof subEnv === "object")
-            new Env({ ...subEnv }, this.environment, this.envPostfixMap);
+            return new Env({ ...subEnv }, this.environment, this.envPostfixMap);
         throw graphane_error_1.default.fatal(`Env Sub-key not found: ${key}`);
     }
     string(key, defaultValue) {
@@ -26,7 +26,7 @@ class Env {
             ? defaultValue
             : rawValue.trim();
         if (typeof value === "undefined") {
-            throw graphane_error_1.default.fatal(`Missing Env variable: ${key}`);
+            throw graphane_error_1.default.fatal(`Missing Env variable (string): ${key}`);
         }
         this.info.push({ key: key, type: "string", defaultValue, value });
         return value;
@@ -37,7 +37,7 @@ class Env {
             ? defaultValue
             : rawValue.trim();
         if (typeof value === "undefined") {
-            throw graphane_error_1.default.fatal(`Missing Env variable: ${key}`);
+            throw graphane_error_1.default.fatal(`Missing Env variable (path): ${key}`);
         }
         this.info.push({ key: key, type: "path", defaultValue, value });
         value = path_1.default.resolve(process.cwd(), value);
@@ -47,9 +47,9 @@ class Env {
         let rawValue = this.value(key);
         let value = typeof rawValue === "undefined"
             ? defaultValue
-            : parseInt(rawValue);
+            : parseInt(rawValue.toString());
         if (typeof value === "undefined") {
-            throw graphane_error_1.default.fatal(`Missing Env variable: ${key}`);
+            throw graphane_error_1.default.fatal(`Missing Env variable (int): ${key}`);
         }
         if (isNaN(value)) {
             throw graphane_error_1.default.fatal(`Env variable type failed: ${key} (int)`);
@@ -61,9 +61,9 @@ class Env {
         let rawValue = this.value(key);
         let value = typeof rawValue === "undefined"
             ? defaultValue
-            : parseFloat(rawValue);
+            : parseFloat(rawValue.toString());
         if (typeof value === "undefined") {
-            throw graphane_error_1.default.fatal(`Missing Env variable: ${key}`);
+            throw graphane_error_1.default.fatal(`Missing Env variable (float): ${key}`);
         }
         if (isNaN(value)) {
             throw graphane_error_1.default.fatal(`Env variable type failed: ${key} (float)`);
@@ -75,9 +75,11 @@ class Env {
         let rawValue = this.value(key);
         let value = typeof rawValue === "undefined"
             ? defaultValue
-            : ["1", "yes", "true"].indexOf(rawValue.toLowerCase().trim()) != -1;
+            : typeof rawValue === "boolean"
+                ? rawValue
+                : ["1", "yes", "true"].indexOf(rawValue.toLowerCase().trim()) != -1;
         if (typeof value === "undefined") {
-            throw graphane_error_1.default.fatal(`Missing Env variable: ${key}`);
+            throw graphane_error_1.default.fatal(`Missing Env variable (boolean): ${key}`);
         }
         this.info.push({ key: key, type: "boolean", defaultValue, value });
         return value;

@@ -4,11 +4,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const graphane_error_1 = __importDefault(require("../../error/graphane-error"));
-const create_upload_token_1 = require("../../server/create-upload-token");
 class FileCrud {
-    constructor(entity, uploadTokenKey) {
+    constructor(entity, jwt) {
         this.entity = entity;
-        this.uploadTokenKey = uploadTokenKey;
+        this.jwt = jwt;
     }
     ;
     checkVariablesExist(variables) {
@@ -24,7 +23,13 @@ class FileCrud {
         let catalogInstance = await this.getCatalog(id, catalog);
         switch (command) {
             case "upload":
-                return (0, create_upload_token_1.createUploadToken)(this.entity, id, catalog, context.authorizable, this.uploadTokenKey);
+                return this.jwt.encodeJWT({
+                    module: this.entity.module,
+                    entity: this.entity.name,
+                    id,
+                    catalog,
+                    user: context.authorizable.id
+                });
             case "delete":
                 this.checkVariablesExist(variables);
                 await catalogInstance.removeFiles(variables.fileName);

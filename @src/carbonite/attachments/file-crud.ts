@@ -1,16 +1,17 @@
 import GraphaneError from "../../error/graphane-error";
 import {Context} from "../../server/context";
-import {createUploadToken} from "../../server/create-upload-token";
 import {AtomWithAttachments} from "../atom";
 import Catalog from "./catalog";
 import {ImgFocus} from "./file/image-attachment";
 import {ChangeFileInput, FileInputVariables} from "./inputs";
+import {Jwt} from "../../util/jwt";
+import {UploadTokenPayload} from "../../server/upload-token-payload";
 
 
 export default class FileCrud<Entity extends AtomWithAttachments> {
     constructor(
         private readonly entity: {new(): Entity} & typeof AtomWithAttachments,
-        private readonly uploadTokenKey: string
+        private readonly jwt: Jwt<UploadTokenPayload>
     ) {
     };
 
@@ -34,7 +35,13 @@ export default class FileCrud<Entity extends AtomWithAttachments> {
         let catalogInstance: Catalog = await this.getCatalog(id, catalog);
         switch (command) {
             case "upload":
-                return createUploadToken(this.entity, id, catalog, context.authorizable!, this.uploadTokenKey);
+                return this.jwt.encodeJWT({
+                    module: this.entity.module,
+                    entity: this.entity.name,
+                    id,
+                    catalog,
+                    user: context.authorizable!.id
+                });
             case "delete":
                 this.checkVariablesExist(variables);
                 await catalogInstance.removeFiles(variables!.fileName as string);
