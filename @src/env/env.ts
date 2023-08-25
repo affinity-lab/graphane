@@ -23,7 +23,7 @@ export default class Env {
 
 	sub(key: string): Env  {
 		const subEnv = key.split(".").reduce((a, b) => a[b], this.env);
-		if (typeof subEnv === "object") new Env({...subEnv}, this.environment, this.envPostfixMap)
+		if (typeof subEnv === "object") return new Env({...subEnv}, this.environment, this.envPostfixMap);
 		throw GraphaneError.fatal(`Env Sub-key not found: ${key}`);
 	}
 
