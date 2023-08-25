@@ -13,7 +13,7 @@ export default class Env {
         key: string;
         default: string;
     } | undefined, envPostfixMap: Record<string, string | undefined>);
-    sub(key: string): Env | undefined;
+    sub(key: string): Env;
     string(key: string, defaultValue?: string): string;
     path(key: string, defaultValue?: string): string;
     int(key: string, defaultValue?: number): number;

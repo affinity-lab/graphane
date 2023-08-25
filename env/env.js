@@ -16,9 +16,9 @@ class Env {
     }
     sub(key) {
         const subEnv = key.split(".").reduce((a, b) => a[b], this.env);
-        return (typeof subEnv === "object")
-            ? new Env({ ...subEnv }, this.environment, this.envPostfixMap)
-            : undefined;
+        if (typeof subEnv === "object")
+            new Env({ ...subEnv }, this.environment, this.envPostfixMap);
+        throw graphane_error_1.default.fatal(`Env Sub-key not found: ${key}`);
     }
     string(key, defaultValue) {
         let rawValue = this.value(key);

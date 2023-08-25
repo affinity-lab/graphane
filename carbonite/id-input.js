@@ -14,13 +14,13 @@ const class_validator_1 = require("class-validator");
 const type_graphql_1 = require("type-graphql");
 let IdInput = class IdInput {
 };
-exports.IdInput = IdInput;
 __decorate([
     (0, type_graphql_1.Field)(),
     (0, class_validator_1.IsPositive)(),
     (0, class_validator_1.IsInt)(),
     __metadata("design:type", Number)
 ], IdInput.prototype, "id", void 0);
-exports.IdInput = IdInput = __decorate([
+IdInput = __decorate([
     (0, type_graphql_1.ArgsType)()
 ], IdInput);
+exports.IdInput = IdInput;
