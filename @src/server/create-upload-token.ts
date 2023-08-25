@@ -1,6 +1,6 @@
 import Authorizable from "../application/authorizable";
 import Atom from "../carbonite/atom";
-import jwt from "jsonwebtoken"
+import jwt from "jsonwebtoken";
 
 
 export function createUploadToken(entity: typeof Atom, id: number, catalog: string, user: Authorizable | undefined, uploadTokenKey: string): string {
