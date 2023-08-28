@@ -192,6 +192,14 @@ declare const GraphaneError: {
             status: number;
             silent: boolean;
         };
+        duplicateNeptun: () => {
+            info?: {
+                [p: string]: any;
+            } | undefined;
+            message?: string | undefined;
+            status: number;
+            silent: boolean;
+        };
     };
 };
 export default GraphaneError;

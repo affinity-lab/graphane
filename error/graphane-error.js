@@ -43,7 +43,8 @@ const GraphaneError = {
         unauthorized: () => (0, error_1.default)(undefined, undefined, 401),
         forbidden: () => (0, error_1.default)(undefined, undefined, 403),
         alreadyLoggedIn: () => (0, error_1.default)(undefined, undefined, 403),
-        duplicateEmail: () => (0, error_1.default)(undefined, undefined, 403)
+        duplicateEmail: () => (0, error_1.default)(undefined, undefined, 403),
+        duplicateNeptun: () => (0, error_1.default)(undefined, undefined, 403)
     }
 };
 error_1.default.preprocess(GraphaneError, "GRAPHANE");
