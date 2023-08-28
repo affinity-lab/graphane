@@ -8,7 +8,7 @@ function getAppMiddleware(guarded = false, acceptCode = false) {
     return (req, res, next) => {
         let app;
         if (acceptCode && req.hasHeader("api-code"))
-            app = application_1.default.get.byCode(req.getHeader("api-key"));
+            app = application_1.default.get.byCode(req.getHeader("api-code"));
         if (app === undefined && req.hasHeader("api-key"))
             app = application_1.default.get.byId(req.getHeader("api-key"));
         if (guarded && app === undefined) {
