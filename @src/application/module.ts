@@ -1,8 +1,8 @@
 import Atom from "../carbonite/atom";
 import GraphaneError from "../error/graphane-error";
-import LoggerInterface from "./loggerInteface";
 import {PrefixedModule} from "./prefixed-module";
 import requiredProperties from "../util/required-properties";
+import {Logger, ModuleLoggerFactory} from "./service-interfaces/service-interfaces";
 
 
 export default class Module<RolesType = {}, CfgType extends Record<string, any> = Record<string, any>> {
@@ -23,13 +23,13 @@ export default class Module<RolesType = {}, CfgType extends Record<string, any> 
 
 	public entities: Record<string, typeof Atom> = {};
 	readonly px: PrefixedModule;
-	readonly logger: LoggerInterface | null;
+	readonly logger: Logger | null;
 	readonly code: string;
 
 
-	constructor(cfg: CfgType, logger: LoggerInterface | null | ((module: Module<any>) => LoggerInterface), roles: RolesType);
-	constructor(code: string, logger: LoggerInterface | null | ((module: Module<any>) => LoggerInterface), roles: RolesType);
-	constructor(cfg: CfgType | string, logger: LoggerInterface | null | ((module: Module<any>) => LoggerInterface) = null, readonly roles: RolesType = {} as RolesType) {
+	constructor(cfg: CfgType, logger: Logger | null | ModuleLoggerFactory, roles: RolesType);
+	constructor(code: string, logger: Logger | null | ModuleLoggerFactory, roles: RolesType);
+	constructor(cfg: CfgType | string, logger: Logger | null | ModuleLoggerFactory = null, readonly roles: RolesType = {} as RolesType) {
 		if (typeof cfg === "string") {
 			this.code = cfg;
 		} else {

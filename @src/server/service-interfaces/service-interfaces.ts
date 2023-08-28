@@ -1,4 +1,4 @@
-export default interface LoggerInterface {
+export interface Logger {
 	debug(message: any): void;
 	info(message: any): void;
 	notice(message: any): void;
@@ -7,4 +7,9 @@ export default interface LoggerInterface {
 	critical(message: any): void;
 	alert(message: any): void;
 	emergency(message: any): void;
+}
+
+export interface Jwt<T> {
+	decode(token: string | undefined): T | undefined;
+	encode(payload: T, expires?: string): string | undefined;
 }

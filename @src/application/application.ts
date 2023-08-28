@@ -1,10 +1,9 @@
 import GraphaneError from "../error/graphane-error";
 import {Request} from "express";
 import Authorizable from "./authorizable";
-import LoggerInterface from "./loggerInteface";
 import {PrefixedApplication} from "./prefixed-application";
-import {Jwt} from "../util/jwt";
 import requiredProperties from "../util/required-properties";
+import {ApplicationLoggerFactory, Jwt, JwtFactory, Logger} from "./service-interfaces/service-interfaces";
 
 
 export default class Application<RolesType extends Record<string, string> = Record<string, string>, CfgType extends Record<string, any> = Record<string, any>> {
@@ -29,7 +28,7 @@ export default class Application<RolesType extends Record<string, string> = Reco
 	}
 
 	readonly px: PrefixedApplication;
-	readonly logger: LoggerInterface | undefined;
+	readonly logger: Logger | undefined;
 	readonly id: string;
 	readonly code: string;
 	readonly secret: string;
@@ -39,8 +38,9 @@ export default class Application<RolesType extends Record<string, string> = Reco
 	constructor(
 		readonly cfg: CfgType,
 		readonly roles: RolesType,
-		logger: LoggerInterface | ((app: Application<any>) => LoggerInterface) | undefined = undefined,
-		private authorizeFunctions: Array<(req: Request, app: Application) => Promise<Authorizable | undefined | false>> = []
+		logger: Logger | ApplicationLoggerFactory | undefined = undefined,
+		private authorizeFunctions: Array<(req: Request, app: Application) => Promise<Authorizable | undefined | false>> = [],
+		private readonly jwtFactory: JwtFactory
 	) {
 		if (!requiredProperties(cfg, "app") || !requiredProperties(cfg.app, "code", "id", "secret", "name")) throw GraphaneError.fatal(`App config does not have the required keys`);
 
@@ -53,7 +53,7 @@ export default class Application<RolesType extends Record<string, string> = Reco
 		for (const roleKey in this.roles) {
 			this.roles[roleKey] = this.px.prefixer(roleKey) as RolesType[typeof roleKey];
 		}
-		this.jwt = new Jwt<any>(this.secret);
+		this.jwt = this.jwtFactory<any>(this.secret); //new Jwt<any>(this.secret);
 		Application.addApplication(this);
 	}
 
