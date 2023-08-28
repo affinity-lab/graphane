@@ -9,7 +9,7 @@ export class Jwt<T> {
 		private readonly algorithm: jwt.Algorithm = "HS512"
 	) {};
 
-	decodeJWT(token: string | undefined): T | undefined {
+	decode(token: string | undefined): T | undefined {
 		if (typeof token === "undefined") {
 			return undefined;
 		}
@@ -18,7 +18,12 @@ export class Jwt<T> {
 		return payload.content;
 	}
 
-	encodeJWT(payload: T, expires?: string): string {
+	encode(payload: T, expires?: string): string {
 		return jwt.sign({content: payload}, this.secret, {algorithm: this.algorithm, expiresIn: expires ?? this.expires});
 	}
+}
+
+interface JwtService<T> {
+	decode(token: string | undefined): T | undefined;
+	encode(payload: T, expires?: string): T | undefined;
 }

@@ -29,7 +29,7 @@ export default class FileCrud<Entity extends AtomWithAttachments> {
 		let catalogInstance: Catalog = await this.getCatalog(id, catalog);
 		switch (command) {
 			case "upload":
-				return this.jwt.encodeJWT({module: this.entity.module, entity: this.entity.name, id, catalog, user: context.authorizable!.id});
+				return this.jwt.encode({module: this.entity.module, entity: this.entity.name, id, catalog, user: context.authorizable!.id});
 			case "delete":
 				this.checkVariablesExist(variables, "fileName");
 				await catalogInstance.removeFiles(variables.fileName as string);
