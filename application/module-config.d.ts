@@ -1,6 +1,3 @@
 import Env from "../env/env";
-export default function moduleConfig(env: Env, code?: string): {
-    module: {
-        code: string;
-    };
-};
+import { ModuleConfigType } from "./module";
+export default function moduleConfig(env: Env | null, code?: string): ModuleConfigType;

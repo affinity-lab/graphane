@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.PrefixedApplication = void 0;
 const type_graphql_1 = require("type-graphql");
 const decorators_1 = require("type-graphql/dist/helpers/decorators");
-const validate_and_format_input_1 = require("../validate-and-format-input/validate-and-format-input");
+const validate_and_format_input_1 = require("../carbonite/input/validate-and-format/validate-and-format-input");
 const prefixed_1 = require("./prefixed");
 class PrefixedApplication extends prefixed_1.Prefixed {
     Mutation(returnTypeFuncOrOptions, maybeOptions) {

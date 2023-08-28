@@ -8,21 +8,15 @@ import {Jwt} from "../../util/jwt";
 import {UploadTokenPayload} from "../../server/upload-token-payload";
 
 
-function requiredProperties<T>(obj: T | undefined, ...required: Array<keyof T>): undefined | boolean {
-	if (typeof obj === "undefined") return undefined;
-	for (const name in obj) if (typeof obj[name] === "undefined") return false;
-	return true;
-}
-
 export default class FileCrud<Entity extends AtomWithAttachments> {
 	constructor(
 		private readonly entity: { new(): Entity } & typeof AtomWithAttachments,
 		private readonly jwt: Jwt<UploadTokenPayload>
 	) {}
 
-	checkVariablesExist(obj: FileInputVariables | undefined, ...required: Array<keyof FileInputVariables>): void | never {
+	private checkVariablesExist(obj: FileInputVariables | undefined, ...required: Array<keyof FileInputVariables>): void | never {
 		if (typeof obj === "undefined") throw GraphaneError.attachment.fileCrud.badInput("variables");
-		for (const name in obj) if (typeof obj[name as keyof FileInputVariables] === "undefined") throw GraphaneError.attachment.fileCrud.badInput(name);
+		for (const name of required) if (typeof obj[name] === "undefined") throw GraphaneError.attachment.fileCrud.badInput(name);
 	}
 
 	async execute({command, id, catalog}: ChangeFileInput, variables: FileInputVariables, context: Context): Promise<string | void | never> {

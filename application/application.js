@@ -6,7 +6,6 @@ var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
 const graphane_error_1 = __importDefault(require("../error/graphane-error"));
 const prefixed_application_1 = require("./prefixed-application");
-const jwt_1 = require("../util/jwt");
 const required_properties_1 = __importDefault(require("../util/required-properties"));
 class Application {
     static addApplication(application) {
@@ -17,9 +16,10 @@ class Application {
         this.codeMap[application.code] = application;
         this.idMap[application.id] = application;
     }
-    constructor(cfg, roles, logger = undefined, authorizeFunctions = []) {
+    constructor(cfg, roles, logger = undefined, jwtFactory, authorizeFunctions = []) {
         this.cfg = cfg;
         this.roles = roles;
+        this.jwtFactory = jwtFactory;
         this.authorizeFunctions = authorizeFunctions;
         if (!(0, required_properties_1.default)(cfg, "app") || !(0, required_properties_1.default)(cfg.app, "code", "id", "secret", "name"))
             throw graphane_error_1.default.fatal(`App config does not have the required keys`);
@@ -32,7 +32,7 @@ class Application {
         for (const roleKey in this.roles) {
             this.roles[roleKey] = this.px.prefixer(roleKey);
         }
-        this.jwt = new jwt_1.Jwt(this.secret);
+        this.jwt = this.jwtFactory(this.secret);
         _a.addApplication(this);
     }
     async authorize(req) {

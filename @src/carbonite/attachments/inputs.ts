@@ -1,7 +1,7 @@
-import SanitizeHTML from "../../validate-and-format-input/formatters/sanitize-html";
+import SanitizeHTML from "../input/validate-and-format/formatters/sanitize-html";
 import {IsInt, IsOptional, IsPositive} from "class-validator";
 import {ArgsType, Field, InputType} from "type-graphql";
-import {IdInput} from "../id-input";
+import {IdInput} from "../input/id-input";
 import {ImgFocus} from "./file/image-attachment";
 
 

@@ -2,10 +2,10 @@ import * as argon2 from "argon2";
 import GraphaneError from "../error/graphane-error";
 
 
-export class PasswordService {
+export class Password {
 	constructor(private readonly pepper: Buffer) {};
 
-	async hashPassword(password: string): Promise<string> {
+	async hash(password: string): Promise<string> {
 		try {
 			return await argon2.hash(password, {secret: this.pepper});
 		} catch (error) {
@@ -13,7 +13,7 @@ export class PasswordService {
 		}
 	}
 
-	async verifyPassword(hashedPassword: string, enteredPassword: string): Promise<boolean> {
+	async verify(hashedPassword: string, enteredPassword: string): Promise<boolean> {
 		try {
 			return await argon2.verify(hashedPassword, enteredPassword, {secret: this.pepper});
 		} catch (error) {

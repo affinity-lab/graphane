@@ -4,7 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ValidateAndFormatInput = void 0;
-const graphane_error_1 = __importDefault(require("../error/graphane-error"));
+const graphane_error_1 = __importDefault(require("../../../error/graphane-error"));
 const format_object_1 = __importDefault(require("./format/format-object"));
 const validate_object_1 = __importDefault(require("./validate/validate-object"));
 function ValidateAndFormatInput(target, propertyKey, descriptor) {

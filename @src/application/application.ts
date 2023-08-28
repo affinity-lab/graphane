@@ -39,8 +39,8 @@ export default class Application<RolesType extends Record<string, string> = Reco
 		readonly cfg: CfgType,
 		readonly roles: RolesType,
 		logger: Logger | ApplicationLoggerFactory | undefined = undefined,
-		private authorizeFunctions: Array<(req: Request, app: Application) => Promise<Authorizable | undefined | false>> = [],
-		private readonly jwtFactory: JwtFactory
+		private readonly jwtFactory: JwtFactory,
+		private authorizeFunctions: Array<(req: Request, app: Application) => Promise<Authorizable | undefined | false>> = []
 	) {
 		if (!requiredProperties(cfg, "app") || !requiredProperties(cfg.app, "code", "id", "secret", "name")) throw GraphaneError.fatal(`App config does not have the required keys`);
 
@@ -53,7 +53,7 @@ export default class Application<RolesType extends Record<string, string> = Reco
 		for (const roleKey in this.roles) {
 			this.roles[roleKey] = this.px.prefixer(roleKey) as RolesType[typeof roleKey];
 		}
-		this.jwt = this.jwtFactory<any>(this.secret); //new Jwt<any>(this.secret);
+		this.jwt = this.jwtFactory<any>(this.secret);
 		Application.addApplication(this);
 	}
 

@@ -1,6 +1,6 @@
 import { Context } from "../server/context";
 import Application from "./application";
-import AbstractGuard from "../guard/abstract-guard";
+import AbstractGuard from "../carbonite/guard/abstract-guard";
 export declare class Permissions {
     roles: {
         [key: string]: boolean;

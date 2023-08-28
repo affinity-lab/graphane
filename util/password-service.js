@@ -26,15 +26,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PasswordService = void 0;
+exports.Password = void 0;
 const argon2 = __importStar(require("argon2"));
 const graphane_error_1 = __importDefault(require("../error/graphane-error"));
-class PasswordService {
+class Password {
     constructor(pepper) {
         this.pepper = pepper;
     }
     ;
-    async hashPassword(password) {
+    async hash(password) {
         try {
             return await argon2.hash(password, { secret: this.pepper });
         }
@@ -42,7 +42,7 @@ class PasswordService {
             throw graphane_error_1.default.fatal("error while hashing password", { error });
         }
     }
-    async verifyPassword(hashedPassword, enteredPassword) {
+    async verify(hashedPassword, enteredPassword) {
         try {
             return await argon2.verify(hashedPassword, enteredPassword, { secret: this.pepper });
         }
@@ -51,4 +51,4 @@ class PasswordService {
         }
     }
 }
-exports.PasswordService = PasswordService;
+exports.Password = Password;

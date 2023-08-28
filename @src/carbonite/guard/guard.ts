@@ -1,4 +1,4 @@
-import GraphaneError from "../error/graphane-error";
+import GraphaneError from "../../error/graphane-error";
 import AbstractGuard from "./abstract-guard";
 
 
@@ -15,7 +15,7 @@ export default function Guard(...roles: Array<string>): MethodDecorator {
             if (roles.length > 0 && await instance.user!.hasRole(roles)) {
                 return true;
             }
-            if (originalMethod.apply(instance, args)) {
+            if (await originalMethod.apply(instance, args)) {
                 return true;
             }
             throw GraphaneError.guard.unauthorized();

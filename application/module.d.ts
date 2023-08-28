@@ -1,7 +1,13 @@
 import Atom from "../carbonite/atom";
-import LoggerInterface from "./loggerInteface";
 import { PrefixedModule } from "./prefixed-module";
-export default class Module<RolesType = {}, CfgType extends Record<string, any> = Record<string, any>> {
+import { Logger, ModuleLoggerFactory } from "./service-interfaces/service-interfaces";
+export type ModuleConfigType = {
+    module: {
+        code: string;
+    };
+    [key: string]: any;
+};
+export default class Module<RolesType = {}, CfgType extends ModuleConfigType = ModuleConfigType> {
     readonly roles: RolesType;
     static modules: Module[];
     static codeMap: {
@@ -12,8 +18,9 @@ export default class Module<RolesType = {}, CfgType extends Record<string, any> 
     private static addModule;
     entities: Record<string, typeof Atom>;
     readonly px: PrefixedModule;
-    readonly logger: LoggerInterface | null;
+    readonly logger: Logger | null;
     readonly code: string;
-    constructor(cfg: CfgType, logger: LoggerInterface | null | ((module: Module<any>) => LoggerInterface), roles: RolesType);
-    constructor(code: string, logger: LoggerInterface | null | ((module: Module<any>) => LoggerInterface), roles: RolesType);
+    readonly cfg: CfgType;
+    constructor(cfg: CfgType, logger: Logger | null | ModuleLoggerFactory, roles: RolesType);
+    constructor(code: string, logger: Logger | null | ModuleLoggerFactory, roles: RolesType);
 }

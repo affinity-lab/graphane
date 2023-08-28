@@ -13,7 +13,7 @@ class Jwt {
         this.algorithm = algorithm;
     }
     ;
-    decodeJWT(token) {
+    decode(token) {
         if (typeof token === "undefined") {
             return undefined;
         }
@@ -22,7 +22,7 @@ class Jwt {
             return undefined;
         return payload.content;
     }
-    encodeJWT(payload, expires) {
+    encode(payload, expires) {
         return jsonwebtoken_1.default.sign({ content: payload }, this.secret, { algorithm: this.algorithm, expiresIn: expires ?? this.expires });
     }
 }

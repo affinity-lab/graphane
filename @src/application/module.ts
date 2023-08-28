@@ -3,9 +3,17 @@ import GraphaneError from "../error/graphane-error";
 import {PrefixedModule} from "./prefixed-module";
 import requiredProperties from "../util/required-properties";
 import {Logger, ModuleLoggerFactory} from "./service-interfaces/service-interfaces";
+import moduleConfig from "./module-config";
 
 
-export default class Module<RolesType = {}, CfgType extends Record<string, any> = Record<string, any>> {
+export type ModuleConfigType = {
+	module: {
+		code: string;
+	};
+	[key: string]: any;
+};
+
+export default class Module<RolesType = {}, CfgType extends ModuleConfigType = ModuleConfigType> {
 
 	static modules: Module[] = [];
 	static codeMap: { [p: string]: Module<any> } = {};
@@ -25,17 +33,22 @@ export default class Module<RolesType = {}, CfgType extends Record<string, any> 
 	readonly px: PrefixedModule;
 	readonly logger: Logger | null;
 	readonly code: string;
+	readonly cfg: CfgType;
 
 
 	constructor(cfg: CfgType, logger: Logger | null | ModuleLoggerFactory, roles: RolesType);
 	constructor(code: string, logger: Logger | null | ModuleLoggerFactory, roles: RolesType);
 	constructor(cfg: CfgType | string, logger: Logger | null | ModuleLoggerFactory = null, readonly roles: RolesType = {} as RolesType) {
+		let config: ModuleConfigType;
 		if (typeof cfg === "string") {
 			this.code = cfg;
+			config = moduleConfig(null, cfg);
 		} else {
-			if (!requiredProperties(cfg, "module") || !requiredProperties(cfg.module, "code")) throw GraphaneError.fatal(`Module config does not have the required keys`);
-			this.code = cfg["module"]["code"].toUpperCase();
+			config = cfg;
 		}
+		if (!requiredProperties(config, "module") || !requiredProperties(config.module, "code")) throw GraphaneError.fatal(`Module config does not have the required keys`);
+		this.code = config["module"]["code"].toUpperCase();
+		this.cfg = config as CfgType;
 
 		this.px = new PrefixedModule(this.code);
 		for (const roleKey in this.roles) {
@@ -44,5 +57,4 @@ export default class Module<RolesType = {}, CfgType extends Record<string, any> 
 		this.logger = typeof logger === "function" ? logger(this) : logger;
 		Module.addModule(this);
 	}
-
 }

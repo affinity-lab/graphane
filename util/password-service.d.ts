@@ -1,7 +1,7 @@
 /// <reference types="node" />
-export declare class PasswordService {
+export declare class Password {
     private readonly pepper;
     constructor(pepper: Buffer);
-    hashPassword(password: string): Promise<string>;
-    verifyPassword(hashedPassword: string, enteredPassword: string): Promise<boolean>;
+    hash(password: string): Promise<string>;
+    verify(hashedPassword: string, enteredPassword: string): Promise<boolean>;
 }

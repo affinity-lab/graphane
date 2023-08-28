@@ -2,7 +2,7 @@ import {Ctx, Field, ObjectType, Resolver} from "type-graphql";
 import {GraphQLJSONObject} from "graphql-type-json";
 import {Context} from "../server/context";
 import Application from "./application";
-import AbstractGuard from "../guard/abstract-guard";
+import AbstractGuard from "../carbonite/guard/abstract-guard";
 
 
 @ObjectType()

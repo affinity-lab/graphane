@@ -1,4 +1,4 @@
-import { IdInput } from "../id-input";
+import { IdInput } from "../input/id-input";
 import { ImgFocus } from "./file/image-attachment";
 export declare class FileInputVariables {
     fileName?: string;

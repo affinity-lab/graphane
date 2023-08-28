@@ -4,14 +4,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const graphane_error_1 = __importDefault(require("../../error/graphane-error"));
-function requiredProperties(obj, ...required) {
-    if (typeof obj === "undefined")
-        return undefined;
-    for (const name in obj)
-        if (typeof obj[name] === "undefined")
-            return false;
-    return true;
-}
 class FileCrud {
     constructor(entity, jwt) {
         this.entity = entity;
@@ -20,7 +12,7 @@ class FileCrud {
     checkVariablesExist(obj, ...required) {
         if (typeof obj === "undefined")
             throw graphane_error_1.default.attachment.fileCrud.badInput("variables");
-        for (const name in obj)
+        for (const name of required)
             if (typeof obj[name] === "undefined")
                 throw graphane_error_1.default.attachment.fileCrud.badInput(name);
     }
@@ -28,7 +20,7 @@ class FileCrud {
         let catalogInstance = await this.getCatalog(id, catalog);
         switch (command) {
             case "upload":
-                return this.jwt.encodeJWT({ module: this.entity.module, entity: this.entity.name, id, catalog, user: context.authorizable.id });
+                return this.jwt.encode({ module: this.entity.module, entity: this.entity.name, id, catalog, user: context.authorizable.id });
             case "delete":
                 this.checkVariablesExist(variables, "fileName");
                 await catalogInstance.removeFiles(variables.fileName);

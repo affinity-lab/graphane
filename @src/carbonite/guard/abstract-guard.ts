@@ -1,7 +1,7 @@
-import GraphaneError from "../error/graphane-error";
-import {NonEmptyArray} from "../util/types";
-import Authorizable from "../application/authorizable";
-import Application from "../application/application";
+import GraphaneError from "../../error/graphane-error";
+import {NonEmptyArray} from "../../util/types";
+import Authorizable from "../../application/authorizable";
+import Application from "../../application/application";
 
 
 export default abstract class AbstractGuard {
