@@ -36,8 +36,8 @@ export default class Module<RolesType = {}, CfgType extends ModuleConfigType = M
 	readonly cfg: CfgType;
 
 
-	constructor(cfg: CfgType, logger: Logger | null | ModuleLoggerFactory, roles: RolesType);
-	constructor(code: string, logger: Logger | null | ModuleLoggerFactory, roles: RolesType);
+	constructor(cfg: CfgType, logger?: Logger | null | ModuleLoggerFactory, roles?: RolesType);
+	constructor(code: string, logger?: Logger | null | ModuleLoggerFactory, roles?: RolesType);
 	constructor(cfg: CfgType | string, logger: Logger | null | ModuleLoggerFactory = null, readonly roles: RolesType = {} as RolesType) {
 		let config: ModuleConfigType;
 		if (typeof cfg === "string") {
