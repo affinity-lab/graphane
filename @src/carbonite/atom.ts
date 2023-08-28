@@ -6,33 +6,22 @@ import {BasicCrud} from "./crud";
 
 
 export default class Atom extends BaseEntity {
-    static module: string;
+	static module: string;
+	static crud: BasicCrud<Atom>;
+	static get Ident(): string {return `${this.module}/${this.name}`;}
 
-    static crud: BasicCrud<Atom>;
-
-    @PrimaryGeneratedColumn()
-    id: number;
-
-    static get Ident(): string {
-        return `${this.module}/${this.name}`;
-    };
-
-    get ident(): string {
-        return `${(this.constructor as typeof Atom).module}/${this.constructor.name}/${this.id}`;
-    };
+	@PrimaryGeneratedColumn() id: number;
+	get ident(): string {return `${(this.constructor as typeof Atom).module}/${this.constructor.name}/${this.id}`;}
 }
+
 
 export class AtomWithAttachments extends Atom {
-    static crud: BasicCrud<AtomWithAttachments>;
+	static crud: BasicCrud<AtomWithAttachments>;
+	static fileCrud: FileCrud<AtomWithAttachments>;
+	protected static catalogs: Record<string, (owner: AtomWithAttachments) => Catalog>;
 
-    static fileCrud: FileCrud<AtomWithAttachments>;
+	@Column({type: "json"}) attachments: Record<string, FileAttachment[]> = {};
 
-    protected static catalogs: Record<string, (owner: AtomWithAttachments) => Catalog>;
-
-    @Column({type: "json"})
-    attachments: Record<string, FileAttachment[]> = {};
-
-    getCatalog(name: string): Catalog | undefined {
-        return (this.constructor as typeof AtomWithAttachments).catalogs[name](this);
-    };
+	getCatalog(name: string): Catalog | undefined { return (this.constructor as typeof AtomWithAttachments).catalogs[name](this); }
 }
+

@@ -4,16 +4,18 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const graphane_error_1 = __importDefault(require("../error/graphane-error"));
+/** A generic storage class that allows you to store and retrieve values of a specified type. */
 class Storage {
+    /** Creates a new instance of the Storage class.*/
     constructor(defaultKey) {
         this.defaultKey = defaultKey;
         this.storage = {};
     }
-    ;
+    /** Sets a value in the storage with the specified key.*/
     set(key, value) {
         this.storage[key] = value;
     }
-    ;
+    /** Retrieves the value associated with the given key from the storage. If no key is provided, it uses the default key if available. */
     get(key) {
         key = typeof key === "undefined" ? this.defaultKey : key;
         if (typeof key === "undefined") {
@@ -21,7 +23,7 @@ class Storage {
         }
         return (this.storage.hasOwnProperty(key)) ? this.storage[key] : undefined;
     }
-    ;
+    /** Retrieves the value associated with the given key from the storage. If no key is provided, it uses the default key if available. Throws an error if the value is not found. */
     getOrFail(key) {
         const result = this.get(key);
         if (typeof result === "undefined") {
@@ -29,6 +31,5 @@ class Storage {
         }
         return result;
     }
-    ;
 }
 exports.default = Storage;

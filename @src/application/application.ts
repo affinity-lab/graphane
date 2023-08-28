@@ -4,16 +4,14 @@ import Authorizable from "./authorizable";
 import LoggerInterface from "./loggerInteface";
 import {PrefixedApplication} from "./prefixed-application";
 import {Jwt} from "../util/jwt";
+import requiredProperties from "../util/required-properties";
 
 
 export default class Application<RolesType extends Record<string, string> = Record<string, string>, CfgType extends Record<string, any> = Record<string, any>> {
 
 	static applications: Application<any>[] = [];
-
-	static codeMap: {[p: string]: Application<any>} = {};
-
-	static idMap: {[p: string]: Application<any>} = {};
-
+	static codeMap: { [p: string]: Application<any> } = {};
+	static idMap: { [p: string]: Application<any> } = {};
 	static get = {
 		byCode: (code: string): Application<any> | undefined => this.codeMap.hasOwnProperty(code) ? this.codeMap[code] : undefined,
 		byId: (id: string): Application<any> | undefined => {
@@ -21,8 +19,16 @@ export default class Application<RolesType extends Record<string, string> = Reco
 		}
 	};
 
-	readonly px: PrefixedApplication;
+	private static addApplication(application: Application<any>): void {
+		if (this.codeMap.hasOwnProperty(application.code)) {
+			throw GraphaneError.application.alreadyRegistered(application.code);
+		}
+		this.applications.push(application);
+		this.codeMap[application.code] = application;
+		this.idMap[application.id] = application;
+	}
 
+	readonly px: PrefixedApplication;
 	readonly logger: LoggerInterface | undefined;
 	readonly id: string;
 	readonly code: string;
@@ -36,6 +42,8 @@ export default class Application<RolesType extends Record<string, string> = Reco
 		logger: LoggerInterface | ((app: Application<any>) => LoggerInterface) | undefined = undefined,
 		private authorizeFunctions: Array<(req: Request, app: Application) => Promise<Authorizable | undefined | false>> = []
 	) {
+		if (!requiredProperties(cfg, "app") || !requiredProperties(cfg.app, "code", "id", "secret", "name")) throw GraphaneError.fatal(`App config does not have the required keys`);
+
 		this.code = cfg["app"]["code"].toUpperCase();
 		this.id = cfg["app"]["id"];
 		this.secret = cfg["app"]["secret"];
@@ -47,16 +55,7 @@ export default class Application<RolesType extends Record<string, string> = Reco
 		}
 		this.jwt = new Jwt<any>(this.secret);
 		Application.addApplication(this);
-	};
-
-	private static addApplication(application: Application<any>): void {
-		if (this.codeMap.hasOwnProperty(application.code)) {
-			throw GraphaneError.application.alreadyRegistered(application.code);
-		}
-		this.applications.push(application);
-		this.codeMap[application.code] = application;
-		this.idMap[application.id] = application;
-	};
+	}
 
 	async authorize(req: Request): Promise<Authorizable | undefined> {
 		let result: Authorizable | undefined | false;
@@ -67,5 +66,5 @@ export default class Application<RolesType extends Record<string, string> = Reco
 			}
 		}
 		return undefined;
-	};
+	}
 }

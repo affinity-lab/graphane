@@ -41,18 +41,14 @@ const path = __importStar(require("path"));
 const sharp_1 = __importDefault(require("sharp"));
 const materialize_it_1 = __importDefault(require("./materialize-it"));
 class FileDescriptor {
-    constructor(file) {
-        this.file = fs.realpathSync(file);
-    }
-    ;
-    get stat() {
-        return fs.promises.stat(this.file).catch(() => null);
-    }
-    ;
-    get isImage() {
-        return this.mimeType.toString().substring(0, 6) === "image/";
-    }
-    ;
+    constructor(file) { this.file = fs.realpathSync(file); }
+    get stat() { return fs.promises.stat(this.file).catch(() => null); }
+    get size() { return this.stat.then((stat) => stat !== null ? stat.size : 0); }
+    get exists() { return this.stat.then((stat) => stat !== null); }
+    get name() { return this.parsedPath.base; }
+    get parsedPath() { return path.parse(this.file); }
+    get mimeType() { return mime.lookup(this.file); }
+    get isImage() { return this.mimeType.toString().substring(0, 6) === "image/"; }
     get image() {
         sharp_1.default.cache({ files: 0 });
         if (!this.isImage) {
@@ -62,27 +58,6 @@ class FileDescriptor {
         return Promise.all([img.metadata(), img.stats()])
             .then((res) => ({ meta: res[0], stats: res[1] }));
     }
-    ;
-    get mimeType() {
-        return mime.lookup(this.file);
-    }
-    ;
-    get size() {
-        return this.stat.then((stat) => stat !== null ? stat.size : 0);
-    }
-    ;
-    get exists() {
-        return this.stat.then((stat) => stat !== null);
-    }
-    ;
-    get name() {
-        return this.parsedPath.base;
-    }
-    ;
-    get parsedPath() {
-        return path.parse(this.file);
-    }
-    ;
 }
 exports.default = FileDescriptor;
 __decorate([
@@ -90,6 +65,16 @@ __decorate([
     __metadata("design:type", Promise),
     __metadata("design:paramtypes", [])
 ], FileDescriptor.prototype, "stat", null);
+__decorate([
+    (0, materialize_it_1.default)(),
+    __metadata("design:type", Object),
+    __metadata("design:paramtypes", [])
+], FileDescriptor.prototype, "parsedPath", null);
+__decorate([
+    (0, materialize_it_1.default)(),
+    __metadata("design:type", Object),
+    __metadata("design:paramtypes", [])
+], FileDescriptor.prototype, "mimeType", null);
 __decorate([
     (0, materialize_it_1.default)(),
     __metadata("design:type", Boolean),
@@ -100,13 +85,3 @@ __decorate([
     __metadata("design:type", Promise),
     __metadata("design:paramtypes", [])
 ], FileDescriptor.prototype, "image", null);
-__decorate([
-    (0, materialize_it_1.default)(),
-    __metadata("design:type", Object),
-    __metadata("design:paramtypes", [])
-], FileDescriptor.prototype, "mimeType", null);
-__decorate([
-    (0, materialize_it_1.default)(),
-    __metadata("design:type", Object),
-    __metadata("design:paramtypes", [])
-], FileDescriptor.prototype, "parsedPath", null);

@@ -5,6 +5,5 @@ class Writer {
     constructor(level = logger_1.LOGLEVEL.DEBUG) {
         this.level = level;
     }
-    ;
 }
 exports.default = Writer;

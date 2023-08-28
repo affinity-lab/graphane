@@ -6,8 +6,8 @@ import { BasicCrud } from "./crud";
 export default class Atom extends BaseEntity {
     static module: string;
     static crud: BasicCrud<Atom>;
-    id: number;
     static get Ident(): string;
+    id: number;
     get ident(): string;
 }
 export declare class AtomWithAttachments extends Atom {

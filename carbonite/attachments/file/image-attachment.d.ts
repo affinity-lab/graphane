@@ -1,8 +1,15 @@
-import { RGB } from "../../../util/color";
 import FileDescriptor from "../../../util/file-descriptor";
-import { Dimension } from "../../../util/geometry";
 import Catalog from "../catalog";
 import FileAttachment from "./file-attachment";
+declare class ImgDimension {
+    width: number;
+    height: number;
+}
+declare class ImgRGB {
+    r: number;
+    g: number;
+    b: number;
+}
 export declare enum ImgFocus {
     CENTRE = "centre",
     TOP = "top",
@@ -14,10 +21,11 @@ export declare enum ImgFocus {
 }
 export default class ImageAttachment extends FileAttachment {
     static mimeTypePattern: string;
-    dimensions: Dimension;
-    dominant: RGB;
+    dimensions: ImgDimension;
+    dominant: ImgRGB;
     isAnimated: boolean;
     focus: ImgFocus;
     static factory(descriptor: FileDescriptor, catalog: Catalog): Promise<ImageAttachment>;
     protected static setup(image: ImageAttachment, descriptor: FileDescriptor, catalog: Catalog): Promise<void>;
 }
+export {};

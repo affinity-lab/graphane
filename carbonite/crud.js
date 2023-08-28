@@ -12,39 +12,14 @@ class BasicCrud {
         this.dataSourceStorage = dataSourceStorage;
         this.storageKey = storageKey;
     }
-    ;
-    async readAll(options) {
-        return await this.entity.find(options);
-    }
-    ;
-    async readOne(options) {
-        return await this.entity.findOne(options) ?? undefined;
-    }
-    ;
-    async readOneOrFail(options) {
-        return await this.entity.findOneOrFail(options);
-    }
-    ;
-    async readOneBy(options) {
-        return await this.entity.findOneBy(options) ?? undefined;
-    }
-    ;
-    async readOneByOrFail(options) {
-        return await this.entity.findOneByOrFail(options) ?? undefined;
-    }
-    ;
-    async readOneById(id) {
-        return await this.entity.findOneBy({ id }) ?? undefined;
-    }
-    ;
-    async readOneByIdOrFail(id) {
-        return await this.entity.findOneByOrFail({ id });
-    }
-    ;
-    async create(data) {
-        return await this.entity.create(await this.loadRelations(data)).save();
-    }
-    ;
+    async readAll(options) { return await this.entity.find(options); }
+    async readOne(options) { return await this.entity.findOne(options) ?? undefined; }
+    async readOneOrFail(options) { return await this.entity.findOneOrFail(options); }
+    async readOneBy(options) { return await this.entity.findOneBy(options) ?? undefined; }
+    async readOneByOrFail(options) { return await this.entity.findOneByOrFail(options) ?? undefined; }
+    async readOneById(id) { return await this.entity.findOneBy({ id }) ?? undefined; }
+    async readOneByIdOrFail(id) { return await this.entity.findOneByOrFail({ id }); }
+    async create(data) { return await this.entity.create(await this.loadRelations(data)).save(); }
     async update(id, data) {
         let value = await this.entity.findOneByOrFail({ id });
         return Object.assign(value, await this.loadRelations(data)).save();

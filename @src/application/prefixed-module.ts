@@ -8,30 +8,30 @@ import Module from "./module";
 import {Prefixed} from "./prefixed";
 
 
-type GQLEntityOptions = {objectType?: ObjectTypeOptions, entity?: EntityOptions};
+type GQLEntityOptions = { objectType?: ObjectTypeOptions, entity?: EntityOptions };
 
 export type AtomClassDecorator = <TFunction extends typeof Atom>(target: TFunction) => void;
 
 export class PrefixedModule extends Prefixed {
-    GQLEntity(options?: GQLEntityOptions): AtomClassDecorator {
-        const entity: AtomClassDecorator = this.Entity(options?.entity);
-        const field: MethodAndPropDecorator = Field(() => ID);
-        const objectType: AtomClassDecorator = this.ObjectType(options?.objectType);
-        return <TFunction extends typeof Atom>(target: TFunction): void => {
-            entity(target);
-            field(target.prototype, "id");
-            objectType<typeof Atom>(target);
-        };
-    };
+	GQLEntity(options?: GQLEntityOptions): AtomClassDecorator {
+		const entity: AtomClassDecorator = this.Entity(options?.entity);
+		const field: MethodAndPropDecorator = Field(() => ID);
+		const objectType: AtomClassDecorator = this.ObjectType(options?.objectType);
+		return <TFunction extends typeof Atom>(target: TFunction): void => {
+			entity(target);
+			field(target.prototype, "id");
+			objectType<typeof Atom>(target);
+		};
+	}
 
-    Entity(options?: EntityOptions | undefined): AtomClassDecorator {
-        return <TFunction extends typeof Atom>(target: TFunction): void => {
-            Module.addEntity(this.prefix, target);
-            Entity(snakeCase(this.prefixer(this.readName(options, target.name))), options)(target);
-            Object.defineProperty(target, "module", {
-                value: this.prefix,
-                writable: false
-            });
-        };
-    };
+	Entity(options?: EntityOptions | undefined): AtomClassDecorator {
+		return <TFunction extends typeof Atom>(target: TFunction): void => {
+			Module.addEntity(this.prefix, target);
+			Entity(snakeCase(this.prefixer(this.readName(options, target.name))), options)(target);
+			Object.defineProperty(target, "module", {
+				value: this.prefix,
+				writable: false
+			});
+		};
+	}
 }

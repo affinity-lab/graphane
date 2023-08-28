@@ -21,50 +21,23 @@ class Logger {
         this.formatters = Array.isArray(formatters) ? formatters : [formatters];
         this.writers = Array.isArray(writers) ? writers : [writers];
     }
-    ;
-    debug(message) {
-        this.log(LOGLEVEL.DEBUG, message);
-    }
-    ;
-    info(message) {
-        this.log(LOGLEVEL.INFO, message);
-    }
-    ;
-    notice(message) {
-        this.log(LOGLEVEL.NOTICE, message);
-    }
-    ;
-    warning(message) {
-        this.log(LOGLEVEL.WARNING, message);
-    }
-    ;
-    error(message) {
-        this.log(LOGLEVEL.ERROR, message);
-    }
-    ;
-    critical(message) {
-        this.log(LOGLEVEL.CRITICAL, message);
-    }
-    ;
-    alert(message) {
-        this.log(LOGLEVEL.ALERT, message);
-    }
-    ;
-    emergency(message) {
-        this.log(LOGLEVEL.EMERGENCY, message);
-    }
-    ;
+    debug(message) { this.log(LOGLEVEL.DEBUG, message); }
+    info(message) { this.log(LOGLEVEL.INFO, message); }
+    notice(message) { this.log(LOGLEVEL.NOTICE, message); }
+    warning(message) { this.log(LOGLEVEL.WARNING, message); }
+    error(message) { this.log(LOGLEVEL.ERROR, message); }
+    critical(message) { this.log(LOGLEVEL.CRITICAL, message); }
+    alert(message) { this.log(LOGLEVEL.ALERT, message); }
+    emergency(message) { this.log(LOGLEVEL.EMERGENCY, message); }
     createSubLogger(name, writers = [], formatters = []) {
         let subLogger = new Logger(this.level, writers, [...(Array.isArray(formatters) ? formatters : [formatters]), ...this.formatters]);
         subLogger.parent = this;
         subLogger.name = name;
         return subLogger;
     }
-    ;
     decorator(level, formatted, origin) {
         return `[${LOGLEVEL[level]}]\t${new Date().toISOString()} ${origin.length ? "<" + origin.join(":") : ""}> ${formatted} `;
     }
-    ;
     format(level, message, origin) {
         let formatted;
         for (const formatter of this.formatters) {
@@ -75,7 +48,6 @@ class Logger {
         }
         return this.decorator(level, formatted === undefined ? "unknown log message" : formatted, origin);
     }
-    ;
     write(level, message, origin) {
         let formatted = this.format(level, message, origin);
         this.writers.forEach((writer) => {
@@ -84,7 +56,6 @@ class Logger {
             }
         });
     }
-    ;
     log(level, message, origin = []) {
         if (level >= this.level) {
             this.write(level, message, origin);

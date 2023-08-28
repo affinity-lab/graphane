@@ -18,6 +18,7 @@ export default class Application<RolesType extends Record<string, string> = Reco
         byCode: (code: string) => Application<any> | undefined;
         byId: (id: string) => Application<any> | undefined;
     };
+    private static addApplication;
     readonly px: PrefixedApplication;
     readonly logger: LoggerInterface | undefined;
     readonly id: string;
@@ -26,6 +27,5 @@ export default class Application<RolesType extends Record<string, string> = Reco
     readonly name: string;
     readonly jwt: Jwt<any>;
     constructor(cfg: CfgType, roles: RolesType, logger?: LoggerInterface | ((app: Application<any>) => LoggerInterface) | undefined, authorizeFunctions?: Array<(req: Request, app: Application) => Promise<Authorizable | undefined | false>>);
-    private static addApplication;
     authorize(req: Request): Promise<Authorizable | undefined>;
 }

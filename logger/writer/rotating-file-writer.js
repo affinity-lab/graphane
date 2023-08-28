@@ -40,7 +40,6 @@ class RotatingFileWriter extends writer_1.default {
         this.streamOptions = streamOptions;
         this.stream = (0, rotating_file_stream_1.createStream)(this.generator(), this.streamOptions);
     }
-    ;
     static createRotatingFileWriterFactory({ basePath, archivePath, streamOptions }) {
         return (level, path) => {
             fs.mkdirSync(Path.dirname(basePath + "/" + path), { recursive: true });
@@ -48,11 +47,9 @@ class RotatingFileWriter extends writer_1.default {
             return new RotatingFileWriter(level, basePath + "/" + path, archivePath + "/" + path, streamOptions);
         };
     }
-    ;
     write(formatted) {
         this.stream.write(formatted + "\n");
     }
-    ;
     generator() {
         return (time, index) => {
             if (!(time && index)) {
@@ -62,6 +59,5 @@ class RotatingFileWriter extends writer_1.default {
             return `${this.archivePath}/${time.getFullYear().toString()}-${(time.getMonth() + 1).toString().padStart(2, "0")}-${(time.getDate()).toString().padStart(2, "0")}-${index}`;
         };
     }
-    ;
 }
 exports.default = RotatingFileWriter;

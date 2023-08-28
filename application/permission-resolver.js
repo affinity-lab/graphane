@@ -20,7 +20,6 @@ let Permissions = class Permissions {
     constructor(roles) {
         this.roles = roles;
     }
-    ;
 };
 exports.Permissions = Permissions;
 __decorate([
@@ -36,7 +35,6 @@ function createPermissionResolver(app, guard) {
         async getMyPermissionsInApp(context) {
             return new Permissions(await guard(context).getRoles());
         }
-        ;
     };
     __decorate([
         app.px.Query(() => Permissions, { description: "Return the values of all exportRole guards of the app" }),

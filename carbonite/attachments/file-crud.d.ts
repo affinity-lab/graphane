@@ -9,7 +9,7 @@ export default class FileCrud<Entity extends AtomWithAttachments> {
     constructor(entity: {
         new (): Entity;
     } & typeof AtomWithAttachments, jwt: Jwt<UploadTokenPayload>);
-    checkVariablesExist(variables: FileInputVariables | undefined): void | never;
+    checkVariablesExist(obj: FileInputVariables | undefined, ...required: Array<keyof FileInputVariables>): void | never;
     execute({ command, id, catalog }: ChangeFileInput, variables: FileInputVariables, context: Context): Promise<string | void | never>;
     private getCatalog;
 }

@@ -6,9 +6,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const formatter_1 = __importDefault(require("./formatter"));
 class DefaultFormatter extends formatter_1.default {
     format(message) {
-        if (typeof message === "string") {
+        if (typeof message === "string")
             return message;
-        }
         try {
             return JSON.stringify(message);
         }
@@ -16,6 +15,5 @@ class DefaultFormatter extends formatter_1.default {
             return "Cannot stringify message to be logged.";
         }
     }
-    ;
 }
 exports.default = DefaultFormatter;

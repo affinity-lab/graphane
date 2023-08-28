@@ -15,7 +15,6 @@ var ImageAttachment_1;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ImgFocus = void 0;
 const graphane_error_1 = __importDefault(require("../../../error/graphane-error"));
-const geometry_1 = require("../../../util/geometry");
 const type_graphql_1 = require("type-graphql");
 const file_attachment_1 = __importDefault(require("./file-attachment"));
 let ImgDimension = class ImgDimension {
@@ -78,7 +77,7 @@ let ImageAttachment = ImageAttachment_1 = class ImageAttachment extends file_att
             throw graphane_error_1.default.attachment.imageExpected();
         }
         await super.setup(image, descriptor, catalog);
-        image.dimensions = new geometry_1.Dimension(img.meta.width || 0, img.meta.height || 0);
+        image.dimensions = { width: img.meta.width || 0, height: img.meta.height || 0 };
         image.dominant = img.stats.dominant;
         image.isAnimated = img.meta.pages ? img.meta.pages > 1 : false;
     }
@@ -87,11 +86,11 @@ let ImageAttachment = ImageAttachment_1 = class ImageAttachment extends file_att
 ImageAttachment.mimeTypePattern = "image/*";
 __decorate([
     (0, type_graphql_1.Field)(() => ImgDimension),
-    __metadata("design:type", geometry_1.Dimension)
+    __metadata("design:type", ImgDimension)
 ], ImageAttachment.prototype, "dimensions", void 0);
 __decorate([
     (0, type_graphql_1.Field)(() => ImgRGB),
-    __metadata("design:type", Object)
+    __metadata("design:type", ImgRGB)
 ], ImageAttachment.prototype, "dominant", void 0);
 __decorate([
     (0, type_graphql_1.Field)(),

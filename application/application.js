@@ -7,11 +7,22 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const graphane_error_1 = __importDefault(require("../error/graphane-error"));
 const prefixed_application_1 = require("./prefixed-application");
 const jwt_1 = require("../util/jwt");
+const required_properties_1 = __importDefault(require("../util/required-properties"));
 class Application {
+    static addApplication(application) {
+        if (this.codeMap.hasOwnProperty(application.code)) {
+            throw graphane_error_1.default.application.alreadyRegistered(application.code);
+        }
+        this.applications.push(application);
+        this.codeMap[application.code] = application;
+        this.idMap[application.id] = application;
+    }
     constructor(cfg, roles, logger = undefined, authorizeFunctions = []) {
         this.cfg = cfg;
         this.roles = roles;
         this.authorizeFunctions = authorizeFunctions;
+        if (!(0, required_properties_1.default)(cfg, "app") || !(0, required_properties_1.default)(cfg.app, "code", "id", "secret", "name"))
+            throw graphane_error_1.default.fatal(`App config does not have the required keys`);
         this.code = cfg["app"]["code"].toUpperCase();
         this.id = cfg["app"]["id"];
         this.secret = cfg["app"]["secret"];
@@ -24,16 +35,6 @@ class Application {
         this.jwt = new jwt_1.Jwt(this.secret);
         _a.addApplication(this);
     }
-    ;
-    static addApplication(application) {
-        if (this.codeMap.hasOwnProperty(application.code)) {
-            throw graphane_error_1.default.application.alreadyRegistered(application.code);
-        }
-        this.applications.push(application);
-        this.codeMap[application.code] = application;
-        this.idMap[application.id] = application;
-    }
-    ;
     async authorize(req) {
         let result;
         for (const authorizeFunction of this.authorizeFunctions) {
@@ -44,7 +45,6 @@ class Application {
         }
         return undefined;
     }
-    ;
 }
 _a = Application;
 Application.applications = [];

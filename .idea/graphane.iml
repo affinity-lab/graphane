@@ -5,6 +5,17 @@
       <excludeFolder url="file://$MODULE_DIR$/.tmp" />
       <excludeFolder url="file://$MODULE_DIR$/temp" />
       <excludeFolder url="file://$MODULE_DIR$/tmp" />
+      <excludeFolder url="file://$MODULE_DIR$/application" />
+      <excludeFolder url="file://$MODULE_DIR$/cache" />
+      <excludeFolder url="file://$MODULE_DIR$/carbonite" />
+      <excludeFolder url="file://$MODULE_DIR$/env" />
+      <excludeFolder url="file://$MODULE_DIR$/error" />
+      <excludeFolder url="file://$MODULE_DIR$/event" />
+      <excludeFolder url="file://$MODULE_DIR$/guard" />
+      <excludeFolder url="file://$MODULE_DIR$/logger" />
+      <excludeFolder url="file://$MODULE_DIR$/server" />
+      <excludeFolder url="file://$MODULE_DIR$/util" />
+      <excludeFolder url="file://$MODULE_DIR$/validate-and-format-input" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

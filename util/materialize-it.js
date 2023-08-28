@@ -4,6 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const graphane_error_1 = __importDefault(require("../error/graphane-error"));
+/** A decorator function that materializes a getter property into a value property after the first access. */
 function MaterializeIt() {
     return function (target, name, descriptor) {
         const getter = descriptor.get;
