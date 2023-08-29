@@ -5,11 +5,6 @@ import sharp from "sharp";
 import MaterializeIt from "./materialize-it";
 
 
-export type Img = {
-	meta: sharp.Metadata;
-	stats: sharp.Stats;
-};
-
 export default class FileDescriptor {
 	public readonly file: string;
 
@@ -24,13 +19,16 @@ export default class FileDescriptor {
 	@MaterializeIt() get mimeType(): string | false { return mime.lookup(this.file); }
 
 	@MaterializeIt() get isImage(): boolean { return this.mimeType.toString().substring(0, 6) === "image/";}
-	@MaterializeIt() get image(): Promise<Img | null> {
+	@MaterializeIt() get image(): Promise<{
+		meta: sharp.Metadata,
+		stats: sharp.Stats
+	} | null> {
 		sharp.cache({files: 0});
 		if (!this.isImage) {
 			return Promise.resolve(null);
 		}
 		let img: sharp.Sharp = sharp(this.file);
 		return Promise.all([img.metadata(), img.stats()])
-					  .then((res: [sharp.Metadata, sharp.Stats]): Img => ({meta: res[0], stats: res[1]}));
+					  .then((res: [sharp.Metadata, sharp.Stats]) => ({meta: res[0], stats: res[1]}));
 	}
 }

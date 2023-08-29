@@ -3,3 +3,6 @@ export type NonEmptyArray<TItem> = readonly [TItem, ...TItem[]] | [TItem, ...TIt
 
 /** A type that represents a class that extends another class. */
 export type DerivedClass<T> = new (...a: any[]) => T;
+
+/** A type that represents a color in the RGB format. */
+export type RGB = { r: number; g: number; b: number };
