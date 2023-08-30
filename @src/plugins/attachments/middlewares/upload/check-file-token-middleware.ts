@@ -6,9 +6,9 @@ import {CurrentAuthorized} from "../../../auth/current-authorized";
 
 
 export function checkFileTokenMiddleware(jwt: Jwt<UploadTokenPayload>, currentAuthorized: CurrentAuthorized) {
-	return async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+	return (req: Request, res: Response, next: NextFunction): void => {
 		const payload: UploadTokenPayload | undefined = jwt.decode(req.getHeader("file-token"));
-		if (typeof payload !== "undefined" && await currentAuthorized.get(req) && payload.user === await currentAuthorized.id(req)) {
+		if (typeof payload !== "undefined" && payload.user === currentAuthorized.fail.id(req)) {
 			req.context.set("uploadTokenPayload", payload);
 			next();
 		} else {

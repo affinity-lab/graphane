@@ -11,4 +11,4 @@ export function objectValuesRecursive(obj: Record<string, any>): Array<any> {
 		return arr.reduce((accumulator, value) => accumulator.concat(value), []);
 	}
 	return obj;
-};
+}
