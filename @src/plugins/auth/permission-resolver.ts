@@ -15,12 +15,12 @@ export class Permissions {
 	};
 }
 
-export function createPermissionResolver(app: Application, guard: (ctx: Context) => AbstractGuard): any {
+export function createPermissionResolver(app: Application, guard: (ctx: Context) => Promise<AbstractGuard>): any {
 	@Resolver(Permissions)
 	class PermissionResolver {
 		@app.px.Query(() => Permissions, {description: "Return the values of all exportRole guards of the app"})
 		async getMyPermissionsInApp(@Ctx() context: Context): Promise<Permissions> {
-			return new Permissions(await guard(context).getRoles());
+			return new Permissions(await (await guard(context)).getRoles());
 		};
 	}
 

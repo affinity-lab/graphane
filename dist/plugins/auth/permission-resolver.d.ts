@@ -5,4 +5,4 @@ export declare class Permissions {
     roles: Record<string, boolean>;
     constructor(roles: Record<string, boolean>);
 }
-export declare function createPermissionResolver(app: Application, guard: (ctx: Context) => AbstractGuard): any;
+export declare function createPermissionResolver(app: Application, guard: (ctx: Context) => Promise<AbstractGuard>): any;
