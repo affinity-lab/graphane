@@ -34,7 +34,7 @@ exports.Permissions = Permissions = __decorate([
 function createPermissionResolver(app, guard) {
     let PermissionResolver = class PermissionResolver {
         async getMyPermissionsInApp(context) {
-            return new Permissions(await (await guard(context)).getRoles());
+            return new Permissions(await guard(context).getRoles());
         }
         ;
     };
