@@ -20,7 +20,7 @@ export class Permissions {
 	}) {this.roles = roles;}
 }
 
-class PermissionResolver {
+export default class PermissionResolver {
 	constructor(private currentApplication: CurrentApplication, private currentAuthorized: CurrentAuthorized) {}
 
 	create(app: Application, guardFactory: (app: Application, authorizable: Authorizable | undefined) => AbstractGuard): any {

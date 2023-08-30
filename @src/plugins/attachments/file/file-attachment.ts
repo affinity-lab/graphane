@@ -1,4 +1,4 @@
-import FileDescriptor from "../../../../util/file-descriptor";
+import FileDescriptor from "../../../util/file-descriptor";
 import {Field, ObjectType} from "type-graphql";
 import Catalog from "../catalog";
 

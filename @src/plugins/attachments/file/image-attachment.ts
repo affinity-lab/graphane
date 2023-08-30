@@ -1,8 +1,9 @@
-import FileDescriptor, {Img} from "../../../../util/file-descriptor";
+import FileDescriptor from "../../../util/file-descriptor";
 import {Field, ObjectType} from "type-graphql";
 import Catalog from "../catalog";
 import FileAttachment from "./file-attachment";
 import AttachmentError from "../attachment-error";
+import sharp from "sharp";
 
 
 @ObjectType()
@@ -54,7 +55,7 @@ export default class ImageAttachment extends FileAttachment {
 		if (!descriptor.isImage) {
 			throw AttachmentError.imageExpected();
 		}
-		let img: Img | null = await descriptor.image;
+		let img: { meta: sharp.Metadata, stats: sharp.Stats } | null = await descriptor.image;
 		if (img === null) {
 			throw AttachmentError.imageExpected();
 		}
