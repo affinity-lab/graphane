@@ -7,7 +7,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const graphane_error_1 = __importDefault(require("../graphane-error"));
 const prefixed_application_1 = require("./prefixed-application");
 const required_properties_1 = __importDefault(require("../../util/required-properties"));
-const fatal_1 = __importDefault(require("../../error/fatal"));
+const fatal_error_1 = __importDefault(require("../../error/fatal-error"));
 class Application {
     static addApplication(application) {
         if (this.codeMap.hasOwnProperty(application.code)) {
@@ -37,7 +37,7 @@ class Application {
         this.jwtFactory = jwtFactory;
         this.middlewares = middlewares;
         if (!(0, required_properties_1.default)(cfg, "app") || !(0, required_properties_1.default)(cfg.app, "code", "id", "secret", "name"))
-            throw (0, fatal_1.default)(`App config does not have the required keys`);
+            throw (0, fatal_error_1.default)(`App config does not have the required keys`);
         this.code = cfg["app"]["code"].toUpperCase();
         this.id = cfg["app"]["id"];
         this.secret = cfg["app"]["secret"];

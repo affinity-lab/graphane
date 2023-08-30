@@ -1,1 +1,1 @@
-export {default as default} from "./cache";
+export * from "./cache";

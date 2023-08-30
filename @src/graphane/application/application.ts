@@ -3,7 +3,7 @@ import {Request} from "express";
 import {PrefixedApplication} from "./prefixed-application";
 import requiredProperties from "../../util/required-properties";
 import {ApplicationLoggerFactory, Env, Jwt, JwtFactory, Logger} from "../service-interfaces";
-import fatal from "../../error/fatal";
+import fatalError from "../../error/fatal-error";
 
 
 type ApplicationMiddleware = (req: Request, app: Application) => Promise<any>;
@@ -56,7 +56,7 @@ export default class Application<RolesType extends Record<string, string> = Reco
 		private readonly jwtFactory: JwtFactory,
 		private middlewares: Array<ApplicationMiddleware> = []
 	) {
-		if (!requiredProperties(cfg, "app") || !requiredProperties(cfg.app, "code", "id", "secret", "name")) throw fatal(`App config does not have the required keys`);
+		if (!requiredProperties(cfg, "app") || !requiredProperties(cfg.app, "code", "id", "secret", "name")) throw fatalError(`App config does not have the required keys`);
 
 		this.code = cfg["app"]["code"].toUpperCase();
 		this.id = cfg["app"]["id"];

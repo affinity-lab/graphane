@@ -1,5 +1,5 @@
 import path from "path";
-import fatal from "../../error/fatal";
+import fatalError from "../../error/fatal-error";
 
 
 export default class Env {
@@ -25,7 +25,7 @@ export default class Env {
 		let next: Record<string, any> | undefined;
 		const subEnv: Record<string, any> = key.split(".").reduce((a: Record<string, any>, b: string): Record<string, any> => {
 			next = a[b];
-			if (next === undefined) throw fatal(`Env Sub-key not found: ${key}`);
+			if (next === undefined) throw fatalError(`Env Sub-key not found: ${key}`);
 			return next;
 		}, this.env);
 		return new Env({...subEnv}, this.environment, this.envPostfixMap);
@@ -38,7 +38,7 @@ export default class Env {
 					: rawValue.trim();
 
 		if (typeof value === "undefined") {
-			throw fatal(`Missing Env variable (string): ${key}`);
+			throw fatalError(`Missing Env variable (string): ${key}`);
 		}
 		this.info.push({key: key, type: "string", defaultValue, value});
 		return value;
@@ -50,7 +50,7 @@ export default class Env {
 					? defaultValue
 					: rawValue.trim();
 		if (typeof value === "undefined") {
-			throw fatal(`Missing Env variable (path): ${key}`);
+			throw fatalError(`Missing Env variable (path): ${key}`);
 		}
 		this.info.push({key: key, type: "path", defaultValue, value});
 		value = path.resolve(process.cwd(), value);
@@ -64,10 +64,10 @@ export default class Env {
 			? defaultValue
 			: parseInt(rawValue.toString());
 		if (typeof value === "undefined") {
-			throw fatal(`Missing Env variable (int): ${key}`);
+			throw fatalError(`Missing Env variable (int): ${key}`);
 		}
 		if (isNaN(value)) {
-			throw fatal(`Env variable type failed: ${key} (int)`);
+			throw fatalError(`Env variable type failed: ${key} (int)`);
 		}
 		this.info.push({key: key, type: "int", defaultValue, value});
 		return value;
@@ -80,10 +80,10 @@ export default class Env {
 			? defaultValue
 			: parseFloat(rawValue.toString());
 		if (typeof value === "undefined") {
-			throw fatal(`Missing Env variable (float): ${key}`);
+			throw fatalError(`Missing Env variable (float): ${key}`);
 		}
 		if (isNaN(value)) {
-			throw fatal(`Env variable type failed: ${key} (float)`);
+			throw fatalError(`Env variable type failed: ${key} (float)`);
 		}
 		this.info.push({key: key, type: "float", defaultValue, value});
 		return value;
@@ -98,7 +98,7 @@ export default class Env {
 			  ? rawValue
 			  : ["1", "yes", "true"].indexOf(rawValue.toLowerCase().trim()) != -1;
 		if (typeof value === "undefined") {
-			throw fatal(`Missing Env variable (boolean): ${key}`);
+			throw fatalError(`Missing Env variable (boolean): ${key}`);
 		}
 		this.info.push({key: key, type: "boolean", defaultValue, value});
 		return value;

@@ -1,7 +1,6 @@
-export {default as Logger} from "./logger";
-export {default as DefaultFormatter} from "./formatter/default-formatter";
-export {default as AbstractFormatter} from "./formatter/formatter";
-export {default as ConsoleWriter} from "./writer/console-writer";
-export {default as RotatingFileWriter} from "./writer/rotating-file-writer";
-export {default as AbstractWriter} from "./writer/writer";
-export {LOGLEVEL} from "./logger";
+export * from "./formatter/default-formatter";
+export * from "./formatter/formatter";
+export * from "./writer/console-writer";
+export * from "./writer/rotating-file-writer";
+export * from "./writer/writer";
+export * from "./logger";

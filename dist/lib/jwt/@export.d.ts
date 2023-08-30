@@ -1,1 +1,1 @@
-export { default as default } from "./jwt";
+export * from "./jwt";

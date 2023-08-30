@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const graphane_error_1 = __importDefault(require("../graphane-error"));
 const prefixed_module_1 = require("./prefixed-module");
 const required_properties_1 = __importDefault(require("../../util/required-properties"));
-const fatal_1 = __importDefault(require("../../error/fatal"));
+const fatal_error_1 = __importDefault(require("../../error/fatal-error"));
 class Module {
     static get(code) { return this.codeMap.hasOwnProperty(code) ? this.codeMap[code] : null; }
     ;
@@ -23,7 +23,7 @@ class Module {
     static cfg(env, code) {
         if (code === undefined) {
             if (env === null)
-                throw (0, fatal_1.default)();
+                throw (0, fatal_error_1.default)();
             code = env.string("CODE");
         }
         return { module: { code } };
@@ -41,7 +41,7 @@ class Module {
             config = cfg;
         }
         if (!(0, required_properties_1.default)(config, "module") || !(0, required_properties_1.default)(config.module, "code"))
-            throw (0, fatal_1.default)(`Module config does not have the required keys`);
+            throw (0, fatal_error_1.default)(`Module config does not have the required keys`);
         this.code = config["module"]["code"].toUpperCase();
         this.cfg = config;
         this.px = new prefixed_module_1.PrefixedModule(this.code);

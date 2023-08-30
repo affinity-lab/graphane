@@ -3,7 +3,7 @@ import GraphaneError from "../graphane-error";
 import {PrefixedModule} from "./prefixed-module";
 import requiredProperties from "../../util/required-properties";
 import {Env, Logger, ModuleLoggerFactory} from "../service-interfaces";
-import fatal from "../../error/fatal";
+import fatalError from "../../error/fatal-error";
 
 
 export type ModuleConfigType = {
@@ -31,7 +31,7 @@ export default class Module<RolesType = {}, CfgType extends ModuleConfigType = M
 
 	static cfg(env: Env | null, code?: string): ModuleConfigType {
 		if (code === undefined) {
-			if (env === null) throw fatal();
+			if (env === null) throw fatalError();
 			code = env.string("CODE");
 		}
 		return {module: {code}};
@@ -53,7 +53,7 @@ export default class Module<RolesType = {}, CfgType extends ModuleConfigType = M
 		} else {
 			config = cfg;
 		}
-		if (!requiredProperties(config, "module") || !requiredProperties(config.module, "code")) throw fatal(`Module config does not have the required keys`);
+		if (!requiredProperties(config, "module") || !requiredProperties(config.module, "code")) throw fatalError(`Module config does not have the required keys`);
 		this.code = config["module"]["code"].toUpperCase();
 		this.cfg = config as CfgType;
 		this.px = new PrefixedModule(this.code);

@@ -3,13 +3,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const fatal_1 = __importDefault(require("../../../error/fatal"));
+const fatal_error_1 = __importDefault(require("../../../error/fatal-error"));
 const auth_error_1 = __importDefault(require("../auth-error"));
 class AbstractGuard {
     constructor(user, app) {
         this.user = user;
         if (app === undefined)
-            throw (0, fatal_1.default)("Resolver called without application.");
+            throw (0, fatal_error_1.default)("Resolver called without application.");
         this.app = app;
     }
     ;

@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-function error(info, message, status = 500, silent = false) {
+function createErrorData(info, message, status = 500, silent = false) {
     const error = { status, silent };
     if (typeof info !== "undefined") {
         error.info = info;
@@ -10,4 +10,4 @@ function error(info, message, status = 500, silent = false) {
     }
     return error;
 }
-exports.default = error;
+exports.default = createErrorData;

@@ -1,4 +1,4 @@
-import fatal from "../error/fatal";
+import fatalError from "../error/fatal-error";
 
 
 interface CachePropertyDescriptor<T, R> extends PropertyDescriptor {
@@ -14,7 +14,7 @@ export default function MaterializeIt() {
 	): void {
 		const getter: ((this: T) => R) | undefined = descriptor.get;
 		if (!getter) {
-			throw fatal("Getter property descriptor expected when materializing", {name: target.name, property: name});
+			throw fatalError("Getter property descriptor expected when materializing", {name: target.name, property: name});
 		}
 		descriptor.get = function () {
 			const value: R = getter.call(this);

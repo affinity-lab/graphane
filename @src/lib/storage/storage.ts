@@ -1,4 +1,4 @@
-import fatal from "../../error/fatal";
+import fatalError from "../../error/fatal-error";
 
 
 /** A generic storage class that allows you to store and retrieve values of a specified type. */
@@ -17,7 +17,7 @@ export default class Storage<T> {
 	get(key?: string): T | undefined {
 		key = typeof key === "undefined" ? this.defaultKey : key;
 		if (typeof key === "undefined") {
-			throw fatal("Storage get called without key, and it does not have default key!");
+			throw fatalError("Storage get called without key, and it does not have default key!");
 		}
 		return (this.storage.hasOwnProperty(key)) ? this.storage[key] : undefined;
 	};
@@ -26,7 +26,7 @@ export default class Storage<T> {
 	getOrFail(key?: string): T | never {
 		const result: T | undefined = this.get(key);
 		if (typeof result === "undefined") {
-			throw fatal(`Storage key (${key}) not found`, {key});
+			throw fatalError(`Storage key (${key}) not found`, {key});
 		}
 		return result;
 	};

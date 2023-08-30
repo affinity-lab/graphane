@@ -1,11 +1,11 @@
-import error from "../../error/error";
+import createErrorData from "../../error/create-error-data";
 import preprocessErrorTree from "../../error/preprocess-error-tree";
 
 
 const AuthError = {
-	unauthorized: () => error(undefined, undefined, 401),
-	forbidden: () => error(undefined, undefined, 403),
-	alreadyLoggedIn: () => error(undefined, undefined, 403)
+	unauthorized: () => createErrorData(undefined, undefined, 401),
+	forbidden: () => createErrorData(undefined, undefined, 403),
+	alreadyLoggedIn: () => createErrorData(undefined, undefined, 403)
 };
 
 preprocessErrorTree(AuthError, "AUTH");

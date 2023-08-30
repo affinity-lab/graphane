@@ -1,7 +1,7 @@
 import {NonEmptyArray} from "../../../util/types";
 import Authorizable from "../authorizable";
 import Application from "../../../graphane/application/application";
-import fatal from "../../../error/fatal";
+import fatalError from "../../../error/fatal-error";
 import AuthError from "../auth-error";
 
 
@@ -11,7 +11,7 @@ export default abstract class AbstractGuard {
 	public app: Application;
 
 	constructor(public user: Authorizable | undefined, app?: Application) {
-		if (app === undefined) throw fatal("Resolver called without application.");
+		if (app === undefined) throw fatalError("Resolver called without application.");
 		this.app = app;
 	};
 

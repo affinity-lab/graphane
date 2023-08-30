@@ -1,23 +1,23 @@
-import error from "../../error/error";
+import createErrorData from "../../error/create-error-data";
 import preprocessErrorTree from "../../error/preprocess-error-tree";
 
 
 const AttachmentError = {
 	upload: {
-		badToken: () => error(),
-		failed: (message: string) => error(undefined, message),
+		badToken: () => createErrorData(),
+		failed: (message: string) => createErrorData(undefined, message),
 		validation: {
-			tooManyAttachments: (count: number) => error({count}),
-			tooLarge: (size: number) => error({size}),
-			mimeTypeMismatch: (pattern: string | Array<string>) => error({pattern})
+			tooManyAttachments: (count: number) => createErrorData({count}),
+			tooLarge: (size: number) => createErrorData({size}),
+			mimeTypeMismatch: (pattern: string | Array<string>) => createErrorData({pattern})
 		}
 	},
-	imageExpected: () => error(),
+	imageExpected: () => createErrorData(),
 	fileCrud: {
-		badInput: (err: string) => error({error: err}),
-		unknownCommand: (err: string) => error({command: err}),
-		fileNotExists: () => error(),
-		fileAlreadyExists: (name: string) => error({name})
+		badInput: (err: string) => createErrorData({error: err}),
+		unknownCommand: (err: string) => createErrorData({command: err}),
+		fileNotExists: () => createErrorData(),
+		fileAlreadyExists: (name: string) => createErrorData({name})
 	}
 };
 

@@ -1,5 +1,5 @@
 import * as argon2 from "argon2";
-import fatal from "../../error/fatal";
+import fatalError from "../../error/fatal-error";
 
 
 export default class Password {
@@ -9,7 +9,7 @@ export default class Password {
 		try {
 			return await argon2.hash(password, {secret: this.pepper});
 		} catch (error) {
-			throw fatal("error while hashing password", {error});
+			throw fatalError("error while hashing password", {error});
 		}
 	};
 
@@ -17,7 +17,7 @@ export default class Password {
 		try {
 			return await argon2.verify(hashedPassword, enteredPassword, {secret: this.pepper});
 		} catch (error) {
-			throw fatal("error while verifying password", {error});
+			throw fatalError("error while verifying password", {error});
 		}
 	};
 }

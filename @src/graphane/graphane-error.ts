@@ -1,19 +1,19 @@
-import error from "../error/error";
+import createErrorData from "../error/create-error-data";
 import preprocessErrorTree from "../error/preprocess-error-tree";
 
 
 const GraphaneError = {
 	application: {
-		notFound: () => error(),
-		alreadyRegistered: (app: string) => error({app})
+		notFound: () => createErrorData(),
+		alreadyRegistered: (app: string) => createErrorData({app})
 	},
 	module: {
-		notFound: () => error(),
-		alreadyRegistered: (module: string) => error({module})
+		notFound: () => createErrorData(),
+		alreadyRegistered: (module: string) => createErrorData({module})
 	},
 	crud: {
-		unrealEntityTarget: (target: string | any) => error({target}),
-		badRelationType: () => error()
+		unrealEntityTarget: (target: string | any) => createErrorData({target}),
+		badRelationType: () => createErrorData()
 	}
 };
 

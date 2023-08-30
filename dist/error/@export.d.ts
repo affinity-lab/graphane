@@ -1,2 +1,3 @@
-export { default as error } from "./error";
-export { default as preprocessErrorTree } from "./preprocess-error-tree";
+export * from "./create-error-data";
+export * from "./fatal-error";
+export * from "./preprocess-error-tree";
