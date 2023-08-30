@@ -39,3 +39,4 @@ var _export_2 = require("./mail/@export");
 Object.defineProperty(exports, "Mailer", { enumerable: true, get: function () { return __importDefault(_export_2).default; } });
 __exportStar(require("./password/@export"), exports);
 __exportStar(require("./storage/@export"), exports);
+__exportStar(require("./jwt/@export"), exports);

@@ -3,7 +3,7 @@ import resolveImgLocationMiddleware from "../middlewares/img/resolve-img-locatio
 import imgNotFoundMiddleware from "../middlewares/img/img-not-found-middleware";
 
 
-export default function createUploadRoute(
+export default function imgDownloadRoute(
 	app: Express,
 	endpoint: string,
 	fileStoragePath: string,

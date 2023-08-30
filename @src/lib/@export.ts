@@ -5,3 +5,4 @@ export * as Logger from "./logger/@export";
 export {default as Mailer} from "./mail/@export";
 export * from "./password/@export";
 export * from "./storage/@export";
+export * from "./jwt/@export";

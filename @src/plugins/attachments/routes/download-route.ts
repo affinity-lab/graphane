@@ -3,7 +3,7 @@ import resolveFileLocationMiddleware from "../middlewares/download/resolve-file-
 import fileNotFoundMiddleware from "../middlewares/download/file-not-found-middleware";
 
 
-export default function createUploadRoute(
+export default function downloadRoute(
 	app: Express,
 	endpoint: string,
 	fileStoragePath: string,

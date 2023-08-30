@@ -2,7 +2,7 @@ import jwt from "jsonwebtoken";
 
 
 /** Wrapper class for encoding and decoding JSON Web Tokens. */
-export class Jwt<T> {
+export default class Jwt<T> {
 	constructor(
 		private readonly secret: string,
 		private readonly expires?: string,
