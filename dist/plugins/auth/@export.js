@@ -18,6 +18,7 @@ require("./init-plugin");
 __exportStar(require("./authorizable"), exports);
 __exportStar(require("./current-authorized"), exports);
 __exportStar(require("./permission-resolver"), exports);
+__exportStar(require("./auth-error"), exports);
 __exportStar(require("./guard/guard"), exports);
 __exportStar(require("./guard/export-role"), exports);
 __exportStar(require("./guard/abstract-guard"), exports);
