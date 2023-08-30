@@ -14,7 +14,7 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__exportStar(require("./app-guard-middleware"), exports);
+__exportStar(require("./current-application-middleware"), exports);
 __exportStar(require("./create-apollo-express-middleware"), exports);
 __exportStar(require("./create-context-middleware"), exports);
 __exportStar(require("./exception-handler"), exports);
