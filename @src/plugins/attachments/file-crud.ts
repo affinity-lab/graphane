@@ -16,12 +16,12 @@ export default class FileCrud<Entity extends AtomWithAttachments> {
 		} & typeof AtomWithAttachments,
 		private readonly jwt: Jwt<UploadTokenPayload>,
 		private readonly currentAuthorized: CurrentAuthorized
-	) {}
+	) {};
 
 	private checkVariablesExist(obj: FileInputVariables | undefined, ...required: Array<keyof FileInputVariables>): void | never {
 		if (typeof obj === "undefined") throw AttachmentError.fileCrud.badInput("variables");
 		for (const name of required) if (typeof obj[name] === "undefined") throw AttachmentError.fileCrud.badInput(name);
-	}
+	};
 
 	async execute({command, id, catalog}: ChangeFileInput, variables: FileInputVariables, context: Context): Promise<string | void | never> {
 		let catalogInstance: Catalog = await this.getCatalog(id, catalog);
@@ -51,11 +51,11 @@ export default class FileCrud<Entity extends AtomWithAttachments> {
 			default:
 				throw AttachmentError.fileCrud.unknownCommand(command);
 		}
-	}
+	};
 
 	private async getCatalog(id: number, catalogName: string): Promise<Catalog | never> {
 		const catalogInstance: Catalog | undefined = (await this.entity.crud.readOneByIdOrFail(id)).getCatalog(catalogName);
 		if (typeof catalogInstance === "undefined") throw AttachmentError.fileCrud.badInput("catalog");
 		return catalogInstance;
-	}
+	};
 }

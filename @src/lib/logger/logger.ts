@@ -18,16 +18,16 @@ export default class Logger {
 	) {
 		this.formatters = Array.isArray(formatters) ? formatters : [formatters];
 		this.writers = Array.isArray(writers) ? writers : [writers];
-	}
+	};
 
-	public debug(message: any): void {this.log(LOGLEVEL.DEBUG, message);}
-	public info(message: any): void {this.log(LOGLEVEL.INFO, message);}
-	public notice(message: any): void {this.log(LOGLEVEL.NOTICE, message);}
-	public warning(message: any): void {this.log(LOGLEVEL.WARNING, message);}
-	public error(message: any): void {this.log(LOGLEVEL.ERROR, message);}
-	public critical(message: any): void {this.log(LOGLEVEL.CRITICAL, message);}
-	public alert(message: any): void {this.log(LOGLEVEL.ALERT, message);}
-	public emergency(message: any): void {this.log(LOGLEVEL.EMERGENCY, message);}
+	public debug(message: any): void {this.log(LOGLEVEL.DEBUG, message);};
+	public info(message: any): void {this.log(LOGLEVEL.INFO, message);};
+	public notice(message: any): void {this.log(LOGLEVEL.NOTICE, message);};
+	public warning(message: any): void {this.log(LOGLEVEL.WARNING, message);};
+	public error(message: any): void {this.log(LOGLEVEL.ERROR, message);};
+	public critical(message: any): void {this.log(LOGLEVEL.CRITICAL, message);};
+	public alert(message: any): void {this.log(LOGLEVEL.ALERT, message);};
+	public emergency(message: any): void {this.log(LOGLEVEL.EMERGENCY, message);};
 
 	createSubLogger(name: string, writers: Writer | Writer[] = [], formatters: Formatter | Formatter[] = []): Logger {
 		let subLogger = new Logger(
@@ -38,11 +38,11 @@ export default class Logger {
 		subLogger.parent = this;
 		subLogger.name = name;
 		return subLogger;
-	}
+	};
 
 	protected decorator(level: LOGLEVEL, formatted: string, origin: string[]): string {
 		return `[${LOGLEVEL[level]}]\t${new Date().toISOString()} ${origin.length ? "<" + origin.join(":") : ""}> ${formatted} `;
-	}
+	};
 
 	protected format(level: LOGLEVEL, message: any, origin: string[]): string {
 		let formatted;
@@ -53,7 +53,7 @@ export default class Logger {
 			}
 		}
 		return this.decorator(level, formatted === undefined ? "unknown log message" : formatted, origin);
-	}
+	};
 
 	protected write(level: LOGLEVEL, message: any, origin: string[]): void {
 		let formatted: string = this.format(level, message, origin);
@@ -62,7 +62,7 @@ export default class Logger {
 				writer.write(formatted, level, message);
 			}
 		});
-	}
+	};
 
 	protected log(level: LOGLEVEL, message: any, origin: string[] = []): void {
 		if (level >= this.level) {

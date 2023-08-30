@@ -8,7 +8,7 @@ import Module from "./module";
 import {Prefixed} from "../prefixed";
 
 
-type GQLEntityOptions = { objectType?: ObjectTypeOptions, entity?: EntityOptions };
+type GQLEntityOptions = {objectType?: ObjectTypeOptions, entity?: EntityOptions};
 
 export type AtomClassDecorator = <TFunction extends typeof Atom>(target: TFunction) => void;
 
@@ -22,7 +22,7 @@ export class PrefixedModule extends Prefixed {
 			field(target.prototype, "id");
 			objectType<typeof Atom>(target);
 		};
-	}
+	};
 
 	Entity(options?: EntityOptions | undefined): AtomClassDecorator {
 		return <TFunction extends typeof Atom>(target: TFunction): void => {
@@ -33,5 +33,5 @@ export class PrefixedModule extends Prefixed {
 				writable: false
 			});
 		};
-	}
+	};
 }

@@ -11,8 +11,8 @@ type ApplicationMiddleware = (req: Request, app: Application) => Promise<any>;
 export default class Application<RolesType extends Record<string, string> = Record<string, string>, CfgType extends Record<string, any> = Record<string, any>> {
 
 	static applications: Application<any>[] = [];
-	static codeMap: { [p: string]: Application<any> } = {};
-	static idMap: { [p: string]: Application<any> } = {};
+	static codeMap: {[p: string]: Application<any>} = {};
+	static idMap: {[p: string]: Application<any>} = {};
 	static get = {
 		byCode: (code: string): Application<any> | undefined => this.codeMap.hasOwnProperty(code) ? this.codeMap[code] : undefined,
 		byId: (id: string): Application<any> | undefined => {
@@ -27,19 +27,19 @@ export default class Application<RolesType extends Record<string, string> = Reco
 		this.applications.push(application);
 		this.codeMap[application.code] = application;
 		this.idMap[application.id] = application;
-	}
+	};
 
 	static cfg(env: Env, code?: string) {
-		code = env.string("CODE", code);
+		if (code === undefined) code = env.string("CODE");
 		return {
 			app: {
 				id: env.string("ID"),
-				code: code,
+				code,
 				secret: env.string("SECRET"),
 				name: env.string("NAME", code)
 			}
 		};
-	}
+	};
 
 	readonly px: PrefixedApplication;
 	readonly logger: Logger | undefined;
@@ -69,8 +69,7 @@ export default class Application<RolesType extends Record<string, string> = Reco
 		}
 		this.jwt = this.jwtFactory<any>(this.secret);
 		Application.addApplication(this);
-	}
+	};
 
-	async runMiddlewares(req: Request) {for (const middleware of this.middlewares) middleware(req, this);}
-
+	async runMiddlewares(req: Request): Promise<void> {for (const middleware of this.middlewares) await middleware(req, this);};
 }

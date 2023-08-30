@@ -15,15 +15,15 @@ export default abstract class AbstractGuard {
 		this.app = app;
 	};
 
-	async getRoles(): Promise<{ [p: string]: boolean }> {
-		const result: { [p: string]: boolean } = {};
+	async getRoles(): Promise<{[p: string]: boolean}> {
+		const result: {[p: string]: boolean} = {};
 		if (!Reflect.hasMetadata("client-role", this)) {
 			return result;
 		}
-		const clientRoles: Array<{ method: string, as: string }> = Reflect.getMetadata("client-role", this);
+		const clientRoles: Array<{method: string, as: string}> = Reflect.getMetadata("client-role", this);
 		for (const clientRole of clientRoles) {
 			try {
-				result[clientRole.as] = await (this as unknown as { [key: string]: () => Promise<boolean> })[clientRole.method]();
+				result[clientRole.as] = await (this as unknown as {[key: string]: () => Promise<boolean>})[clientRole.method]();
 			} catch (e) {
 				result[clientRole.as] = false;
 			}

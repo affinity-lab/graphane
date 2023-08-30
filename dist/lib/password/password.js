@@ -41,6 +41,7 @@ class Password {
             throw (0, fatal_1.default)("error while hashing password", { error });
         }
     }
+    ;
     async verify(hashedPassword, enteredPassword) {
         try {
             return await argon2.verify(hashedPassword, enteredPassword, { secret: this.pepper });
@@ -49,5 +50,6 @@ class Password {
             throw (0, fatal_1.default)("error while verifying password", { error });
         }
     }
+    ;
 }
 exports.default = Password;

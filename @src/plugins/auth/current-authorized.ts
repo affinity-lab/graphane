@@ -3,12 +3,12 @@ import Authorizable from "./authorizable";
 
 
 export default class CurrentAuthorized {
-	constructor(private reader: (req: Request) => Authorizable | undefined) {}
+	constructor(private reader: (req: Request) => Authorizable | undefined) {};
+
 	get(req: Request) {
 		if (!req.context.has("AUTHORIZED")) {
-			const authorized = this.reader(req);
-			req.context.set("AUTHORIZED", authorized);
+			req.context.set("AUTHORIZED", this.reader(req));
 		}
 		return req.context.get("AUTHORIZED");
-	}
+	};
 }

@@ -4,12 +4,13 @@ class CurrentAuthorized {
     constructor(reader) {
         this.reader = reader;
     }
+    ;
     get(req) {
         if (!req.context.has("AUTHORIZED")) {
-            const authorized = this.reader(req);
-            req.context.set("AUTHORIZED", authorized);
+            req.context.set("AUTHORIZED", this.reader(req));
         }
         return req.context.get("AUTHORIZED");
     }
+    ;
 }
 exports.default = CurrentAuthorized;

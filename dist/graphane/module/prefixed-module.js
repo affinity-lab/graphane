@@ -20,6 +20,7 @@ class PrefixedModule extends prefixed_1.Prefixed {
             objectType(target);
         };
     }
+    ;
     Entity(options) {
         return (target) => {
             module_1.default.addEntity(this.prefix, target);
@@ -30,5 +31,6 @@ class PrefixedModule extends prefixed_1.Prefixed {
             });
         };
     }
+    ;
 }
 exports.PrefixedModule = PrefixedModule;

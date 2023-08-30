@@ -14,12 +14,18 @@ class Env {
             ? this.string(environment.key, environment.default)
             : environment;
     }
+    ;
     sub(key) {
-        const subEnv = key.split(".").reduce((a, b) => a[b], this.env);
-        if (typeof subEnv === "object")
-            return new Env({ ...subEnv }, this.environment, this.envPostfixMap);
-        throw (0, fatal_1.default)(`Env Sub-key not found: ${key}`);
+        let next;
+        const subEnv = key.split(".").reduce((a, b) => {
+            next = a[b];
+            if (next === undefined)
+                throw (0, fatal_1.default)(`Env Sub-key not found: ${key}`);
+            return next;
+        }, this.env);
+        return new Env({ ...subEnv }, this.environment, this.envPostfixMap);
     }
+    ;
     string(key, defaultValue) {
         let rawValue = this.value(key);
         let value = typeof rawValue === "undefined"
@@ -31,6 +37,7 @@ class Env {
         this.info.push({ key: key, type: "string", defaultValue, value });
         return value;
     }
+    ;
     path(key, defaultValue) {
         let rawValue = this.value(key);
         let value = typeof rawValue === "undefined"
@@ -43,6 +50,7 @@ class Env {
         value = path_1.default.resolve(process.cwd(), value);
         return value;
     }
+    ;
     int(key, defaultValue) {
         let rawValue = this.value(key);
         let value = typeof rawValue === "undefined"
@@ -57,6 +65,7 @@ class Env {
         this.info.push({ key: key, type: "int", defaultValue, value });
         return value;
     }
+    ;
     float(key, defaultValue) {
         let rawValue = this.value(key);
         let value = typeof rawValue === "undefined"
@@ -71,6 +80,7 @@ class Env {
         this.info.push({ key: key, type: "float", defaultValue, value });
         return value;
     }
+    ;
     boolean(key, defaultValue) {
         let rawValue = this.value(key);
         let value = typeof rawValue === "undefined"
@@ -84,6 +94,7 @@ class Env {
         this.info.push({ key: key, type: "boolean", defaultValue, value });
         return value;
     }
+    ;
     value(key) {
         const postfix = this.envPostfixMap[this.environment];
         const optionalKey = postfix !== undefined ? `${key}__${this.envPostfixMap[this.environment]}` : undefined;
@@ -93,5 +104,6 @@ class Env {
             return this.env[key];
         return undefined;
     }
+    ;
 }
 exports.default = Env;

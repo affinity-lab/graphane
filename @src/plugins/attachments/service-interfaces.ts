@@ -3,7 +3,7 @@ export interface Jwt<T> {
 	encode(payload: T, expires?: string): string | undefined;
 }
 
-export type JwtFactory = <T>(secret: string) => Jwt<T>
+export type JwtFactory = <T>(secret: string) => Jwt<T>;
 
 export interface Logger {
 	debug(message: any): void;

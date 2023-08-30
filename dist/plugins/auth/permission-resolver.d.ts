@@ -4,12 +4,8 @@ import Authorizable from "./authorizable";
 import CurrentApplication from "../../graphane/application/current-application";
 import CurrentAuthorized from "./current-authorized";
 export declare class Permissions {
-    roles: {
-        [key: string]: boolean;
-    };
-    constructor(roles: {
-        [key: string]: boolean;
-    });
+    roles: Record<string, boolean>;
+    constructor(roles: Record<string, boolean>);
 }
 export default class PermissionResolver {
     private currentApplication;

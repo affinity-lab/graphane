@@ -1,5 +1,7 @@
-export default function error(info?: { [p: string]: any }, message?: string, status: number = 500, silent: boolean = false) {
-	const error: { info?: { [p: string]: any }, message?: string, status: number, silent: boolean } = {status, silent};
+type errorType = {info?: Record<string, any>, message?: string, status: number, silent: boolean};
+
+export default function error(info?: Record<string, any>, message?: string, status: number = 500, silent: boolean = false): errorType {
+	const error: errorType = {status, silent};
 	if (typeof info !== "undefined") {
 		error.info = info;
 	}

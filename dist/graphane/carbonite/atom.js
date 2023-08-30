@@ -12,7 +12,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const typeorm_1 = require("typeorm");
 class Atom extends typeorm_1.BaseEntity {
     static get Ident() { return `${this.module}/${this.name}`; }
+    ;
     get ident() { return `${this.constructor.module}/${this.constructor.name}/${this.id}`; }
+    ;
 }
 exports.default = Atom;
 __decorate([

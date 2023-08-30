@@ -15,5 +15,6 @@ class DefaultFormatter extends formatter_1.default {
             return "Cannot stringify message to be logged.";
         }
     }
+    ;
 }
 exports.default = DefaultFormatter;

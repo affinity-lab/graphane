@@ -11,10 +11,12 @@ class Storage {
         this.defaultKey = defaultKey;
         this.storage = {};
     }
+    ;
     /** Sets a value in the storage with the specified key.*/
     set(key, value) {
         this.storage[key] = value;
     }
+    ;
     /** Retrieves the value associated with the given key from the storage. If no key is provided, it uses the default key if available. */
     get(key) {
         key = typeof key === "undefined" ? this.defaultKey : key;
@@ -23,6 +25,7 @@ class Storage {
         }
         return (this.storage.hasOwnProperty(key)) ? this.storage[key] : undefined;
     }
+    ;
     /** Retrieves the value associated with the given key from the storage. If no key is provided, it uses the default key if available. Throws an error if the value is not found. */
     getOrFail(key) {
         const result = this.get(key);
@@ -31,5 +34,6 @@ class Storage {
         }
         return result;
     }
+    ;
 }
 exports.default = Storage;

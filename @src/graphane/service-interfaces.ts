@@ -7,7 +7,7 @@ export interface Jwt<T> {
 	encode(payload: T, expires?: string): string | undefined;
 }
 
-export type JwtFactory = <T>(secret: string) => Jwt<T>
+export type JwtFactory = <T>(secret: string) => Jwt<T>;
 
 export interface Logger {
 	debug(message: any): void;
@@ -20,8 +20,8 @@ export interface Logger {
 	emergency(message: any): void;
 }
 
-export type ApplicationLoggerFactory = (app: Application<any>) => Logger
-export type ModuleLoggerFactory = (app: Module<any>) => Logger
+export type ApplicationLoggerFactory = (app: Application<any>) => Logger;
+export type ModuleLoggerFactory = (app: Module<any>) => Logger;
 
 export interface Env {
 	string(key: string, defaultValue?: string): string;

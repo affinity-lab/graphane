@@ -1,7 +1,9 @@
 class Graphane {
 	public resolverDecorators: Array<MethodDecorator> = [];
-	addResolverDecorator(decorator: MethodDecorator) {this.resolverDecorators.push(decorator);}
+
+	addResolverDecorator(decorator: MethodDecorator): void {this.resolverDecorators.push(decorator);};
 }
 
-const graphane = new Graphane();
+const graphane: Graphane = new Graphane();
+
 export default graphane;

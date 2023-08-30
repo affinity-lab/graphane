@@ -55,7 +55,7 @@ export default class ImageAttachment extends FileAttachment {
 		if (!descriptor.isImage) {
 			throw AttachmentError.imageExpected();
 		}
-		let img: { meta: sharp.Metadata, stats: sharp.Stats } | null = await descriptor.image;
+		let img: {meta: sharp.Metadata, stats: sharp.Stats} | null = await descriptor.image;
 		if (img === null) {
 			throw AttachmentError.imageExpected();
 		}

@@ -10,9 +10,7 @@ export type ModuleConfigType = {
 export default class Module<RolesType = {}, CfgType extends ModuleConfigType = ModuleConfigType> {
     readonly roles: RolesType;
     static modules: Module[];
-    static codeMap: {
-        [p: string]: Module<any>;
-    };
+    static codeMap: Record<string, Module>;
     static get(code: string): Module | null;
     static addEntity(code: string, entity: typeof Atom): void;
     private static addModule;

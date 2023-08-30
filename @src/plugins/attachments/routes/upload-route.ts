@@ -15,7 +15,7 @@ export default function createUploadRoute(
 	uploadOptions: Record<string, any>,
 	currentAuthorized: CurrentAuthorized,
 	jwt: Jwt<UploadTokenPayload>
-) {
+): void {
 	app.use(
 		endpoint,
 		checkFileTokenMiddleware(jwt, currentAuthorized),

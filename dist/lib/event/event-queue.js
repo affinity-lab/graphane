@@ -5,9 +5,11 @@ class EventQueue {
         this.handler = handler;
         this.handling = Promise.resolve(true);
     }
+    ;
     push(event) {
         console.log("push");
         this.handling = this.handling.then(() => this.handler(event));
     }
+    ;
 }
 exports.default = EventQueue;

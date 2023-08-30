@@ -1,3 +1,1 @@
-export default function loadEnvVars(file?: string): {
-    [key: string]: any;
-};
+export default function loadEnvVars(file?: string): Record<string, any>;

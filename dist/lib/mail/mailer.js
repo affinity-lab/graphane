@@ -4,6 +4,7 @@ class Mailer {
     constructor(service) {
         this.service = service;
     }
+    ;
     create(from, subject, text, html) {
         const mailer = (data) => {
             const emails = [];
@@ -21,8 +22,9 @@ class Mailer {
             }
             this.service.send(emails);
         };
-        mailer.bulk = (users, data) => mailer(users.map(user => { return { ...user, ...data }; }));
+        mailer.bulk = (users, data) => mailer(users.map((user) => { return { ...user, ...data }; }));
         return mailer;
     }
+    ;
 }
 exports.default = Mailer;

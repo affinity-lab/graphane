@@ -11,8 +11,8 @@ export default class AtomWithAttachments extends Atom {
 	static fileCrud: FileCrud<AtomWithAttachments>;
 	protected static catalogs: Record<string, (owner: AtomWithAttachments) => Catalog>;
 
-	@Column({type: "json"}) attachments: Record<string, FileAttachment[]> = {};
+	@Column({type: "json"})
+	attachments: Record<string, FileAttachment[]> = {};
 
-	getCatalog(name: string): Catalog | undefined { return (this.constructor as typeof AtomWithAttachments).catalogs[name](this); }
+	getCatalog(name: string): Catalog | undefined {return (this.constructor as typeof AtomWithAttachments).catalogs[name](this);};
 }
-

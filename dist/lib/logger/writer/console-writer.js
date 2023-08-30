@@ -8,5 +8,6 @@ class ConsoleWriter extends writer_1.default {
     write(formatted) {
         console.log(`${formatted}`);
     }
+    ;
 }
 exports.default = ConsoleWriter;

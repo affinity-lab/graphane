@@ -10,5 +10,5 @@ export default class DefaultFormatter extends Formatter {
 		} catch (e) {
 			return "Cannot stringify message to be logged.";
 		}
-	}
+	};
 }

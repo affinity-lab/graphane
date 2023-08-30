@@ -10,6 +10,7 @@ class FileCrud {
         this.jwt = jwt;
         this.currentAuthorized = currentAuthorized;
     }
+    ;
     checkVariablesExist(obj, ...required) {
         if (typeof obj === "undefined")
             throw attachment_error_1.default.fileCrud.badInput("variables");
@@ -17,6 +18,7 @@ class FileCrud {
             if (typeof obj[name] === "undefined")
                 throw attachment_error_1.default.fileCrud.badInput(name);
     }
+    ;
     async execute({ command, id, catalog }, variables, context) {
         let catalogInstance = await this.getCatalog(id, catalog);
         switch (command) {
@@ -46,11 +48,13 @@ class FileCrud {
                 throw attachment_error_1.default.fileCrud.unknownCommand(command);
         }
     }
+    ;
     async getCatalog(id, catalogName) {
         const catalogInstance = (await this.entity.crud.readOneByIdOrFail(id)).getCatalog(catalogName);
         if (typeof catalogInstance === "undefined")
             throw attachment_error_1.default.fileCrud.badInput("catalog");
         return catalogInstance;
     }
+    ;
 }
 exports.default = FileCrud;

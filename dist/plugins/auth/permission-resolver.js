@@ -20,7 +20,10 @@ const type_graphql_1 = require("type-graphql");
 const graphql_type_json_1 = require("graphql-type-json");
 const context_1 = __importDefault(require("../../graphane/server/context"));
 let Permissions = class Permissions {
-    constructor(roles) { this.roles = roles; }
+    constructor(roles) {
+        this.roles = roles;
+    }
+    ;
 };
 exports.Permissions = Permissions;
 __decorate([
@@ -36,6 +39,7 @@ class PermissionResolver {
         this.currentApplication = currentApplication;
         this.currentAuthorized = currentAuthorized;
     }
+    ;
     create(app, guardFactory) {
         const currentApplication = this.currentApplication;
         const currentAuthorized = this.currentAuthorized;
@@ -56,5 +60,6 @@ class PermissionResolver {
         ], PermissionResolver);
         return PermissionResolver;
     }
+    ;
 }
 exports.default = PermissionResolver;

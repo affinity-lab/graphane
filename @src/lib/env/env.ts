@@ -13,19 +13,23 @@ export default class Env {
 
 	constructor(
 		readonly env: Record<string, any>,
-		environment: string | { key: string, default: string } = "PROD",
+		environment: string | {key: string, default: string} = "PROD",
 		public readonly envPostfixMap: Record<string, string | undefined>
 	) {
 		this.environment = typeof environment === "object"
 						   ? this.string(environment.key, environment.default)
 						   : environment;
-	}
+	};
 
 	sub(key: string): Env {
-		const subEnv = key.split(".").reduce((a, b) => a[b], this.env);
-		if (typeof subEnv === "object") return new Env({...subEnv}, this.environment, this.envPostfixMap);
-		throw fatal(`Env Sub-key not found: ${key}`);
-	}
+		let next: Record<string, any> | undefined;
+		const subEnv: Record<string, any> = key.split(".").reduce((a: Record<string, any>, b: string): Record<string, any> => {
+			next = a[b];
+			if (next === undefined) throw fatal(`Env Sub-key not found: ${key}`);
+			return next;
+		}, this.env);
+		return new Env({...subEnv}, this.environment, this.envPostfixMap);
+	};
 
 	string(key: string, defaultValue?: string): string {
 		let rawValue = this.value(key);
@@ -38,7 +42,7 @@ export default class Env {
 		}
 		this.info.push({key: key, type: "string", defaultValue, value});
 		return value;
-	}
+	};
 
 	path(key: string, defaultValue?: string): string {
 		let rawValue = this.value(key);
@@ -51,7 +55,7 @@ export default class Env {
 		this.info.push({key: key, type: "path", defaultValue, value});
 		value = path.resolve(process.cwd(), value);
 		return value;
-	}
+	};
 
 	int(key: string, defaultValue?: number): number {
 		let rawValue = this.value(key);
@@ -67,7 +71,7 @@ export default class Env {
 		}
 		this.info.push({key: key, type: "int", defaultValue, value});
 		return value;
-	}
+	};
 
 	float(key: string, defaultValue?: number): number {
 		let rawValue = this.value(key);
@@ -83,7 +87,7 @@ export default class Env {
 		}
 		this.info.push({key: key, type: "float", defaultValue, value});
 		return value;
-	}
+	};
 
 	boolean(key: string, defaultValue?: boolean): boolean {
 		let rawValue = this.value(key);
@@ -98,7 +102,7 @@ export default class Env {
 		}
 		this.info.push({key: key, type: "boolean", defaultValue, value});
 		return value;
-	}
+	};
 
 	private value(key: string): any | undefined {
 		const postfix = this.envPostfixMap[this.environment];
@@ -106,5 +110,5 @@ export default class Env {
 		if (optionalKey !== undefined && this.env.hasOwnProperty(optionalKey)) return this.env[optionalKey];
 		if (this.env.hasOwnProperty(key)) return this.env[key];
 		return undefined;
-	}
+	};
 }

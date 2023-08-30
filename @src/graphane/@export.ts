@@ -1,4 +1,4 @@
-// Appication
+// Application
 export {default as Application} from "./application/application";
 export {default as CurrentApplication} from "./application/current-application";
 // Module

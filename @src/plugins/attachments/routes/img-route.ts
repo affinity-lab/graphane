@@ -9,16 +9,13 @@ export default function createUploadRoute(
 	fileStoragePath: string,
 	imgStoragePath: string,
 	imgMaxAge: string | number
-) {
+): void {
 	app.use(
 		resolveImgLocationMiddleware.route(endpoint),
-		express
-			.Router({mergeParams: true})
-			.use(
-				resolveImgLocationMiddleware(imgStoragePath),
-				express.static(imgStoragePath, {maxAge: imgMaxAge}),
-				imgNotFoundMiddleware(fileStoragePath, imgStoragePath)
-			)
+		express.Router({mergeParams: true}).use(
+			resolveImgLocationMiddleware(imgStoragePath),
+			express.static(imgStoragePath, {maxAge: imgMaxAge}),
+			imgNotFoundMiddleware(fileStoragePath, imgStoragePath)
+		)
 	);
 }
-

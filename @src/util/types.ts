@@ -5,4 +5,4 @@ export type NonEmptyArray<TItem> = readonly [TItem, ...TItem[]] | [TItem, ...TIt
 export type DerivedClass<T> = new (...a: any[]) => T;
 
 /** A type that represents a color in the RGB format. */
-export type RGB = { r: number; g: number; b: number };
+export type RGB = {r: number; g: number; b: number};

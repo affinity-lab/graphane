@@ -1,5 +1,5 @@
 import "./init-plugin";
-export { default as Authorizabe } from "./authorizable";
+export { default as Authorizable } from "./authorizable";
 export { default as CurrentAuthorized } from "./current-authorized";
 export { default as PermissionResolver } from "./permission-resolver";
 export { default as Guard } from "./guard/guard";

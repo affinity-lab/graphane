@@ -11,21 +11,20 @@ import CurrentAuthorized from "./current-authorized";
 @ObjectType()
 export class Permissions {
 
-	@Field(() => GraphQLJSONObject) public roles: {
-		[key: string]: boolean
-	};
+	@Field(() => GraphQLJSONObject)
+	public roles: Record<string, boolean>;
 
-	constructor(roles: {
-		[key: string]: boolean
-	}) {this.roles = roles;}
+	constructor(roles: Record<string, boolean>) {
+		this.roles = roles;
+	};
 }
 
 export default class PermissionResolver {
-	constructor(private currentApplication: CurrentApplication, private currentAuthorized: CurrentAuthorized) {}
+	constructor(private currentApplication: CurrentApplication, private currentAuthorized: CurrentAuthorized) {};
 
 	create(app: Application, guardFactory: (app: Application, authorizable: Authorizable | undefined) => AbstractGuard): any {
-		const currentApplication = this.currentApplication;
-		const currentAuthorized = this.currentAuthorized;
+		const currentApplication: CurrentApplication = this.currentApplication;
+		const currentAuthorized: CurrentAuthorized = this.currentAuthorized;
 
 		@Resolver(Permissions)
 		class PermissionResolver {
@@ -39,5 +38,5 @@ export default class PermissionResolver {
 		}
 
 		return PermissionResolver;
-	}
+	};
 }

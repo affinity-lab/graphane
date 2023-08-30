@@ -9,7 +9,9 @@ const required_properties_1 = __importDefault(require("../../util/required-prope
 const fatal_1 = __importDefault(require("../../error/fatal"));
 class Module {
     static get(code) { return this.codeMap.hasOwnProperty(code) ? this.codeMap[code] : null; }
+    ;
     static addEntity(code, entity) { this.codeMap[code].entities[entity.name] = entity; }
+    ;
     static addModule(module) {
         if (this.codeMap.hasOwnProperty(module.code)) {
             throw graphane_error_1.default.module.alreadyRegistered(module.code);
@@ -17,13 +19,16 @@ class Module {
         this.modules.push(module);
         this.codeMap[module.code] = module;
     }
+    ;
     static cfg(env, code) {
-        if (env !== null)
-            code = env.string("CODE", code);
-        if (code === undefined)
-            throw (0, fatal_1.default)();
-        return { module: { code: code } };
+        if (code === undefined) {
+            if (env === null)
+                throw (0, fatal_1.default)();
+            code = env.string("CODE");
+        }
+        return { module: { code } };
     }
+    ;
     constructor(cfg, logger = null, roles = {}) {
         this.roles = roles;
         this.entities = {};
@@ -46,6 +51,7 @@ class Module {
         this.logger = typeof logger === "function" ? logger(this) : logger;
         Module.addModule(this);
     }
+    ;
 }
 Module.modules = [];
 Module.codeMap = {};

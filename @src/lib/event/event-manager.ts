@@ -25,5 +25,3 @@ export default class EventManager {
 		return await Promise.all(promises);
 	};
 }
-
-

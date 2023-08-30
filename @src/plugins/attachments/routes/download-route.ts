@@ -8,16 +8,13 @@ export default function createUploadRoute(
 	endpoint: string,
 	fileStoragePath: string,
 	fileMaxAge: string | number
-) {
+): void {
 	app.use(
 		resolveFileLocationMiddleware.route(endpoint),
-		express
-			.Router({mergeParams: true})
-			.use(
-				resolveFileLocationMiddleware(),
-				express.static(fileStoragePath, {maxAge: fileMaxAge}),
-				fileNotFoundMiddleware()
-			)
+		express.Router({mergeParams: true}).use(
+			resolveFileLocationMiddleware(),
+			express.static(fileStoragePath, {maxAge: fileMaxAge}),
+			fileNotFoundMiddleware()
+		)
 	);
 }
-

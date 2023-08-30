@@ -11,7 +11,7 @@ export default class Password {
 		} catch (error) {
 			throw fatal("error while hashing password", {error});
 		}
-	}
+	};
 
 	async verify(hashedPassword: string, enteredPassword: string): Promise<boolean> {
 		try {
@@ -19,5 +19,5 @@ export default class Password {
 		} catch (error) {
 			throw fatal("error while verifying password", {error});
 		}
-	}
+	};
 }

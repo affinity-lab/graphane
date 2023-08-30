@@ -22,8 +22,10 @@ class Jwt {
             return undefined;
         return payload.content;
     }
+    ;
     encode(payload, expires) {
         return jsonwebtoken_1.default.sign({ content: payload }, this.secret, { algorithm: this.algorithm, expiresIn: expires ?? this.expires });
     }
+    ;
 }
 exports.Jwt = Jwt;

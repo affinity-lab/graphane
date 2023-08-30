@@ -17,20 +17,20 @@ export class PrefixedApplication extends Prefixed {
 	Mutation(returnTypeFunc: ReturnTypeFunc, options?: AdvancedOptions): MethodDecorator;
 	Mutation(returnTypeFuncOrOptions?: ReturnTypeFunc | AdvancedOptions, maybeOptions?: AdvancedOptions): MethodDecorator {
 		return this.QueryOrMutation(Mutation, returnTypeFuncOrOptions, maybeOptions);
-	}
+	};
 
 	Query(): MethodDecorator;
 	Query(options: AdvancedOptions): MethodDecorator;
 	Query(returnTypeFunc: ReturnTypeFunc, options?: AdvancedOptions): MethodDecorator;
 	Query(returnTypeFuncOrOptions?: ReturnTypeFunc | AdvancedOptions, maybeOptions?: AdvancedOptions): MethodDecorator {
 		return this.QueryOrMutation(Query, returnTypeFuncOrOptions, maybeOptions);
-	}
+	};
 
 	InputType(options?: InputTypeOptions): ClassDecorator {
 		return <TFunction extends Function>(target: TFunction): void => {
 			InputType(this.prefixer(target.name), options)(target);
 		};
-	}
+	};
 
 	protected QueryOrMutation(which: typeof Query | typeof Mutation, returnTypeFuncOrOptions?: ReturnTypeFunc | AdvancedOptions, maybeOptions?: AdvancedOptions): MethodDecorator {
 		let {middlewares, name}: cMReturnType = this.createMiddlewares(which, false, returnTypeFuncOrOptions, maybeOptions);
@@ -40,7 +40,7 @@ export class PrefixedApplication extends Prefixed {
 			}
 			this.runMiddlewares(target, propertyKey, descriptor, middlewares);
 		};
-	}
+	};
 
 	/**
 	 * The middlewares are run in the order they are in the list.
@@ -55,11 +55,11 @@ export class PrefixedApplication extends Prefixed {
 		const middlewares: MethodDecorator[] = [typeof returnTypeFunc == "undefined" ? which(options) : which(returnTypeFunc, options)];
 		middlewares.push(...graphane.resolverDecorators);
 		return {middlewares, name: options.name};
-	}
+	};
 
 	protected runMiddlewares<T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>, middlewares: MethodDecorator[]): void {
 		for (let middleware of middlewares) {
 			middleware(target, propertyKey, descriptor);
 		}
-	}
+	};
 }

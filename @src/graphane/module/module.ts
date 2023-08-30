@@ -14,33 +14,34 @@ export type ModuleConfigType = {
 };
 
 export default class Module<RolesType = {}, CfgType extends ModuleConfigType = ModuleConfigType> {
-
 	static modules: Module[] = [];
-	static codeMap: { [p: string]: Module<any> } = {};
-	static get(code: string): Module | null {return this.codeMap.hasOwnProperty(code) ? this.codeMap[code] : null;}
+	static codeMap: Record<string, Module> = {};
 
-	public static addEntity(code: string, entity: typeof Atom): void {this.codeMap[code].entities[entity.name] = entity;}
+	static get(code: string): Module | null {return this.codeMap.hasOwnProperty(code) ? this.codeMap[code] : null;};
+
+	public static addEntity(code: string, entity: typeof Atom): void {this.codeMap[code].entities[entity.name] = entity;};
+
 	private static addModule(module: Module<any>): void {
 		if (this.codeMap.hasOwnProperty(module.code)) {
 			throw GraphaneError.module.alreadyRegistered(module.code);
 		}
 		this.modules.push(module);
 		this.codeMap[module.code] = module;
-	}
+	};
 
 	static cfg(env: Env | null, code?: string): ModuleConfigType {
-		if (env !== null) code = env.string("CODE", code);
-		if (code === undefined) throw fatal();
-		return {module: {code: code}};
-	}
-
+		if (code === undefined) {
+			if (env === null) throw fatal();
+			code = env.string("CODE");
+		}
+		return {module: {code}};
+	};
 
 	public entities: Record<string, typeof Atom> = {};
 	readonly px: PrefixedModule;
 	readonly logger: Logger | null;
 	readonly code: string;
 	readonly cfg: CfgType;
-
 
 	constructor(cfg: CfgType, logger?: Logger | null | ModuleLoggerFactory, roles?: RolesType);
 	constructor(code: string, logger?: Logger | null | ModuleLoggerFactory, roles?: RolesType);
@@ -55,12 +56,11 @@ export default class Module<RolesType = {}, CfgType extends ModuleConfigType = M
 		if (!requiredProperties(config, "module") || !requiredProperties(config.module, "code")) throw fatal(`Module config does not have the required keys`);
 		this.code = config["module"]["code"].toUpperCase();
 		this.cfg = config as CfgType;
-
 		this.px = new PrefixedModule(this.code);
 		for (const roleKey in this.roles) {
 			this.roles[roleKey] = this.px.prefixer(roleKey) as unknown as RolesType[typeof roleKey];
 		}
 		this.logger = typeof logger === "function" ? logger(this) : logger;
 		Module.addModule(this);
-	}
+	};
 }

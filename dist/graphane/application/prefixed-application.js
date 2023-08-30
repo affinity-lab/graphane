@@ -12,14 +12,17 @@ class PrefixedApplication extends prefixed_1.Prefixed {
     Mutation(returnTypeFuncOrOptions, maybeOptions) {
         return this.QueryOrMutation(type_graphql_1.Mutation, returnTypeFuncOrOptions, maybeOptions);
     }
+    ;
     Query(returnTypeFuncOrOptions, maybeOptions) {
         return this.QueryOrMutation(type_graphql_1.Query, returnTypeFuncOrOptions, maybeOptions);
     }
+    ;
     InputType(options) {
         return (target) => {
             (0, type_graphql_1.InputType)(this.prefixer(target.name), options)(target);
         };
     }
+    ;
     QueryOrMutation(which, returnTypeFuncOrOptions, maybeOptions) {
         let { middlewares, name } = this.createMiddlewares(which, false, returnTypeFuncOrOptions, maybeOptions);
         return (target, propertyKey, descriptor) => {
@@ -29,6 +32,7 @@ class PrefixedApplication extends prefixed_1.Prefixed {
             this.runMiddlewares(target, propertyKey, descriptor, middlewares);
         };
     }
+    ;
     /**
      * The middlewares are run in the order they are in the list.
      */
@@ -42,10 +46,12 @@ class PrefixedApplication extends prefixed_1.Prefixed {
         middlewares.push(...graphane_1.default.resolverDecorators);
         return { middlewares, name: options.name };
     }
+    ;
     runMiddlewares(target, propertyKey, descriptor, middlewares) {
         for (let middleware of middlewares) {
             middleware(target, propertyKey, descriptor);
         }
     }
+    ;
 }
 exports.PrefixedApplication = PrefixedApplication;

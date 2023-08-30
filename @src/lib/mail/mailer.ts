@@ -18,14 +18,13 @@ interface MailService {
 }
 
 export default class Mailer {
-	constructor(private service: MailService) {}
+	constructor(private service: MailService) {};
+
 	create<T extends Record<string, string | number>>(from: Address, subject: string, text: string, html: string) {
 
-		const mailer = (data: (Address & T) | Array<Address & T>) => {
+		const mailer = (data: (Address & T) | Array<Address & T>): void => {
 			const emails: Array<Email> = [];
-
 			if (!Array.isArray(data)) data = [data];
-
 			for (const row of data) {
 				const keys = Object.keys(row) as Array<keyof (Address & T)>;
 				const email: MailData = {subject, text, html};
@@ -40,7 +39,7 @@ export default class Mailer {
 			this.service.send(emails);
 		};
 
-		mailer.bulk = (users: Array<Address>, data: T) => mailer(users.map(user => { return {...user, ...data};}));
+		mailer.bulk = (users: Array<Address>, data: T): void => mailer(users.map((user: Address) => {return {...user, ...data};}));
 		return mailer;
-	}
+	};
 }

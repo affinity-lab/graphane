@@ -27,7 +27,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.IdInput = exports.crud = exports.Atom = exports.Middleware = exports.createApolloServer = exports.Context = exports.Module = exports.CurrentApplication = exports.Application = void 0;
-// Appication
+// Application
 var application_1 = require("./application/application");
 Object.defineProperty(exports, "Application", { enumerable: true, get: function () { return __importDefault(application_1).default; } });
 var current_application_1 = require("./application/current-application");

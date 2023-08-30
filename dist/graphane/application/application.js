@@ -17,17 +17,20 @@ class Application {
         this.codeMap[application.code] = application;
         this.idMap[application.id] = application;
     }
+    ;
     static cfg(env, code) {
-        code = env.string("CODE", code);
+        if (code === undefined)
+            code = env.string("CODE");
         return {
             app: {
                 id: env.string("ID"),
-                code: code,
+                code,
                 secret: env.string("SECRET"),
                 name: env.string("NAME", code)
             }
         };
     }
+    ;
     constructor(cfg, roles, logger = undefined, jwtFactory, middlewares = []) {
         this.cfg = cfg;
         this.roles = roles;
@@ -47,8 +50,10 @@ class Application {
         this.jwt = this.jwtFactory(this.secret);
         _a.addApplication(this);
     }
+    ;
     async runMiddlewares(req) { for (const middleware of this.middlewares)
-        middleware(req, this); }
+        await middleware(req, this); }
+    ;
 }
 _a = Application;
 Application.applications = [];

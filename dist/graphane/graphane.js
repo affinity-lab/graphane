@@ -5,6 +5,7 @@ class Graphane {
         this.resolverDecorators = [];
     }
     addResolverDecorator(decorator) { this.resolverDecorators.push(decorator); }
+    ;
 }
 const graphane = new Graphane();
 exports.default = graphane;

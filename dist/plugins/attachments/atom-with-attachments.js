@@ -20,6 +20,7 @@ class AtomWithAttachments extends atom_1.default {
         this.attachments = {};
     }
     getCatalog(name) { return this.constructor.catalogs[name](this); }
+    ;
 }
 exports.default = AtomWithAttachments;
 __decorate([
