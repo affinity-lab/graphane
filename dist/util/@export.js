@@ -26,7 +26,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UtilTypes = exports.Storage = exports.requiredProperties = exports.objectValuesRecursive = exports.MaterializeIt = exports.Geometry = exports.FileDescriptor = void 0;
+exports.UtilTypes = exports.requiredProperties = exports.objectValuesRecursive = exports.MaterializeIt = exports.Geometry = exports.FileDescriptor = void 0;
 var file_descriptor_1 = require("./file-descriptor");
 Object.defineProperty(exports, "FileDescriptor", { enumerable: true, get: function () { return __importDefault(file_descriptor_1).default; } });
 exports.Geometry = __importStar(require("./geometry"));
@@ -36,6 +36,4 @@ var object_values_recursive_1 = require("./object-values-recursive");
 Object.defineProperty(exports, "objectValuesRecursive", { enumerable: true, get: function () { return __importDefault(object_values_recursive_1).default; } });
 var required_properties_1 = require("./required-properties");
 Object.defineProperty(exports, "requiredProperties", { enumerable: true, get: function () { return __importDefault(required_properties_1).default; } });
-var storage_1 = require("../lib/storage/storage");
-Object.defineProperty(exports, "Storage", { enumerable: true, get: function () { return __importDefault(storage_1).default; } });
 exports.UtilTypes = __importStar(require("./types"));
