@@ -6,11 +6,10 @@ export * from "./catalog";
 export * from "./file-crud";
 export * from "./inputs";
 export * from "./upload-token-payload";
+export * from "./sent-file";
 
 export * from "./file/file-attachment";
 export * from "./file/image-attachment";
-
-export * from "./middlewares/@exports";
 
 export * from "./routes/download-route";
 export * from "./routes/upload-route";
