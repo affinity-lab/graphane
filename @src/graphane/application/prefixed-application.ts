@@ -2,7 +2,7 @@ import {InputType, InputTypeOptions, Mutation, Query} from "type-graphql";
 import {AdvancedOptions, ReturnTypeFunc} from "type-graphql/dist/decorators/types";
 import {getTypeDecoratorParams} from "type-graphql/dist/helpers/decorators";
 import {Prefixed} from "../prefixed";
-import InputGuardian from "../../plugins/input-guardian/input-guardian";
+import graphane from "../graphane";
 
 
 type cMReturnType = {
@@ -53,7 +53,7 @@ export class PrefixedApplication extends Prefixed {
 		if (options === undefined) options = {};
 		if (typeof name === "string") options.name = name;
 		const middlewares: MethodDecorator[] = [typeof returnTypeFunc == "undefined" ? which(options) : which(returnTypeFunc, options)];
-		middlewares.push(InputGuardian);
+		middlewares.push(...graphane.resolverDecorators);
 		return {middlewares, name: options.name};
 	}
 
