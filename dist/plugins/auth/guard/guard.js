@@ -9,7 +9,7 @@ function Guard(...roles) {
         descriptor.value = async function (...args) {
             const instance = this;
             if (instance.constructor.app === undefined)
-                throw (0, fatal_error_1.fatalError)("Application not defenied in guard.");
+                throw (0, fatal_error_1.fatalError)("Application not defined in guard.");
             if (instance.app.code !== instance.constructor.app.code) {
                 auth_error_1.AuthError.forbidden();
             }
