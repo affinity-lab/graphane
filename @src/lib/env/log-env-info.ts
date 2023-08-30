@@ -1,12 +1,12 @@
 import console from "console";
 import chalk from "chalk";
-import Env from "./env";
+import {Env} from "./env";
 
 
-export default function logEnvInfo(env: Env): void {
+export function logEnvInfo(env: Env): void {
 	let envInfo = env.info;
 	envInfo.sort((a, b) => (a.key > b.key ? 1 : -1));
-	const keyLength = Math.max(...envInfo.map((item) => item.key.length));
+	const keyLength: number = Math.max(...envInfo.map((item) => item.key.length));
 	envInfo.forEach((info) =>
 		console.log(
 			chalk.gray(info.type.padEnd(8, " ")) +

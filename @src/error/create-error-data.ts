@@ -1,6 +1,6 @@
 type errorType = {info?: Record<string, any>, message?: string, status: number, silent: boolean};
 
-export default function createErrorData(info?: Record<string, any>, message?: string, status: number = 500, silent: boolean = false): errorType {
+export function createErrorData(info?: Record<string, any>, message?: string, status: number = 500, silent: boolean = false): errorType {
 	const error: errorType = {status, silent};
 	if (typeof info !== "undefined") {
 		error.info = info;

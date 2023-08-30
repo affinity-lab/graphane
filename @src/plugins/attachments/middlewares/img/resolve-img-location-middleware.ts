@@ -2,7 +2,7 @@ import {NextFunction, Request, Response} from "express";
 import * as fs from "fs";
 
 
-function resolveImgLocationMiddleware(storagePath: string) {
+export function resolveImgLocationMiddleware(storagePath: string) {
 	return (req: Request, res: Response, next: NextFunction): void => {
 		let b36: string = parseInt(req.params["id"]).toString(36).padStart(6, "0");
 		req.url = `/${req.params["module"]}-${req.params["entity"]}-${b36}-${req.params["catalog"]}-${req.params["width"]}.${req.params["height"]}.${req.params["focus"]}.${req.params["ver"]}.${req.params["originalExt"]}-${req.params["file"]}.${req.params["ext"]}`;
@@ -13,5 +13,3 @@ function resolveImgLocationMiddleware(storagePath: string) {
 
 resolveImgLocationMiddleware.locationParams = "/:module/:entity/:id/:catalog/:width.:height.:focus.:ver.:originalExt/:file.:ext";
 resolveImgLocationMiddleware.route = (baseUrl: string): string => baseUrl + "/:module/:entity/:id/:catalog/:width.:height.:focus.:ver.:originalExt/:file.:ext";
-
-export default resolveImgLocationMiddleware;

@@ -1,7 +1,7 @@
-import GraphaneError from "../graphane-error";
+import {GraphaneError} from "../graphane-error";
 import {BaseEntity, DataSource, DeepPartial, FindManyOptions, FindOneOptions, FindOptionsWhere, In} from "typeorm";
 import {RelationMetadata} from "typeorm/metadata/RelationMetadata";
-import Atom from "./atom";
+import {Atom} from "./atom";
 import {Storage} from "../service-interfaces";
 
 
@@ -20,7 +20,7 @@ export type PartialAtom<T> =
 			PartialAtom<T[K]>)
 	} : T);
 
-export default class BasicCrud<Entity extends Atom> {
+export class BasicCrud<Entity extends Atom> {
 	constructor(
 		private readonly entity: {new(): Entity} & typeof Atom,
 		private readonly dataSourceStorage: Storage<DataSource>,

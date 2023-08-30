@@ -26,6 +26,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.imgNotFoundMiddleware = void 0;
 const fs = __importStar(require("fs"));
 const path_1 = __importDefault(require("path"));
 const sharp_1 = __importDefault(require("sharp"));
@@ -65,4 +66,4 @@ function imgNotFoundMiddleware(fileStoragePath, imgStoragePath) {
         res.sendFile(path_1.default.resolve(imgStoragePath + "/" + req.url));
     };
 }
-exports.default = imgNotFoundMiddleware;
+exports.imgNotFoundMiddleware = imgNotFoundMiddleware;

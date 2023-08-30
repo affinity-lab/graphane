@@ -1,1 +1,1 @@
-export default function preprocessErrorTree(errors: Record<string, any>, prefix?: string): void;
+export declare function preprocessErrorTree(errors: Record<string, any>, prefix?: string): void;

@@ -1,7 +1,7 @@
-import FileDescriptor from "../../../util/file-descriptor";
-import Catalog from "../catalog";
-import StorageInterface from "./storage";
-export default class FileStorage implements StorageInterface {
+import { FileDescriptor } from "../../../util/file-descriptor";
+import { Catalog } from "../catalog";
+import { StorageInterface } from "./storage";
+export declare class FileStorage implements StorageInterface {
     private readonly path;
     constructor(path: string);
     purge(catalog: Catalog): Promise<void | never>;

@@ -1,4 +1,4 @@
-export default class Cache<Args = any, Type = any> {
+export declare class Cache<Args = any, Type = any> {
     private fetch;
     private ttl;
     private gc;

@@ -11,14 +11,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Permissions = void 0;
+exports.PermissionResolver = exports.Permissions = void 0;
 const type_graphql_1 = require("type-graphql");
 const graphql_type_json_1 = require("graphql-type-json");
-const context_1 = __importDefault(require("../../graphane/server/context"));
+const context_1 = require("../../graphane/server/context");
 let Permissions = class Permissions {
     constructor(roles) {
         this.roles = roles;
@@ -52,7 +49,7 @@ class PermissionResolver {
             app.px.Query(() => Permissions, { description: "Return the values of all exportRole guards of the app" }),
             __param(0, (0, type_graphql_1.Ctx)()),
             __metadata("design:type", Function),
-            __metadata("design:paramtypes", [context_1.default]),
+            __metadata("design:paramtypes", [context_1.Context]),
             __metadata("design:returntype", Promise)
         ], PermissionResolver.prototype, "getMyPermissionsInApp", null);
         PermissionResolver = __decorate([
@@ -62,4 +59,4 @@ class PermissionResolver {
     }
     ;
 }
-exports.default = PermissionResolver;
+exports.PermissionResolver = PermissionResolver;

@@ -1,5 +1,5 @@
 import {DerivedClass} from "../../util/types";
-import BaseEvent from "./base-event";
+import {BaseEvent} from "./base-event";
 
 
 type EventRegistration = {
@@ -7,7 +7,7 @@ type EventRegistration = {
 	handler: (event: any) => void | Promise<void>
 };
 
-export default class EventManager {
+export class EventManager {
 	private registered: Array<EventRegistration> = [];
 
 	register(event: DerivedClass<BaseEvent> | [DerivedClass<BaseEvent>], handler: (event: BaseEvent) => void | Promise<void>): void {

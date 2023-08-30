@@ -1,13 +1,10 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PrefixedApplication = void 0;
 const type_graphql_1 = require("type-graphql");
 const decorators_1 = require("type-graphql/dist/helpers/decorators");
 const prefixed_1 = require("../prefixed");
-const graphane_1 = __importDefault(require("../graphane"));
+const graphane_1 = require("../graphane");
 class PrefixedApplication extends prefixed_1.Prefixed {
     Mutation(returnTypeFuncOrOptions, maybeOptions) {
         return this.QueryOrMutation(type_graphql_1.Mutation, returnTypeFuncOrOptions, maybeOptions);
@@ -43,7 +40,7 @@ class PrefixedApplication extends prefixed_1.Prefixed {
         if (typeof name === "string")
             options.name = name;
         const middlewares = [typeof returnTypeFunc == "undefined" ? which(options) : which(returnTypeFunc, options)];
-        middlewares.push(...graphane_1.default.resolverDecorators);
+        middlewares.push(...graphane_1.graphane.resolverDecorators);
         return { middlewares, name: options.name };
     }
     ;

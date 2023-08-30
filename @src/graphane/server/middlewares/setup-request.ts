@@ -1,7 +1,7 @@
 import {NextFunction, Request, Response} from "express";
 
 
-export default function setupRequest() {
+export function setupRequest() {
 	return (req: Request, res: Response, next: NextFunction): void => {
 		req.context = new Map();
 		req.hasHeader = function (header: string): boolean {

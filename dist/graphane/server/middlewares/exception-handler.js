@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.exceptionHandler = void 0;
 function exceptionHandler(mainLogger) {
     return (req, res, next) => {
         try {
@@ -17,4 +18,4 @@ function exceptionHandler(mainLogger) {
         }
     };
 }
-exports.default = exceptionHandler;
+exports.exceptionHandler = exceptionHandler;

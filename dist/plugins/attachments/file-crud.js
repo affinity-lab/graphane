@@ -1,9 +1,7 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const attachment_error_1 = __importDefault(require("./attachment-error"));
+exports.FileCrud = void 0;
+const attachment_error_1 = require("./attachment-error");
 class FileCrud {
     constructor(entity, jwt, currentAuthorized) {
         this.entity = entity;
@@ -13,10 +11,10 @@ class FileCrud {
     ;
     checkVariablesExist(obj, ...required) {
         if (typeof obj === "undefined")
-            throw attachment_error_1.default.fileCrud.badInput("variables");
+            throw attachment_error_1.AttachmentError.fileCrud.badInput("variables");
         for (const name of required)
             if (typeof obj[name] === "undefined")
-                throw attachment_error_1.default.fileCrud.badInput(name);
+                throw attachment_error_1.AttachmentError.fileCrud.badInput(name);
     }
     ;
     async execute({ command, id, catalog }, variables, context) {
@@ -45,16 +43,16 @@ class FileCrud {
                 await catalogInstance.changeImageFocus(variables.fileName, variables.imageFocus);
                 return;
             default:
-                throw attachment_error_1.default.fileCrud.unknownCommand(command);
+                throw attachment_error_1.AttachmentError.fileCrud.unknownCommand(command);
         }
     }
     ;
     async getCatalog(id, catalogName) {
         const catalogInstance = (await this.entity.crud.readOneByIdOrFail(id)).getCatalog(catalogName);
         if (typeof catalogInstance === "undefined")
-            throw attachment_error_1.default.fileCrud.badInput("catalog");
+            throw attachment_error_1.AttachmentError.fileCrud.badInput("catalog");
         return catalogInstance;
     }
     ;
 }
-exports.default = FileCrud;
+exports.FileCrud = FileCrud;

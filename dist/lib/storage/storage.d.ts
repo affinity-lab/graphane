@@ -1,5 +1,5 @@
 /** A generic storage class that allows you to store and retrieve values of a specified type. */
-export default class Storage<T> {
+export declare class Storage<T> {
     private defaultKey?;
     private readonly storage;
     /** Creates a new instance of the Storage class.*/

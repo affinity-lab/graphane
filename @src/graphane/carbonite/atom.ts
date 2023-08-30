@@ -1,8 +1,8 @@
 import {BaseEntity, PrimaryGeneratedColumn} from "typeorm";
-import BasicCrud from "./crud";
+import {BasicCrud} from "./crud";
 
 
-export default class Atom extends BaseEntity {
+export class Atom extends BaseEntity {
 	static module: string;
 	static crud: BasicCrud<Atom>;
 	static get Ident(): string {return `${this.module}/${this.name}`;};

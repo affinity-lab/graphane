@@ -1,12 +1,12 @@
 import { Generator } from "rotating-file-stream";
 import { LOGLEVEL } from "../logger";
-import Writer from "./writer";
+import { Writer } from "./writer";
 export type StreamOptions = {
     size: string;
     interval: string;
     compress: string;
 };
-export default class RotatingFileWriter extends Writer {
+export declare class RotatingFileWriter extends Writer {
     readonly level: LOGLEVEL;
     readonly path: string;
     readonly archivePath: string;

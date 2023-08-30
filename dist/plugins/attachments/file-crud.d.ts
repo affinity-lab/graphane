@@ -1,10 +1,10 @@
-import Context from "../../graphane/server/context";
-import AtomWithAttachments from "./atom-with-attachments";
+import { Context } from "../../graphane/server/context";
+import { AtomWithAttachments } from "./atom-with-attachments";
 import { ChangeFileInput, FileInputVariables } from "./inputs";
 import { UploadTokenPayload } from "./upload-token-payload";
 import { Jwt } from "./service-interfaces";
-import CurrentAuthorized from "../auth/current-authorized";
-export default class FileCrud<Entity extends AtomWithAttachments> {
+import { CurrentAuthorized } from "../auth/current-authorized";
+export declare class FileCrud<Entity extends AtomWithAttachments> {
     private readonly entity;
     private readonly jwt;
     private readonly currentAuthorized;

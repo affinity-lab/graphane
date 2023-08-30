@@ -1,3 +1,3 @@
-export default class IdInput {
+export declare class IdInput {
     id: number;
 }

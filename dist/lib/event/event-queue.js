@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.EventQueue = void 0;
 class EventQueue {
     constructor(handler) {
         this.handler = handler;
@@ -12,4 +13,4 @@ class EventQueue {
     }
     ;
 }
-exports.default = EventQueue;
+exports.EventQueue = EventQueue;

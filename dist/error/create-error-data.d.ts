@@ -4,5 +4,5 @@ type errorType = {
     status: number;
     silent: boolean;
 };
-export default function createErrorData(info?: Record<string, any>, message?: string, status?: number, silent?: boolean): errorType;
+export declare function createErrorData(info?: Record<string, any>, message?: string, status?: number, silent?: boolean): errorType;
 export {};

@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Mailer = void 0;
 class Mailer {
     constructor(service) {
         this.service = service;
@@ -27,4 +28,4 @@ class Mailer {
     }
     ;
 }
-exports.default = Mailer;
+exports.Mailer = Mailer;

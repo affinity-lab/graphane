@@ -1,13 +1,13 @@
-import Application from "../../graphane/application/application";
-import AbstractGuard from "./guard/abstract-guard";
-import Authorizable from "./authorizable";
-import CurrentApplication from "../../graphane/application/current-application";
-import CurrentAuthorized from "./current-authorized";
+import { Application } from "../../graphane/application/application";
+import { AbstractGuard } from "./guard/abstract-guard";
+import { Authorizable } from "./authorizable";
+import { CurrentApplication } from "../../graphane/application/current-application";
+import { CurrentAuthorized } from "./current-authorized";
 export declare class Permissions {
     roles: Record<string, boolean>;
     constructor(roles: Record<string, boolean>);
 }
-export default class PermissionResolver {
+export declare class PermissionResolver {
     private currentApplication;
     private currentAuthorized;
     constructor(currentApplication: CurrentApplication, currentAuthorized: CurrentAuthorized);

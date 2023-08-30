@@ -1,11 +1,11 @@
-import FileDescriptor from "../../util/file-descriptor";
+import {FileDescriptor} from "../../util/file-descriptor";
 import * as fs from "fs";
 import micromatch from "micromatch";
-import AtomWithAttachments from "./atom-with-attachments";
-import FileAttachment from "./file/file-attachment";
-import ImageAttachment, {ImgFocus} from "./file/image-attachment";
-import StorageInterface from "./storage/storage";
-import AttachmentError from "./attachment-error";
+import {AtomWithAttachments} from "./atom-with-attachments";
+import {FileAttachment} from "./file/file-attachment";
+import {ImageAttachment, ImgFocus} from "./file/image-attachment";
+import {StorageInterface} from "./storage/storage";
+import {AttachmentError} from "./attachment-error";
 
 
 export type CatalogOptions = {
@@ -14,7 +14,7 @@ export type CatalogOptions = {
 	mimeTypePattern: string | string[];
 };
 
-export default class Catalog {
+export class Catalog {
 	module: string;
 
 	entity: string;

@@ -1,15 +1,15 @@
-import Module from "../../../../graphane/module/module";
-import Atom from "../../../../graphane/carbonite/atom";
-import Catalog from "../../catalog";
+import {Module} from "../../../../graphane/module/module";
+import {Atom} from "../../../../graphane/carbonite/atom";
+import {Catalog} from "../../catalog";
 import {SentFile} from "../../sent-file";
 import {Request, Response} from "express";
 import * as fs from "fs";
 import {UploadTokenPayload} from "../../upload-token-payload";
-import AttachmentError from "../../attachment-error";
-import AtomWithAttachments from "../../atom-with-attachments";
+import {AttachmentError} from "../../attachment-error";
+import {AtomWithAttachments} from "../../atom-with-attachments";
 
 
-export default function handleFileMiddleware() {
+export function handleFileMiddleware() {
 	return async (req: Request, res: Response): Promise<void> => {
 		if (!req.files || Object.keys(req.files).length === 0) {
 			throw AttachmentError.upload.failed("Unsuccessful file upload");
@@ -37,7 +37,7 @@ export default function handleFileMiddleware() {
 			fs.mkdirSync(file.tempFilePath + "-dir");
 			fs.renameSync(file.tempFilePath, file.tempFilePath + "-dir/" + file.name);
 			await catalog.addFiles(file.tempFilePath + "-dir/" + file.name);
-			fs.readdirSync(file.tempFilePath + "-dir").forEach(f => fs.unlinkSync(file.tempFilePath + "-dir/" + f));
+			fs.readdirSync(file.tempFilePath + "-dir").forEach((f: string) => fs.unlinkSync(file.tempFilePath + "-dir/" + f));
 			fs.rmdirSync(file.tempFilePath + "-dir");
 		}
 		res.sendStatus(200);

@@ -22,46 +22,44 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const module_1 = __importDefault(require("../../../../graphane/module/module"));
+exports.handleFileMiddleware = void 0;
+const module_1 = require("../../../../graphane/module/module");
 const fs = __importStar(require("fs"));
-const attachment_error_1 = __importDefault(require("../../attachment-error"));
-const atom_with_attachments_1 = __importDefault(require("../../atom-with-attachments"));
+const attachment_error_1 = require("../../attachment-error");
+const atom_with_attachments_1 = require("../../atom-with-attachments");
 function handleFileMiddleware() {
     return async (req, res) => {
         if (!req.files || Object.keys(req.files).length === 0) {
-            throw attachment_error_1.default.upload.failed("Unsuccessful file upload");
+            throw attachment_error_1.AttachmentError.upload.failed("Unsuccessful file upload");
         }
         const token = req.context.get("uploadTokenPayload");
-        const entityType = module_1.default.get(token.module)?.entities[token.entity];
+        const entityType = module_1.Module.get(token.module)?.entities[token.entity];
         if (typeof entityType === "undefined") {
-            throw attachment_error_1.default.upload.failed(`Upload to not existing entityType: ${token.module}/${token.entity}`);
+            throw attachment_error_1.AttachmentError.upload.failed(`Upload to not existing entityType: ${token.module}/${token.entity}`);
         }
-        if (!(entityType.prototype instanceof atom_with_attachments_1.default)) {
-            throw attachment_error_1.default.upload.failed(`Upload to entity with no attachments: ${entityType.Ident}`);
+        if (!(entityType.prototype instanceof atom_with_attachments_1.AtomWithAttachments)) {
+            throw attachment_error_1.AttachmentError.upload.failed(`Upload to entity with no attachments: ${entityType.Ident}`);
         }
         const withAttachments = entityType;
         const entity = await withAttachments.findOneBy({ id: token.id });
         if (entity == null) {
-            throw attachment_error_1.default.upload.failed(`Upload to not existing entity: ${entityType.Ident}#${token.id}`);
+            throw attachment_error_1.AttachmentError.upload.failed(`Upload to not existing entity: ${entityType.Ident}#${token.id}`);
         }
         let file;
         const catalog = entity.getCatalog(token.catalog);
         if (typeof catalog === "undefined") {
-            throw attachment_error_1.default.upload.failed(`Entity: ${entity.ident} has no Catalog: ${token.catalog}`);
+            throw attachment_error_1.AttachmentError.upload.failed(`Entity: ${entity.ident} has no Catalog: ${token.catalog}`);
         }
         for (let key in req.files) {
             file = req.files[key];
             fs.mkdirSync(file.tempFilePath + "-dir");
             fs.renameSync(file.tempFilePath, file.tempFilePath + "-dir/" + file.name);
             await catalog.addFiles(file.tempFilePath + "-dir/" + file.name);
-            fs.readdirSync(file.tempFilePath + "-dir").forEach(f => fs.unlinkSync(file.tempFilePath + "-dir/" + f));
+            fs.readdirSync(file.tempFilePath + "-dir").forEach((f) => fs.unlinkSync(file.tempFilePath + "-dir/" + f));
             fs.rmdirSync(file.tempFilePath + "-dir");
         }
         res.sendStatus(200);
     };
 }
-exports.default = handleFileMiddleware;
+exports.handleFileMiddleware = handleFileMiddleware;

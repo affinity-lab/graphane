@@ -2,7 +2,7 @@ import {InputType, InputTypeOptions, Mutation, Query} from "type-graphql";
 import {AdvancedOptions, ReturnTypeFunc} from "type-graphql/dist/decorators/types";
 import {getTypeDecoratorParams} from "type-graphql/dist/helpers/decorators";
 import {Prefixed} from "../prefixed";
-import graphane from "../graphane";
+import {graphane} from "../graphane";
 
 
 type cMReturnType = {

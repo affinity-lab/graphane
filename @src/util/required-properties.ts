@@ -9,7 +9,7 @@
  *                                Returns `true` if all required properties are defined.
  */
 
-export default function requiredProperties<T extends object>(obj: T | undefined, ...required: Array<keyof T>): undefined | boolean {
+export function requiredProperties<T extends object>(obj: T | undefined, ...required: Array<keyof T>): undefined | boolean {
 	if (typeof obj === "undefined") return undefined;
 	for (const name of required) if (typeof obj[name] === "undefined") return false;
 	return true;

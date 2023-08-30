@@ -1,1 +1,1 @@
-export default abstract class BaseEvent {}
+export abstract class BaseEvent {}

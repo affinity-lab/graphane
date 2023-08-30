@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.createFormatter = void 0;
 function createFormatter(target, key, fn) {
     if (!Reflect.hasMetadata("format", target, key)) {
         Reflect.defineMetadata("format", [], target, key);
@@ -28,4 +29,4 @@ function createFormatter(target, key, fn) {
     };
     metadata.push(formatter);
 }
-exports.default = createFormatter;
+exports.createFormatter = createFormatter;

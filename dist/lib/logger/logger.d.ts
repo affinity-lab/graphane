@@ -1,5 +1,5 @@
-import Formatter from "./formatter/formatter";
-import Writer from "./writer/writer";
+import { Formatter } from "./formatter/formatter";
+import { Writer } from "./writer/writer";
 export declare enum LOGLEVEL {
     DEBUG = 0,
     INFO = 1,
@@ -10,7 +10,7 @@ export declare enum LOGLEVEL {
     ALERT = 6,
     EMERGENCY = 7
 }
-export default class Logger {
+export declare class Logger {
     protected level: LOGLEVEL;
     protected writers: Writer[];
     protected formatters: Formatter[];

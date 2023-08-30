@@ -1,13 +1,13 @@
 import {Express} from "express";
-import checkFileTokenMiddleware from "../middlewares/upload/check-file-token-middleware";
-import uploadFileMiddleware from "../middlewares/upload/upload-file-middleware";
-import handleFileMiddleware from "../middlewares/upload/handle-file-middleware";
+import {checkFileTokenMiddleware} from "../middlewares/upload/check-file-token-middleware";
+import {uploadFileMiddleware} from "../middlewares/upload/upload-file-middleware";
+import {handleFileMiddleware} from "../middlewares/upload/handle-file-middleware";
 import {Jwt} from "../service-interfaces";
-import CurrentAuthorized from "../../auth/current-authorized";
+import {CurrentAuthorized} from "../../auth/current-authorized";
 import {UploadTokenPayload} from "../upload-token-payload";
 
 
-export default function createUploadRoute(
+export function createUploadRoute(
 	app: Express,
 	endpoint: string,
 	uploadOptions: Record<string, any>,

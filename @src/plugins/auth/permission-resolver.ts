@@ -1,11 +1,11 @@
 import {Ctx, Field, ObjectType, Resolver} from "type-graphql";
 import {GraphQLJSONObject} from "graphql-type-json";
-import Context from "../../graphane/server/context";
-import Application from "../../graphane/application/application";
-import AbstractGuard from "./guard/abstract-guard";
-import Authorizable from "./authorizable";
-import CurrentApplication from "../../graphane/application/current-application";
-import CurrentAuthorized from "./current-authorized";
+import {Context} from "../../graphane/server/context";
+import {Application} from "../../graphane/application/application";
+import {AbstractGuard} from "./guard/abstract-guard";
+import {Authorizable} from "./authorizable";
+import {CurrentApplication} from "../../graphane/application/current-application";
+import {CurrentAuthorized} from "./current-authorized";
 
 
 @ObjectType()
@@ -19,7 +19,7 @@ export class Permissions {
 	};
 }
 
-export default class PermissionResolver {
+export class PermissionResolver {
 	constructor(private currentApplication: CurrentApplication, private currentAuthorized: CurrentAuthorized) {};
 
 	create(app: Application, guardFactory: (app: Application, authorizable: Authorizable | undefined) => AbstractGuard): any {

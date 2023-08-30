@@ -1,15 +1,15 @@
-import Context from "../../graphane/server/context";
-import AtomWithAttachments from "./atom-with-attachments";
-import Catalog from "./catalog";
+import {Context} from "../../graphane/server/context";
+import {AtomWithAttachments} from "./atom-with-attachments";
+import {Catalog} from "./catalog";
 import {ImgFocus} from "./file/image-attachment";
 import {ChangeFileInput, FileInputVariables} from "./inputs";
 import {UploadTokenPayload} from "./upload-token-payload";
 import {Jwt} from "./service-interfaces";
-import AttachmentError from "./attachment-error";
-import CurrentAuthorized from "../auth/current-authorized";
+import {AttachmentError} from "./attachment-error";
+import {CurrentAuthorized} from "../auth/current-authorized";
 
 
-export default class FileCrud<Entity extends AtomWithAttachments> {
+export class FileCrud<Entity extends AtomWithAttachments> {
 	constructor(
 		private readonly entity: {
 			new(): Entity

@@ -1,8 +1,8 @@
-import FileDescriptor from "../../../util/file-descriptor";
+import {FileDescriptor} from "../../../util/file-descriptor";
 import {Field, ObjectType} from "type-graphql";
-import Catalog from "../catalog";
-import FileAttachment from "./file-attachment";
-import AttachmentError from "../attachment-error";
+import {Catalog} from "../catalog";
+import {FileAttachment} from "./file-attachment";
+import {AttachmentError} from "../attachment-error";
 import sharp from "sharp";
 
 
@@ -30,7 +30,7 @@ export enum ImgFocus {
 }
 
 @ObjectType()
-export default class ImageAttachment extends FileAttachment {
+export class ImageAttachment extends FileAttachment {
 	static mimeTypePattern: string = "image/*";
 
 	@Field(() => ImgDimension)

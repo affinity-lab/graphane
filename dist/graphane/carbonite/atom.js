@@ -9,6 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Atom = void 0;
 const typeorm_1 = require("typeorm");
 class Atom extends typeorm_1.BaseEntity {
     static get Ident() { return `${this.module}/${this.name}`; }
@@ -16,7 +17,7 @@ class Atom extends typeorm_1.BaseEntity {
     get ident() { return `${this.constructor.module}/${this.constructor.name}/${this.id}`; }
     ;
 }
-exports.default = Atom;
+exports.Atom = Atom;
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)(),
     __metadata("design:type", Number)

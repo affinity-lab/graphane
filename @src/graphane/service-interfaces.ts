@@ -1,5 +1,5 @@
-import Application from "./application/application";
-import Module from "./module/module";
+import {Application} from "./application/application";
+import {Module} from "./module/module";
 
 
 export interface Jwt<T> {

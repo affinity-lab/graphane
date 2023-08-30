@@ -1,9 +1,9 @@
-import Atom from "../carbonite/atom";
-import GraphaneError from "../graphane-error";
+import {Atom} from "../carbonite/atom";
+import {GraphaneError} from "../graphane-error";
 import {PrefixedModule} from "./prefixed-module";
-import requiredProperties from "../../util/required-properties";
+import {requiredProperties} from "../../util/required-properties";
 import {Env, Logger, ModuleLoggerFactory} from "../service-interfaces";
-import fatalError from "../../error/fatal-error";
+import {fatalError} from "../../error/fatal-error";
 
 
 export type ModuleConfigType = {
@@ -13,7 +13,7 @@ export type ModuleConfigType = {
 	[key: string]: any;
 };
 
-export default class Module<RolesType = {}, CfgType extends ModuleConfigType = ModuleConfigType> {
+export class Module<RolesType = {}, CfgType extends ModuleConfigType = ModuleConfigType> {
 	static modules: Module[] = [];
 	static codeMap: Record<string, Module> = {};
 

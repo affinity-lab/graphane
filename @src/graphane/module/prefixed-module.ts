@@ -3,8 +3,8 @@ import {Field, ID, ObjectTypeOptions} from "type-graphql";
 import {MethodAndPropDecorator} from "type-graphql/dist/decorators/types";
 import {Entity} from "typeorm";
 import {EntityOptions} from "typeorm/decorator/options/EntityOptions";
-import Atom from "../carbonite/atom";
-import Module from "./module";
+import {Atom} from "../carbonite/atom";
+import {Module} from "./module";
 import {Prefixed} from "../prefixed";
 
 

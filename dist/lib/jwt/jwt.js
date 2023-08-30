@@ -3,6 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Jwt = void 0;
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 /** Wrapper class for encoding and decoding JSON Web Tokens. */
 class Jwt {
@@ -27,4 +28,4 @@ class Jwt {
     }
     ;
 }
-exports.default = Jwt;
+exports.Jwt = Jwt;

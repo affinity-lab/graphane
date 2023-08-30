@@ -1,8 +1,8 @@
 import {Request} from "express";
-import Authorizable from "./authorizable";
+import {Authorizable} from "./authorizable";
 
 
-export default class CurrentAuthorized {
+export class CurrentAuthorized {
 	constructor(private reader: (req: Request) => Authorizable | undefined) {};
 
 	get(req: Request) {

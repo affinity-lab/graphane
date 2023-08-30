@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.preprocessErrorTree = void 0;
 const snake_case_1 = require("snake-case");
 const index_1 = require("graphql/index");
 function preprocessErrorTree(errors, prefix = "") {
@@ -19,5 +20,4 @@ function preprocessErrorTree(errors, prefix = "") {
         }
     }
 }
-exports.default = preprocessErrorTree;
-;
+exports.preprocessErrorTree = preprocessErrorTree;

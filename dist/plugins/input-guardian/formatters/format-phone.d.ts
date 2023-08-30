@@ -1,1 +1,1 @@
-export default function FormatPhone(target: any, key: any): void;
+export declare function FormatPhone(target: any, key: any): void;

@@ -1,10 +1,10 @@
-import Formatter from "./formatter/formatter";
-import Writer from "./writer/writer";
+import {Formatter} from "./formatter/formatter";
+import {Writer} from "./writer/writer";
 
 
 export enum LOGLEVEL {DEBUG, INFO, NOTICE, WARNING, ERROR, CRITICAL, ALERT, EMERGENCY}
 
-export default class Logger {
+export class Logger {
 
 	protected writers: Writer[] = [];
 	protected formatters: Formatter[] = [];

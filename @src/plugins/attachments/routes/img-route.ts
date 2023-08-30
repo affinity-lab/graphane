@@ -1,9 +1,9 @@
 import express, {Express} from "express";
-import resolveImgLocationMiddleware from "../middlewares/img/resolve-img-location-middleware";
-import imgNotFoundMiddleware from "../middlewares/img/img-not-found-middleware";
+import {resolveImgLocationMiddleware} from "../middlewares/img/resolve-img-location-middleware";
+import {imgNotFoundMiddleware} from "../middlewares/img/img-not-found-middleware";
 
 
-export default function imgDownloadRoute(
+export function imgDownloadRoute(
 	app: Express,
 	endpoint: string,
 	fileStoragePath: string,

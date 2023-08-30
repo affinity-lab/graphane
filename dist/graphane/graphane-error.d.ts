@@ -1,4 +1,4 @@
-declare const GraphaneError: {
+export declare const GraphaneError: {
     application: {
         notFound: () => {
             info?: Record<string, any> | undefined;
@@ -42,4 +42,3 @@ declare const GraphaneError: {
         };
     };
 };
-export default GraphaneError;

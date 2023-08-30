@@ -22,16 +22,14 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.RotatingFileWriter = void 0;
 const fs = __importStar(require("fs"));
 const Path = __importStar(require("path"));
 const rotating_file_stream_1 = require("rotating-file-stream");
 const logger_1 = require("../logger");
-const writer_1 = __importDefault(require("./writer"));
-class RotatingFileWriter extends writer_1.default {
+const writer_1 = require("./writer");
+class RotatingFileWriter extends writer_1.Writer {
     constructor(level = logger_1.LOGLEVEL.DEBUG, path, archivePath, streamOptions) {
         super(level);
         this.level = level;
@@ -64,4 +62,4 @@ class RotatingFileWriter extends writer_1.default {
     }
     ;
 }
-exports.default = RotatingFileWriter;
+exports.RotatingFileWriter = RotatingFileWriter;

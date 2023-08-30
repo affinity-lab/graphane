@@ -3,7 +3,7 @@ import {ArgsType, Field} from "type-graphql";
 
 
 @ArgsType()
-export default class IdInput {
+export class IdInput {
 	@Field()
 	@IsPositive()
 	@IsInt()

@@ -8,4 +8,4 @@
  *                                Returns `false` if any of the required properties are `undefined`.
  *                                Returns `true` if all required properties are defined.
  */
-export default function requiredProperties<T extends object>(obj: T | undefined, ...required: Array<keyof T>): undefined | boolean;
+export declare function requiredProperties<T extends object>(obj: T | undefined, ...required: Array<keyof T>): undefined | boolean;

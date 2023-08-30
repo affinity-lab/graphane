@@ -35,20 +35,29 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.FileDescriptor = void 0;
 const fs = __importStar(require("fs"));
 const mime = __importStar(require("mime-types"));
 const path = __importStar(require("path"));
 const sharp_1 = __importDefault(require("sharp"));
-const materialize_it_1 = __importDefault(require("./materialize-it"));
+const materialize_it_1 = require("./materialize-it");
 class FileDescriptor {
     constructor(file) { this.file = fs.realpathSync(file); }
+    ;
     get stat() { return fs.promises.stat(this.file).catch(() => null); }
+    ;
     get size() { return this.stat.then((stat) => stat !== null ? stat.size : 0); }
+    ;
     get exists() { return this.stat.then((stat) => stat !== null); }
+    ;
     get name() { return this.parsedPath.base; }
+    ;
     get parsedPath() { return path.parse(this.file); }
+    ;
     get mimeType() { return mime.lookup(this.file); }
+    ;
     get isImage() { return this.mimeType.toString().substring(0, 6) === "image/"; }
+    ;
     get image() {
         sharp_1.default.cache({ files: 0 });
         if (!this.isImage) {
@@ -58,30 +67,31 @@ class FileDescriptor {
         return Promise.all([img.metadata(), img.stats()])
             .then((res) => ({ meta: res[0], stats: res[1] }));
     }
+    ;
 }
-exports.default = FileDescriptor;
+exports.FileDescriptor = FileDescriptor;
 __decorate([
-    (0, materialize_it_1.default)(),
+    (0, materialize_it_1.MaterializeIt)(),
     __metadata("design:type", Promise),
     __metadata("design:paramtypes", [])
 ], FileDescriptor.prototype, "stat", null);
 __decorate([
-    (0, materialize_it_1.default)(),
+    (0, materialize_it_1.MaterializeIt)(),
     __metadata("design:type", Object),
     __metadata("design:paramtypes", [])
 ], FileDescriptor.prototype, "parsedPath", null);
 __decorate([
-    (0, materialize_it_1.default)(),
+    (0, materialize_it_1.MaterializeIt)(),
     __metadata("design:type", Object),
     __metadata("design:paramtypes", [])
 ], FileDescriptor.prototype, "mimeType", null);
 __decorate([
-    (0, materialize_it_1.default)(),
+    (0, materialize_it_1.MaterializeIt)(),
     __metadata("design:type", Boolean),
     __metadata("design:paramtypes", [])
 ], FileDescriptor.prototype, "isImage", null);
 __decorate([
-    (0, materialize_it_1.default)(),
+    (0, materialize_it_1.MaterializeIt)(),
     __metadata("design:type", Promise),
     __metadata("design:paramtypes", [])
 ], FileDescriptor.prototype, "image", null);

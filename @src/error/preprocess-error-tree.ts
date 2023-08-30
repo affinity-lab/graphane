@@ -2,7 +2,7 @@ import {snakeCase} from "snake-case";
 import {GraphQLError} from "graphql/index";
 
 
-export default function preprocessErrorTree(errors: Record<string, any>, prefix: string = ""): void {
+export function preprocessErrorTree(errors: Record<string, any>, prefix: string = ""): void {
 	for (const prop of Object.getOwnPropertyNames(errors)) {
 		if (typeof errors[prop] === "object") {
 			preprocessErrorTree(errors[prop], prefix + "_" + prop);
@@ -17,4 +17,4 @@ export default function preprocessErrorTree(errors: Record<string, any>, prefix:
 			};
 		}
 	}
-};
+}

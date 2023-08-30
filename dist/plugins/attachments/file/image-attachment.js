@@ -8,15 +8,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 var ImageAttachment_1;
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ImgFocus = void 0;
+exports.ImageAttachment = exports.ImgFocus = void 0;
 const type_graphql_1 = require("type-graphql");
-const file_attachment_1 = __importDefault(require("./file-attachment"));
-const attachment_error_1 = __importDefault(require("../attachment-error"));
+const file_attachment_1 = require("./file-attachment");
+const attachment_error_1 = require("../attachment-error");
 let ImgDimension = class ImgDimension {
 };
 __decorate([
@@ -57,7 +54,7 @@ var ImgFocus;
     ImgFocus["ENTROPY"] = "entropy";
     ImgFocus["ATTENTION"] = "attention";
 })(ImgFocus || (exports.ImgFocus = ImgFocus = {}));
-let ImageAttachment = ImageAttachment_1 = class ImageAttachment extends file_attachment_1.default {
+let ImageAttachment = ImageAttachment_1 = class ImageAttachment extends file_attachment_1.FileAttachment {
     constructor() {
         super(...arguments);
         this.focus = ImgFocus.ATTENTION;
@@ -70,11 +67,11 @@ let ImageAttachment = ImageAttachment_1 = class ImageAttachment extends file_att
     ;
     static async setup(image, descriptor, catalog) {
         if (!descriptor.isImage) {
-            throw attachment_error_1.default.imageExpected();
+            throw attachment_error_1.AttachmentError.imageExpected();
         }
         let img = await descriptor.image;
         if (img === null) {
-            throw attachment_error_1.default.imageExpected();
+            throw attachment_error_1.AttachmentError.imageExpected();
         }
         await super.setup(image, descriptor, catalog);
         image.dimensions = { width: img.meta.width || 0, height: img.meta.height || 0 };
@@ -83,6 +80,7 @@ let ImageAttachment = ImageAttachment_1 = class ImageAttachment extends file_att
     }
     ;
 };
+exports.ImageAttachment = ImageAttachment;
 ImageAttachment.mimeTypePattern = "image/*";
 __decorate([
     (0, type_graphql_1.Field)(() => ImgDimension),
@@ -100,7 +98,6 @@ __decorate([
     (0, type_graphql_1.Field)(),
     __metadata("design:type", String)
 ], ImageAttachment.prototype, "focus", void 0);
-ImageAttachment = ImageAttachment_1 = __decorate([
+exports.ImageAttachment = ImageAttachment = ImageAttachment_1 = __decorate([
     (0, type_graphql_1.ObjectType)()
 ], ImageAttachment);
-exports.default = ImageAttachment;

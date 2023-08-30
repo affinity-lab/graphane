@@ -6,7 +6,7 @@ export type ValidationErrorResponse = {
 	fields: Record<string, string>;
 };
 
-export default async function validateObject(data: object, onError?: (response: ValidationErrorResponse) => never): Promise<true | ValidationErrorResponse> {
+export async function validateObject(data: object, onError?: (response: ValidationErrorResponse) => never): Promise<true | ValidationErrorResponse> {
 	let errors: ValidationError[] = await validate(data);
 	if (errors.length == 0) {
 		return true;

@@ -1,8 +1,8 @@
-import fatalError from "../../error/fatal-error";
+import {fatalError} from "../../error/fatal-error";
 
 
 /** A generic storage class that allows you to store and retrieve values of a specified type. */
-export default class Storage<T> {
+export class Storage<T> {
 	private readonly storage: Record<string, T> = {};
 
 	/** Creates a new instance of the Storage class.*/

@@ -1,10 +1,10 @@
-import FileDescriptor from "../../../util/file-descriptor";
+import {FileDescriptor} from "../../../util/file-descriptor";
 import {Field, ObjectType} from "type-graphql";
-import Catalog from "../catalog";
+import {Catalog} from "../catalog";
 
 
 @ObjectType()
-export default class FileAttachment {
+export class FileAttachment {
 	static mimeTypePattern: string | string[] = "*/*";
 
 	@Field()

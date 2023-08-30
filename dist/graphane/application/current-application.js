@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.CurrentApplication = void 0;
 class CurrentApplication {
     constructor(reader) {
         this.reader = reader;
@@ -13,4 +14,4 @@ class CurrentApplication {
     }
     ;
 }
-exports.default = CurrentApplication;
+exports.CurrentApplication = CurrentApplication;

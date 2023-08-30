@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.validateObject = void 0;
 const class_validator_1 = require("class-validator");
 async function validateObject(data, onError) {
     let errors = await (0, class_validator_1.validate)(data);
@@ -23,4 +24,4 @@ async function validateObject(data, onError) {
         return response;
     }
 }
-exports.default = validateObject;
+exports.validateObject = validateObject;

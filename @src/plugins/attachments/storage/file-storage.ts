@@ -1,11 +1,11 @@
-import FileDescriptor from "../../../util/file-descriptor";
+import {FileDescriptor} from "../../../util/file-descriptor";
 import * as fs from "fs";
 import path from "path";
-import Catalog from "../catalog";
-import StorageInterface from "./storage";
+import {Catalog} from "../catalog";
+import {StorageInterface} from "./storage";
 
 
-export default class FileStorage implements StorageInterface {
+export class FileStorage implements StorageInterface {
 	constructor(private readonly path: string) {
 		fs.mkdirSync(path, {recursive: true});
 	};

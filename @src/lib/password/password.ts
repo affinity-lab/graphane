@@ -1,8 +1,8 @@
 import * as argon2 from "argon2";
-import fatalError from "../../error/fatal-error";
+import {fatalError} from "../../error/fatal-error";
 
 
-export default class Password {
+export class Password {
 	constructor(private readonly pepper: Buffer) {};
 
 	async hash(password: string): Promise<string> {

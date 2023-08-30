@@ -1,5 +1,5 @@
 /// <reference types="node" />
-export default class Password {
+export declare class Password {
     private readonly pepper;
     constructor(pepper: Buffer);
     hash(password: string): Promise<string>;

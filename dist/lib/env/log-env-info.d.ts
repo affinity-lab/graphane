@@ -1,2 +1,2 @@
-import Env from "./env";
-export default function logEnvInfo(env: Env): void;
+import { Env } from "./env";
+export declare function logEnvInfo(env: Env): void;

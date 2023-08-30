@@ -1,7 +1,7 @@
 import { NonEmptyArray } from "../../../util/types";
-import Authorizable from "../authorizable";
-import Application from "../../../graphane/application/application";
-export default abstract class AbstractGuard {
+import { Authorizable } from "../authorizable";
+import { Application } from "../../../graphane/application/application";
+export declare abstract class AbstractGuard {
     user: Authorizable | undefined;
     static app?: Application;
     app: Application;

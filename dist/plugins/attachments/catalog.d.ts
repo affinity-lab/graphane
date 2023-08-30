@@ -1,13 +1,13 @@
-import AtomWithAttachments from "./atom-with-attachments";
-import FileAttachment from "./file/file-attachment";
+import { AtomWithAttachments } from "./atom-with-attachments";
+import { FileAttachment } from "./file/file-attachment";
 import { ImgFocus } from "./file/image-attachment";
-import StorageInterface from "./storage/storage";
+import { StorageInterface } from "./storage/storage";
 export type CatalogOptions = {
     maxFileCount: number;
     maxFileSize: number;
     mimeTypePattern: string | string[];
 };
-export default class Catalog {
+export declare class Catalog {
     readonly name: string;
     private readonly type;
     readonly owner: AtomWithAttachments;

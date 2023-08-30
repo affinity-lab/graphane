@@ -1,9 +1,9 @@
-import AbstractGuard from "./abstract-guard";
-import fatalError from "../../../error/fatal-error";
-import AuthError from "../auth-error";
+import {AbstractGuard} from "./abstract-guard";
+import {fatalError} from "../../../error/fatal-error";
+import {AuthError} from "../auth-error";
 
 
-export default function Guard(...roles: Array<string>): MethodDecorator {
+export function Guard(...roles: Array<string>): MethodDecorator {
 	return (target: Object, propertyKey: string | symbol, descriptor: PropertyDescriptor): void => {
 		const originalMethod = descriptor.value;
 		descriptor.value = async function (...args: any[]): Promise<boolean> {

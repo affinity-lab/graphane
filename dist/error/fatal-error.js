@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.fatalError = void 0;
 const index_1 = require("graphql/index");
 function fatalError(message = "fatal error occurred", info = {}) {
     const code = "FATAL_ERROR";
@@ -13,4 +14,4 @@ function fatalError(message = "fatal error occurred", info = {}) {
     };
     return error;
 }
-exports.default = fatalError;
+exports.fatalError = fatalError;

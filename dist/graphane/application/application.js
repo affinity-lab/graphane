@@ -1,17 +1,15 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
-const graphane_error_1 = __importDefault(require("../graphane-error"));
+exports.Application = void 0;
+const graphane_error_1 = require("../graphane-error");
 const prefixed_application_1 = require("./prefixed-application");
-const required_properties_1 = __importDefault(require("../../util/required-properties"));
-const fatal_error_1 = __importDefault(require("../../error/fatal-error"));
+const required_properties_1 = require("../../util/required-properties");
+const fatal_error_1 = require("../../error/fatal-error");
 class Application {
     static addApplication(application) {
         if (this.codeMap.hasOwnProperty(application.code)) {
-            throw graphane_error_1.default.application.alreadyRegistered(application.code);
+            throw graphane_error_1.GraphaneError.application.alreadyRegistered(application.code);
         }
         this.applications.push(application);
         this.codeMap[application.code] = application;
@@ -36,8 +34,8 @@ class Application {
         this.roles = roles;
         this.jwtFactory = jwtFactory;
         this.middlewares = middlewares;
-        if (!(0, required_properties_1.default)(cfg, "app") || !(0, required_properties_1.default)(cfg.app, "code", "id", "secret", "name"))
-            throw (0, fatal_error_1.default)(`App config does not have the required keys`);
+        if (!(0, required_properties_1.requiredProperties)(cfg, "app") || !(0, required_properties_1.requiredProperties)(cfg.app, "code", "id", "secret", "name"))
+            throw (0, fatal_error_1.fatalError)(`App config does not have the required keys`);
         this.code = cfg["app"]["code"].toUpperCase();
         this.id = cfg["app"]["id"];
         this.secret = cfg["app"]["secret"];
@@ -55,6 +53,7 @@ class Application {
         await middleware(req, this); }
     ;
 }
+exports.Application = Application;
 _a = Application;
 Application.applications = [];
 Application.codeMap = {};
@@ -65,4 +64,3 @@ Application.get = {
         return _a.idMap.hasOwnProperty(id) ? _a.idMap[id] : undefined;
     }
 };
-exports.default = Application;

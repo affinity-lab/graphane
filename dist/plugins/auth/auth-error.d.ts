@@ -1,4 +1,4 @@
-declare const AuthError: {
+export declare const AuthError: {
     unauthorized: () => {
         info?: Record<string, any> | undefined;
         message?: string | undefined;
@@ -18,4 +18,3 @@ declare const AuthError: {
         silent: boolean;
     };
 };
-export default AuthError;

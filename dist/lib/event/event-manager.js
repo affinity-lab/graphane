@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.EventManager = void 0;
 class EventManager {
     constructor() {
         this.registered = [];
@@ -21,4 +22,4 @@ class EventManager {
     }
     ;
 }
-exports.default = EventManager;
+exports.EventManager = EventManager;

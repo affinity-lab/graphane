@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var FileAttachment_1;
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.FileAttachment = void 0;
 const type_graphql_1 = require("type-graphql");
 let FileAttachment = FileAttachment_1 = class FileAttachment {
     static async factory(descriptor, catalog) {
@@ -28,6 +29,7 @@ let FileAttachment = FileAttachment_1 = class FileAttachment {
     }
     ;
 };
+exports.FileAttachment = FileAttachment;
 FileAttachment.mimeTypePattern = "*/*";
 __decorate([
     (0, type_graphql_1.Field)(),
@@ -53,7 +55,6 @@ __decorate([
     (0, type_graphql_1.Field)(),
     __metadata("design:type", Number)
 ], FileAttachment.prototype, "version", void 0);
-FileAttachment = FileAttachment_1 = __decorate([
+exports.FileAttachment = FileAttachment = FileAttachment_1 = __decorate([
     (0, type_graphql_1.ObjectType)()
 ], FileAttachment);
-exports.default = FileAttachment;

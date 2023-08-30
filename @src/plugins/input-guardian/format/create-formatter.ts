@@ -6,7 +6,7 @@ export type FormatterFn = (value: formatterInOutput) => formatterInOutput;
 
 type AtomicFormatterFn = (value: string) => string;
 
-export default function createFormatter(target: any, key: any, fn: AtomicFormatterFn): void {
+export function createFormatter(target: any, key: any, fn: AtomicFormatterFn): void {
 	if (!Reflect.hasMetadata("format", target, key)) {
 		Reflect.defineMetadata("format", [], target, key);
 	}

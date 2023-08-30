@@ -1,1 +1,1 @@
-export default function Guard(...roles: Array<string>): MethodDecorator;
+export declare function Guard(...roles: Array<string>): MethodDecorator;

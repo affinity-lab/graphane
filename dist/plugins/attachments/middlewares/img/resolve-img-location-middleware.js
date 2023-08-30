@@ -23,6 +23,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.resolveImgLocationMiddleware = void 0;
 const fs = __importStar(require("fs"));
 function resolveImgLocationMiddleware(storagePath) {
     return (req, res, next) => {
@@ -32,6 +33,6 @@ function resolveImgLocationMiddleware(storagePath) {
         next();
     };
 }
+exports.resolveImgLocationMiddleware = resolveImgLocationMiddleware;
 resolveImgLocationMiddleware.locationParams = "/:module/:entity/:id/:catalog/:width.:height.:focus.:ver.:originalExt/:file.:ext";
 resolveImgLocationMiddleware.route = (baseUrl) => baseUrl + "/:module/:entity/:id/:catalog/:width.:height.:focus.:ver.:originalExt/:file.:ext";
-exports.default = resolveImgLocationMiddleware;

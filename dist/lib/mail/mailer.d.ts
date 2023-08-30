@@ -12,10 +12,10 @@ type Email = {
     from: Address;
     data: MailData;
 };
-interface MailService {
+export interface MailService {
     send(emails: Array<Email>): void;
 }
-export default class Mailer {
+export declare class Mailer {
     private service;
     constructor(service: MailService);
     create<T extends Record<string, string | number>>(from: Address, subject: string, text: string, html: string): {

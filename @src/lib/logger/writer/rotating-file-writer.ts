@@ -2,7 +2,7 @@ import * as fs from "fs";
 import * as Path from "path";
 import {createStream, Generator, RotatingFileStream} from "rotating-file-stream";
 import {LOGLEVEL} from "../logger";
-import Writer from "./writer";
+import {Writer} from "./writer";
 
 
 export  type StreamOptions = {
@@ -11,7 +11,7 @@ export  type StreamOptions = {
 	compress: string
 }
 
-export default class RotatingFileWriter extends Writer {
+export class RotatingFileWriter extends Writer {
 	private stream: RotatingFileStream;
 
 	constructor(

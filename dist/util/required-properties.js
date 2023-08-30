@@ -10,6 +10,7 @@
  *                                Returns `true` if all required properties are defined.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.requiredProperties = void 0;
 function requiredProperties(obj, ...required) {
     if (typeof obj === "undefined")
         return undefined;
@@ -18,4 +19,4 @@ function requiredProperties(obj, ...required) {
             return false;
     return true;
 }
-exports.default = requiredProperties;
+exports.requiredProperties = requiredProperties;

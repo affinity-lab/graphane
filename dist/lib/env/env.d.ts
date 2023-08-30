@@ -1,4 +1,4 @@
-export default class Env {
+export declare class Env {
     readonly env: Record<string, any>;
     readonly envPostfixMap: Record<string, string | undefined>;
     readonly environment: string;

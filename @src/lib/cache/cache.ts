@@ -11,7 +11,7 @@ class CacheItem<Type> {
 	};
 }
 
-export default class Cache<Args = any, Type = any> {
+export class Cache<Args = any, Type = any> {
 	private cache: Record<string, CacheItem<Type>> = {};
 
 	private readonly keygen: (args: any) => string;

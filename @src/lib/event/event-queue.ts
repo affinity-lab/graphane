@@ -1,7 +1,7 @@
-import BaseEvent from "./base-event";
+import {BaseEvent} from "./base-event";
 
 
-export default class EventQueue {
+export class EventQueue {
 	handling: Promise<any> = Promise.resolve(true);
 
 	constructor(private handler: ((event: BaseEvent) => void)) {};

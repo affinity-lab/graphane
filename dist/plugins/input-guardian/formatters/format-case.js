@@ -1,14 +1,12 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.FormatCase = void 0;
 const snake_case_1 = require("snake-case");
 const StringUtils_1 = require("typeorm/util/StringUtils");
-const create_formatter_1 = __importDefault(require("../format/create-formatter"));
+const create_formatter_1 = require("../format/create-formatter");
 function FormatCase(type) {
     return (target, key) => {
-        (0, create_formatter_1.default)(target, key, (value) => {
+        (0, create_formatter_1.createFormatter)(target, key, (value) => {
             switch (type) {
                 case "upper":
                     return value.toLocaleUpperCase();
@@ -26,4 +24,4 @@ function FormatCase(type) {
         });
     };
 }
-exports.default = FormatCase;
+exports.FormatCase = FormatCase;

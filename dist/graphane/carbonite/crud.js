@@ -1,9 +1,7 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const graphane_error_1 = __importDefault(require("../graphane-error"));
+exports.BasicCrud = void 0;
+const graphane_error_1 = require("../graphane-error");
 const typeorm_1 = require("typeorm");
 class BasicCrud {
     constructor(entity, dataSourceStorage, storageKey) {
@@ -43,7 +41,7 @@ class BasicCrud {
         for (rel of this.dataSourceStorage.getOrFail(this.storageKey).getMetadata(this.entity).relations) {
             const target = rel.inverseEntityMetadata.target;
             if (typeof target === "string") {
-                throw graphane_error_1.default.crud.unrealEntityTarget(rel.inverseEntityMetadata.target);
+                throw graphane_error_1.GraphaneError.crud.unrealEntityTarget(rel.inverseEntityMetadata.target);
             }
             const inverseEntity = target;
             if (rel.isOneToOne || rel.isManyToOne) {
@@ -57,11 +55,11 @@ class BasicCrud {
                 }
             }
             else {
-                throw graphane_error_1.default.crud.badRelationType();
+                throw graphane_error_1.GraphaneError.crud.badRelationType();
             }
         }
         return data;
     }
     ;
 }
-exports.default = BasicCrud;
+exports.BasicCrud = BasicCrud;

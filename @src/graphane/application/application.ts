@@ -1,14 +1,14 @@
-import GraphaneError from "../graphane-error";
+import {GraphaneError} from "../graphane-error";
 import {Request} from "express";
 import {PrefixedApplication} from "./prefixed-application";
-import requiredProperties from "../../util/required-properties";
+import {requiredProperties} from "../../util/required-properties";
 import {ApplicationLoggerFactory, Env, Jwt, JwtFactory, Logger} from "../service-interfaces";
-import fatalError from "../../error/fatal-error";
+import {fatalError} from "../../error/fatal-error";
 
 
 type ApplicationMiddleware = (req: Request, app: Application) => Promise<any>;
 
-export default class Application<RolesType extends Record<string, string> = Record<string, string>, CfgType extends Record<string, any> = Record<string, any>> {
+export class Application<RolesType extends Record<string, string> = Record<string, string>, CfgType extends Record<string, any> = Record<string, any>> {
 
 	static applications: Application<any>[] = [];
 	static codeMap: {[p: string]: Application<any>} = {};

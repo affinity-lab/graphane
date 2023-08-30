@@ -4,6 +4,4 @@ class Graphane {
 	addResolverDecorator(decorator: MethodDecorator): void {this.resolverDecorators.push(decorator);};
 }
 
-const graphane: Graphane = new Graphane();
-
-export default graphane;
+export const graphane: Graphane = new Graphane();

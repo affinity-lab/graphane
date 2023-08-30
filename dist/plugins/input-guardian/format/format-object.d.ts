@@ -1,1 +1,1 @@
-export default function formatObject(object: any): void;
+export declare function formatObject(object: any): void;

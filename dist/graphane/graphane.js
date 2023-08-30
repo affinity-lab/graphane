@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.graphane = void 0;
 class Graphane {
     constructor() {
         this.resolverDecorators = [];
@@ -7,5 +8,4 @@ class Graphane {
     addResolverDecorator(decorator) { this.resolverDecorators.push(decorator); }
     ;
 }
-const graphane = new Graphane();
-exports.default = graphane;
+exports.graphane = new Graphane();

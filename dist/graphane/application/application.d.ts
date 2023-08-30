@@ -2,7 +2,7 @@ import { Request } from "express";
 import { PrefixedApplication } from "./prefixed-application";
 import { ApplicationLoggerFactory, Env, Jwt, JwtFactory, Logger } from "../service-interfaces";
 type ApplicationMiddleware = (req: Request, app: Application) => Promise<any>;
-export default class Application<RolesType extends Record<string, string> = Record<string, string>, CfgType extends Record<string, any> = Record<string, any>> {
+export declare class Application<RolesType extends Record<string, string> = Record<string, string>, CfgType extends Record<string, any> = Record<string, any>> {
     readonly cfg: CfgType;
     readonly roles: RolesType;
     private readonly jwtFactory;

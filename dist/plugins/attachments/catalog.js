@@ -26,11 +26,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const file_descriptor_1 = __importDefault(require("../../util/file-descriptor"));
+exports.Catalog = void 0;
+const file_descriptor_1 = require("../../util/file-descriptor");
 const fs = __importStar(require("fs"));
 const micromatch_1 = __importDefault(require("micromatch"));
-const image_attachment_1 = __importDefault(require("./file/image-attachment"));
-const attachment_error_1 = __importDefault(require("./attachment-error"));
+const image_attachment_1 = require("./file/image-attachment");
+const attachment_error_1 = require("./attachment-error");
 class Catalog {
     constructor(name, type, owner, storage, options) {
         this.name = name;
@@ -60,7 +61,7 @@ class Catalog {
             filename = [filename];
         }
         if (this.owner.attachments[this.name].length + filename.length > this.options.maxFileCount) {
-            throw attachment_error_1.default.upload.validation.tooManyAttachments(this.options.maxFileCount);
+            throw attachment_error_1.AttachmentError.upload.validation.tooManyAttachments(this.options.maxFileCount);
         }
         await Promise.all(filename.map((value) => this.addFile(value)));
         await this.owner.save();
@@ -114,11 +115,11 @@ class Catalog {
     ;
     async renameFile(fileName, newName) {
         if (this.hasFile(newName)) {
-            throw attachment_error_1.default.fileCrud.fileAlreadyExists(newName);
+            throw attachment_error_1.AttachmentError.fileCrud.fileAlreadyExists(newName);
         }
         const file = this.getFile(fileName);
         if (typeof file === "undefined") {
-            throw attachment_error_1.default.fileCrud.fileNotExists();
+            throw attachment_error_1.AttachmentError.fileCrud.fileNotExists();
         }
         file.name = newName;
         await this.owner.save();
@@ -127,7 +128,7 @@ class Catalog {
     async giveTitleToFile(fileName, title) {
         const file = this.getFile(fileName);
         if (typeof file === "undefined") {
-            throw attachment_error_1.default.fileCrud.fileNotExists();
+            throw attachment_error_1.AttachmentError.fileCrud.fileNotExists();
         }
         file.title = title;
         await this.owner.save();
@@ -136,7 +137,7 @@ class Catalog {
     async reorderFiles(fileName, index) {
         const file = this.getFile(fileName);
         if (typeof file === "undefined") {
-            throw attachment_error_1.default.fileCrud.fileNotExists();
+            throw attachment_error_1.AttachmentError.fileCrud.fileNotExists();
         }
         this.owner.attachments[this.name].splice(this.owner.attachments[this.name].indexOf(file), 1);
         this.owner.attachments[this.name].splice(index, 0, file);
@@ -146,25 +147,25 @@ class Catalog {
     async changeImageFocus(fileName, focus) {
         const file = this.getFile(fileName);
         if (typeof file === "undefined") {
-            throw attachment_error_1.default.fileCrud.fileNotExists();
+            throw attachment_error_1.AttachmentError.fileCrud.fileNotExists();
         }
-        if (!(file instanceof image_attachment_1.default)) {
-            throw attachment_error_1.default.imageExpected();
+        if (!(file instanceof image_attachment_1.ImageAttachment)) {
+            throw attachment_error_1.AttachmentError.imageExpected();
         }
         file.focus = focus;
         await this.owner.save();
     }
     ;
     async addFile(filename) {
-        let descriptor = new file_descriptor_1.default(filename);
+        let descriptor = new file_descriptor_1.FileDescriptor(filename);
         if (!await descriptor.exists) {
-            throw attachment_error_1.default.fileCrud.fileNotExists();
+            throw attachment_error_1.AttachmentError.fileCrud.fileNotExists();
         }
         if (!micromatch_1.default.isMatch(descriptor.mimeType.toString(), this.options.mimeTypePattern)) {
-            throw attachment_error_1.default.upload.validation.mimeTypeMismatch(this.options.mimeTypePattern);
+            throw attachment_error_1.AttachmentError.upload.validation.mimeTypeMismatch(this.options.mimeTypePattern);
         }
         if (await descriptor.size > this.options.maxFileSize) {
-            throw attachment_error_1.default.upload.validation.tooLarge(this.options.maxFileSize);
+            throw attachment_error_1.AttachmentError.upload.validation.tooLarge(this.options.maxFileSize);
         }
         let name = descriptor.name;
         let counter = 1;
@@ -174,7 +175,7 @@ class Catalog {
         }
         if (name !== descriptor.name) {
             fs.renameSync(descriptor.file, `${descriptor.parsedPath.dir}/${name}`);
-            descriptor = new file_descriptor_1.default(`${descriptor.parsedPath.dir}/${name}`);
+            descriptor = new file_descriptor_1.FileDescriptor(`${descriptor.parsedPath.dir}/${name}`);
         }
         this.storage.addFile(this, descriptor);
         this.owner.attachments[this.name].push(await this.type.factory(descriptor, this));
@@ -182,11 +183,11 @@ class Catalog {
     ;
     removeFile(fileName) {
         if (typeof this.getFile(fileName) === "undefined") {
-            throw attachment_error_1.default.fileCrud.fileNotExists();
+            throw attachment_error_1.AttachmentError.fileCrud.fileNotExists();
         }
-        this.storage.removeFile(this, new file_descriptor_1.default(fileName));
+        this.storage.removeFile(this, new file_descriptor_1.FileDescriptor(fileName));
         this.owner.attachments[this.name] = this.owner.attachments[this.name].filter((item) => item.name !== fileName);
     }
     ;
 }
-exports.default = Catalog;
+exports.Catalog = Catalog;

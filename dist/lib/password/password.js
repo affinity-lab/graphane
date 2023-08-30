@@ -22,12 +22,10 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Password = void 0;
 const argon2 = __importStar(require("argon2"));
-const fatal_error_1 = __importDefault(require("../../error/fatal-error"));
+const fatal_error_1 = require("../../error/fatal-error");
 class Password {
     constructor(pepper) {
         this.pepper = pepper;
@@ -38,7 +36,7 @@ class Password {
             return await argon2.hash(password, { secret: this.pepper });
         }
         catch (error) {
-            throw (0, fatal_error_1.default)("error while hashing password", { error });
+            throw (0, fatal_error_1.fatalError)("error while hashing password", { error });
         }
     }
     ;
@@ -47,9 +45,9 @@ class Password {
             return await argon2.verify(hashedPassword, enteredPassword, { secret: this.pepper });
         }
         catch (error) {
-            throw (0, fatal_error_1.default)("error while verifying password", { error });
+            throw (0, fatal_error_1.fatalError)("error while verifying password", { error });
         }
     }
     ;
 }
-exports.default = Password;
+exports.Password = Password;

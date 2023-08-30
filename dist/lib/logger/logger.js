@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.LOGLEVEL = void 0;
+exports.Logger = exports.LOGLEVEL = void 0;
 var LOGLEVEL;
 (function (LOGLEVEL) {
     LOGLEVEL[LOGLEVEL["DEBUG"] = 0] = "DEBUG";
@@ -82,4 +82,4 @@ class Logger {
     }
     ;
 }
-exports.default = Logger;
+exports.Logger = Logger;

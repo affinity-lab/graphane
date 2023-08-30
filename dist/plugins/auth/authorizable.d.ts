@@ -1,4 +1,4 @@
-export default interface Authorizable {
+export interface Authorizable {
     id: number;
     hasRole(roles: string[]): Promise<boolean>;
     getRoles(): Promise<string[]>;

@@ -1,8 +1,8 @@
-import createErrorData from "../error/create-error-data";
-import preprocessErrorTree from "../error/preprocess-error-tree";
+import {createErrorData} from "../error/create-error-data";
+import {preprocessErrorTree} from "../error/preprocess-error-tree";
 
 
-const GraphaneError = {
+export const GraphaneError = {
 	application: {
 		notFound: () => createErrorData(),
 		alreadyRegistered: (app: string) => createErrorData({app})
@@ -18,4 +18,3 @@ const GraphaneError = {
 };
 
 preprocessErrorTree(GraphaneError, "GRAPHANE");
-export default GraphaneError;

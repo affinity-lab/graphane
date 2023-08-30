@@ -1,1 +1,1 @@
-export default function ExportRole(name: string): MethodDecorator;
+export declare function ExportRole(name: string): MethodDecorator;

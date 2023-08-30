@@ -8,27 +8,24 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ChangeFileInput = exports.FileInputVariables = void 0;
-const sanitize_html_1 = __importDefault(require("../input-guardian/formatters/sanitize-html"));
+const sanitize_html_1 = require("../input-guardian/formatters/sanitize-html");
 const class_validator_1 = require("class-validator");
 const type_graphql_1 = require("type-graphql");
-const id_input_1 = __importDefault(require("../../graphane/carbonite/id-input"));
+const id_input_1 = require("../../graphane/carbonite/id-input");
 const image_attachment_1 = require("./file/image-attachment");
 let FileInputVariables = class FileInputVariables {
 };
 exports.FileInputVariables = FileInputVariables;
 __decorate([
     (0, type_graphql_1.Field)({ nullable: true }),
-    sanitize_html_1.default,
+    sanitize_html_1.SanitizeHTML,
     __metadata("design:type", String)
 ], FileInputVariables.prototype, "fileName", void 0);
 __decorate([
     (0, type_graphql_1.Field)({ nullable: true }),
-    sanitize_html_1.default,
+    sanitize_html_1.SanitizeHTML,
     __metadata("design:type", String)
 ], FileInputVariables.prototype, "newName", void 0);
 __decorate([
@@ -40,28 +37,28 @@ __decorate([
 ], FileInputVariables.prototype, "index", void 0);
 __decorate([
     (0, type_graphql_1.Field)({ nullable: true }),
-    sanitize_html_1.default,
+    sanitize_html_1.SanitizeHTML,
     __metadata("design:type", String)
 ], FileInputVariables.prototype, "title", void 0);
 __decorate([
     (0, type_graphql_1.Field)(() => String, { nullable: true }),
-    sanitize_html_1.default,
+    sanitize_html_1.SanitizeHTML,
     __metadata("design:type", String)
 ], FileInputVariables.prototype, "imageFocus", void 0);
 exports.FileInputVariables = FileInputVariables = __decorate([
     (0, type_graphql_1.InputType)()
 ], FileInputVariables);
-let ChangeFileInput = class ChangeFileInput extends id_input_1.default {
+let ChangeFileInput = class ChangeFileInput extends id_input_1.IdInput {
 };
 exports.ChangeFileInput = ChangeFileInput;
 __decorate([
     (0, type_graphql_1.Field)(() => String),
-    sanitize_html_1.default,
+    sanitize_html_1.SanitizeHTML,
     __metadata("design:type", String)
 ], ChangeFileInput.prototype, "command", void 0);
 __decorate([
     (0, type_graphql_1.Field)(),
-    sanitize_html_1.default,
+    sanitize_html_1.SanitizeHTML,
     __metadata("design:type", String)
 ], ChangeFileInput.prototype, "catalog", void 0);
 exports.ChangeFileInput = ChangeFileInput = __decorate([

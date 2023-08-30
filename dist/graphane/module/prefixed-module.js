@@ -1,13 +1,10 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PrefixedModule = void 0;
 const snake_case_1 = require("snake-case");
 const type_graphql_1 = require("type-graphql");
 const typeorm_1 = require("typeorm");
-const module_1 = __importDefault(require("./module"));
+const module_1 = require("./module");
 const prefixed_1 = require("../prefixed");
 class PrefixedModule extends prefixed_1.Prefixed {
     GQLEntity(options) {
@@ -23,7 +20,7 @@ class PrefixedModule extends prefixed_1.Prefixed {
     ;
     Entity(options) {
         return (target) => {
-            module_1.default.addEntity(this.prefix, target);
+            module_1.Module.addEntity(this.prefix, target);
             (0, typeorm_1.Entity)((0, snake_case_1.snakeCase)(this.prefixer(this.readName(options, target.name))), options)(target);
             Object.defineProperty(target, "module", {
                 value: this.prefix,

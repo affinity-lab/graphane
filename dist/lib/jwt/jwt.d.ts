@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 /** Wrapper class for encoding and decoding JSON Web Tokens. */
-export default class Jwt<T> {
+export declare class Jwt<T> {
     private readonly secret;
     private readonly expires?;
     private readonly algorithm;

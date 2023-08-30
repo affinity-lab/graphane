@@ -1,4 +1,4 @@
-import fatalError from "../error/fatal-error";
+import {fatalError} from "../error/fatal-error";
 
 
 interface CachePropertyDescriptor<T, R> extends PropertyDescriptor {
@@ -6,7 +6,7 @@ interface CachePropertyDescriptor<T, R> extends PropertyDescriptor {
 }
 
 /** A decorator function that materializes a getter property into a value property after the first access. */
-export default function MaterializeIt() {
+export function MaterializeIt() {
 	return function <T, R>(
 		target: any,
 		name: PropertyKey,

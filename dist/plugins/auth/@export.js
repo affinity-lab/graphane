@@ -1,17 +1,23 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AbstractGuard = exports.ExportRole = exports.Guard = exports.PermissionResolver = exports.CurrentAuthorized = void 0;
 require("./init-plugin");
-var current_authorized_1 = require("./current-authorized");
-Object.defineProperty(exports, "CurrentAuthorized", { enumerable: true, get: function () { return __importDefault(current_authorized_1).default; } });
-var permission_resolver_1 = require("./permission-resolver");
-Object.defineProperty(exports, "PermissionResolver", { enumerable: true, get: function () { return __importDefault(permission_resolver_1).default; } });
-var guard_1 = require("./guard/guard");
-Object.defineProperty(exports, "Guard", { enumerable: true, get: function () { return __importDefault(guard_1).default; } });
-var export_role_1 = require("./guard/export-role");
-Object.defineProperty(exports, "ExportRole", { enumerable: true, get: function () { return __importDefault(export_role_1).default; } });
-var abstract_guard_1 = require("./guard/abstract-guard");
-Object.defineProperty(exports, "AbstractGuard", { enumerable: true, get: function () { return __importDefault(abstract_guard_1).default; } });
+__exportStar(require("./authorizable"), exports);
+__exportStar(require("./current-authorized"), exports);
+__exportStar(require("./permission-resolver"), exports);
+__exportStar(require("./guard/guard"), exports);
+__exportStar(require("./guard/export-role"), exports);
+__exportStar(require("./guard/abstract-guard"), exports);

@@ -1,15 +1,13 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const fatal_error_1 = __importDefault(require("../../../error/fatal-error"));
-const auth_error_1 = __importDefault(require("../auth-error"));
+exports.AbstractGuard = void 0;
+const fatal_error_1 = require("../../../error/fatal-error");
+const auth_error_1 = require("../auth-error");
 class AbstractGuard {
     constructor(user, app) {
         this.user = user;
         if (app === undefined)
-            throw (0, fatal_error_1.default)("Resolver called without application.");
+            throw (0, fatal_error_1.fatalError)("Resolver called without application.");
         this.app = app;
     }
     ;
@@ -32,14 +30,14 @@ class AbstractGuard {
     ;
     async isAuthenticated() {
         if (this.user === undefined) {
-            throw auth_error_1.default.unauthorized();
+            throw auth_error_1.AuthError.unauthorized();
         }
         return true;
     }
     ;
     async isNotAuthenticated() {
         if (this.user !== undefined) {
-            throw auth_error_1.default.alreadyLoggedIn();
+            throw auth_error_1.AuthError.alreadyLoggedIn();
         }
         return true;
     }
@@ -49,8 +47,8 @@ class AbstractGuard {
         if (await this.user.hasRole(roles)) {
             return true;
         }
-        throw auth_error_1.default.forbidden();
+        throw auth_error_1.AuthError.forbidden();
     }
     ;
 }
-exports.default = AbstractGuard;
+exports.AbstractGuard = AbstractGuard;

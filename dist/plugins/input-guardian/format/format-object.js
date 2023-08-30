@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.formatObject = void 0;
 function formatObject(object) {
     for (const i in object) {
         if (Reflect.hasMetadata("format", object, i)) {
@@ -8,4 +9,4 @@ function formatObject(object) {
         }
     }
 }
-exports.default = formatObject;
+exports.formatObject = formatObject;

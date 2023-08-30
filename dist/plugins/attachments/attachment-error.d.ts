@@ -1,4 +1,4 @@
-declare const AttachmentError: {
+export declare const AttachmentError: {
     upload: {
         badToken: () => {
             info?: Record<string, any> | undefined;
@@ -66,4 +66,3 @@ declare const AttachmentError: {
         };
     };
 };
-export default AttachmentError;

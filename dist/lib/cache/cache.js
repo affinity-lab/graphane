@@ -23,6 +23,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Cache = void 0;
 const crypto = __importStar(require("crypto"));
 function timestamp() { return Math.floor((new Date()).getTime() / 1000); }
 class CacheItem {
@@ -78,4 +79,4 @@ class Cache {
     }
     ;
 }
-exports.default = Cache;
+exports.Cache = Cache;

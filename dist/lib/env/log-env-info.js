@@ -3,6 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.logEnvInfo = void 0;
 const console_1 = __importDefault(require("console"));
 const chalk_1 = __importDefault(require("chalk"));
 function logEnvInfo(env) {
@@ -23,4 +24,4 @@ function logEnvInfo(env) {
                     ? chalk_1.default.gray(" (" + info.defaultValue + ")")
                     : ""))));
 }
-exports.default = logEnvInfo;
+exports.logEnvInfo = logEnvInfo;

@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.resolveFileLocationMiddleware = void 0;
 function resolveFileLocationMiddleware() {
     return (req, res, next) => {
         let b36 = parseInt(req.params["id"]).toString(36).padStart(6, "0");
@@ -7,6 +8,6 @@ function resolveFileLocationMiddleware() {
         next();
     };
 }
+exports.resolveFileLocationMiddleware = resolveFileLocationMiddleware;
 resolveFileLocationMiddleware.locationParams = "/:module/:entity/:id/:catalog/:file";
 resolveFileLocationMiddleware.route = (baseUrl) => baseUrl + "/:module/:entity/:id/:catalog/:file";
-exports.default = resolveFileLocationMiddleware;

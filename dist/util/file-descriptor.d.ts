@@ -3,7 +3,7 @@
 import * as fs from "fs";
 import * as path from "path";
 import sharp from "sharp";
-export default class FileDescriptor {
+export declare class FileDescriptor {
     readonly file: string;
     constructor(file: string);
     get stat(): Promise<fs.Stats | null>;

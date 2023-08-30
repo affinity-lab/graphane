@@ -1,10 +1,8 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const formatter_1 = __importDefault(require("./formatter"));
-class DefaultFormatter extends formatter_1.default {
+exports.DefaultFormatter = void 0;
+const formatter_1 = require("./formatter");
+class DefaultFormatter extends formatter_1.Formatter {
     format(message) {
         if (typeof message === "string")
             return message;
@@ -17,4 +15,4 @@ class DefaultFormatter extends formatter_1.default {
     }
     ;
 }
-exports.default = DefaultFormatter;
+exports.DefaultFormatter = DefaultFormatter;

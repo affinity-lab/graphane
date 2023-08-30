@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.setupRequest = void 0;
 function setupRequest() {
     return (req, res, next) => {
         req.context = new Map();
@@ -26,4 +27,4 @@ function setupRequest() {
         return next();
     };
 }
-exports.default = setupRequest;
+exports.setupRequest = setupRequest;

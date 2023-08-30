@@ -1,8 +1,8 @@
 import path from "path";
-import fatalError from "../../error/fatal-error";
+import {fatalError} from "../../error/fatal-error";
 
 
-export default class Env {
+export class Env {
 	public readonly environment: string;
 	public info: Array<{
 		key: string,

@@ -1,8 +1,8 @@
-import createErrorData from "../../error/create-error-data";
-import preprocessErrorTree from "../../error/preprocess-error-tree";
+import {createErrorData} from "../../error/create-error-data";
+import {preprocessErrorTree} from "../../error/preprocess-error-tree";
 
 
-const AttachmentError = {
+export const AttachmentError = {
 	upload: {
 		badToken: () => createErrorData(),
 		failed: (message: string) => createErrorData(undefined, message),
@@ -22,4 +22,3 @@ const AttachmentError = {
 };
 
 preprocessErrorTree(AttachmentError, "ATTACHMENT");
-export default AttachmentError;

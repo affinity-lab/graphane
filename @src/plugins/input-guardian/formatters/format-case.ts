@@ -1,11 +1,11 @@
 import {snakeCase} from "snake-case";
 import {camelCase} from "typeorm/util/StringUtils";
-import createFormatter from "../format/create-formatter";
+import {createFormatter} from "../format/create-formatter";
 
 
 type TypeOptions = "upper" | "lower" | "snake" | "camel" | "pascal";
 
-export default function FormatCase(type: TypeOptions): PropertyDecorator {
+export function FormatCase(type: TypeOptions): PropertyDecorator {
 	return (target: any, key: any): void => {
 		createFormatter(target, key, (value: string): string => {
 			switch (type) {

@@ -1,6 +1,6 @@
-export { default as FileDescriptor } from "./file-descriptor";
+export * from "./file-descriptor";
 export * as Geometry from "./geometry";
-export { default as MaterializeIt } from "./materialize-it";
-export { default as objectValuesRecursive } from "./object-values-recursive";
-export { default as requiredProperties } from "./required-properties";
-export * as UtilTypes from "./types";
+export * from "./materialize-it";
+export * from "./object-values-recursive";
+export * from "./required-properties";
+export * from "./types";

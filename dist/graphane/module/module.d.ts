@@ -1,4 +1,4 @@
-import Atom from "../carbonite/atom";
+import { Atom } from "../carbonite/atom";
 import { PrefixedModule } from "./prefixed-module";
 import { Env, Logger, ModuleLoggerFactory } from "../service-interfaces";
 export type ModuleConfigType = {
@@ -7,7 +7,7 @@ export type ModuleConfigType = {
     };
     [key: string]: any;
 };
-export default class Module<RolesType = {}, CfgType extends ModuleConfigType = ModuleConfigType> {
+export declare class Module<RolesType = {}, CfgType extends ModuleConfigType = ModuleConfigType> {
     readonly roles: RolesType;
     static modules: Module[];
     static codeMap: Record<string, Module>;

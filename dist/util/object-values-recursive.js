@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.objectValuesRecursive = void 0;
 /**
  * Recursively extracts values from an object's properties, including nested objects.
  * Returns the values in a flattened array. If input is not an object, it's returned as a single-element array.
@@ -14,5 +15,5 @@ function objectValuesRecursive(obj) {
     }
     return obj;
 }
-exports.default = objectValuesRecursive;
+exports.objectValuesRecursive = objectValuesRecursive;
 ;

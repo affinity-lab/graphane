@@ -1,6 +1,6 @@
-import FileDescriptor from "../../../util/file-descriptor";
-import Catalog from "../catalog";
-export default class FileAttachment {
+import { FileDescriptor } from "../../../util/file-descriptor";
+import { Catalog } from "../catalog";
+export declare class FileAttachment {
     static mimeTypePattern: string | string[];
     size: number;
     name: string;

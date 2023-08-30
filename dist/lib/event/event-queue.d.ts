@@ -1,5 +1,5 @@
-import BaseEvent from "./base-event";
-export default class EventQueue {
+import { BaseEvent } from "./base-event";
+export declare class EventQueue {
     private handler;
     handling: Promise<any>;
     constructor(handler: ((event: BaseEvent) => void));

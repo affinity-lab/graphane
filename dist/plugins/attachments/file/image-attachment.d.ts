@@ -1,6 +1,6 @@
-import FileDescriptor from "../../../util/file-descriptor";
-import Catalog from "../catalog";
-import FileAttachment from "./file-attachment";
+import { FileDescriptor } from "../../../util/file-descriptor";
+import { Catalog } from "../catalog";
+import { FileAttachment } from "./file-attachment";
 declare class ImgDimension {
     width: number;
     height: number;
@@ -19,7 +19,7 @@ export declare enum ImgFocus {
     ENTROPY = "entropy",
     ATTENTION = "attention"
 }
-export default class ImageAttachment extends FileAttachment {
+export declare class ImageAttachment extends FileAttachment {
     static mimeTypePattern: string;
     dimensions: ImgDimension;
     dominant: ImgRGB;

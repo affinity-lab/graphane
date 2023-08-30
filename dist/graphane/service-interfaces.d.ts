@@ -1,5 +1,5 @@
-import Application from "./application/application";
-import Module from "./module/module";
+import { Application } from "./application/application";
+import { Module } from "./module/module";
 export interface Jwt<T> {
     decode(token: string | undefined): T | undefined;
     encode(payload: T, expires?: string): string | undefined;

@@ -1,3 +1,3 @@
-export default abstract class Formatter {
+export declare abstract class Formatter {
     abstract format(message: any): string | undefined;
 }

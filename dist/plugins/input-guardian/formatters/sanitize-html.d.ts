@@ -1,1 +1,1 @@
-export default function SanitizeHTML(target: any, key: any): void;
+export declare function SanitizeHTML(target: any, key: any): void;

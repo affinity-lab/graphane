@@ -1,11 +1,11 @@
 import {NonEmptyArray} from "../../../util/types";
-import Authorizable from "../authorizable";
-import Application from "../../../graphane/application/application";
-import fatalError from "../../../error/fatal-error";
-import AuthError from "../auth-error";
+import {Authorizable} from "../authorizable";
+import {Application} from "../../../graphane/application/application";
+import {fatalError} from "../../../error/fatal-error";
+import {AuthError} from "../auth-error";
 
 
-export default abstract class AbstractGuard {
+export abstract class AbstractGuard {
 	static app?: Application;
 
 	public app: Application;

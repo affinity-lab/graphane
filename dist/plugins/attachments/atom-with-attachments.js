@@ -8,13 +8,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.AtomWithAttachments = void 0;
 const typeorm_1 = require("typeorm");
-const atom_1 = __importDefault(require("../../graphane/carbonite/atom"));
-class AtomWithAttachments extends atom_1.default {
+const atom_1 = require("../../graphane/carbonite/atom");
+class AtomWithAttachments extends atom_1.Atom {
     constructor() {
         super(...arguments);
         this.attachments = {};
@@ -22,7 +20,7 @@ class AtomWithAttachments extends atom_1.default {
     getCatalog(name) { return this.constructor.catalogs[name](this); }
     ;
 }
-exports.default = AtomWithAttachments;
+exports.AtomWithAttachments = AtomWithAttachments;
 __decorate([
     (0, typeorm_1.Column)({ type: "json" }),
     __metadata("design:type", Object)

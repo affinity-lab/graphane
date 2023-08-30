@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.CurrentAuthorized = void 0;
 class CurrentAuthorized {
     constructor(reader) {
         this.reader = reader;
@@ -13,4 +14,4 @@ class CurrentAuthorized {
     }
     ;
 }
-exports.default = CurrentAuthorized;
+exports.CurrentAuthorized = CurrentAuthorized;
