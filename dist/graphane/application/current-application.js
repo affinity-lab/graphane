@@ -6,9 +6,9 @@ class CurrentApplication {
         this.reader = reader;
     }
     ;
-    get(req) {
+    async get(req) {
         if (!req.context.has("APPLICATION")) {
-            req.context.set("APPLICATION", this.reader(req));
+            req.context.set("APPLICATION", await this.reader(req));
         }
         return req.context.get("APPLICATION");
     }

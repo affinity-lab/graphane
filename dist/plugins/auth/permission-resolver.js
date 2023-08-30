@@ -12,7 +12,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PermissionResolver = exports.Permissions = void 0;
+exports.createPermissionResolver = exports.Permissions = void 0;
 const type_graphql_1 = require("type-graphql");
 const graphql_type_json_1 = require("graphql-type-json");
 const context_1 = require("../../graphane/server/context");
@@ -31,32 +31,23 @@ exports.Permissions = Permissions = __decorate([
     (0, type_graphql_1.ObjectType)(),
     __metadata("design:paramtypes", [Object])
 ], Permissions);
-class PermissionResolver {
-    constructor(currentApplication, currentAuthorized) {
-        this.currentApplication = currentApplication;
-        this.currentAuthorized = currentAuthorized;
-    }
-    ;
-    create(app, guardFactory) {
-        const currentApplication = this.currentApplication;
-        const currentAuthorized = this.currentAuthorized;
-        let PermissionResolver = class PermissionResolver {
-            async getMyPermissionsInApp(ctx) {
-                return new Permissions(await guardFactory(currentApplication.get(ctx.request), currentAuthorized.get(ctx.request)).getRoles());
-            }
-        };
-        __decorate([
-            app.px.Query(() => Permissions, { description: "Return the values of all exportRole guards of the app" }),
-            __param(0, (0, type_graphql_1.Ctx)()),
-            __metadata("design:type", Function),
-            __metadata("design:paramtypes", [context_1.Context]),
-            __metadata("design:returntype", Promise)
-        ], PermissionResolver.prototype, "getMyPermissionsInApp", null);
-        PermissionResolver = __decorate([
-            (0, type_graphql_1.Resolver)(Permissions)
-        ], PermissionResolver);
-        return PermissionResolver;
-    }
-    ;
+function createPermissionResolver(app, guard) {
+    let PermissionResolver = class PermissionResolver {
+        async getMyPermissionsInApp(context) {
+            return new Permissions(await guard(context).getRoles());
+        }
+        ;
+    };
+    __decorate([
+        app.px.Query(() => Permissions, { description: "Return the values of all exportRole guards of the app" }),
+        __param(0, (0, type_graphql_1.Ctx)()),
+        __metadata("design:type", Function),
+        __metadata("design:paramtypes", [context_1.Context]),
+        __metadata("design:returntype", Promise)
+    ], PermissionResolver.prototype, "getMyPermissionsInApp", null);
+    PermissionResolver = __decorate([
+        (0, type_graphql_1.Resolver)(Permissions)
+    ], PermissionResolver);
+    return PermissionResolver;
 }
-exports.PermissionResolver = PermissionResolver;
+exports.createPermissionResolver = createPermissionResolver;

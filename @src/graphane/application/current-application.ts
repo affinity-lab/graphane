@@ -3,11 +3,11 @@ import {Application} from "./application";
 
 
 export class CurrentApplication {
-	constructor(private reader: (req: Request) => Application | undefined) {};
+	constructor(private reader: (req: Request) => Promise<Application | undefined>) {};
 
-	get(req: Request) {
+	async get(req: Request): Promise<Application | undefined> {
 		if (!req.context.has("APPLICATION")) {
-			req.context.set("APPLICATION", this.reader(req));
+			req.context.set("APPLICATION", await this.reader(req));
 		}
 		return req.context.get("APPLICATION");
 	};

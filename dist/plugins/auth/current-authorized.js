@@ -6,11 +6,15 @@ class CurrentAuthorized {
         this.reader = reader;
     }
     ;
-    get(req) {
+    async get(req) {
         if (!req.context.has("AUTHORIZED")) {
-            req.context.set("AUTHORIZED", this.reader(req));
+            req.context.set("AUTHORIZED", await this.reader(req));
         }
         return req.context.get("AUTHORIZED");
+    }
+    ;
+    async id(req) {
+        return (await this.get(req))?.id;
     }
     ;
 }
