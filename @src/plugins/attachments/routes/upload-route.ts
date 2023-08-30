@@ -8,13 +8,13 @@ import {UploadTokenPayload} from "../upload-token-payload";
 
 
 export function createUploadRoute(
-	app: Express,
+	exp: Express,
 	endpoint: string,
 	uploadOptions: Record<string, any>,
 	currentAuthorized: CurrentAuthorized,
 	jwt: Jwt<UploadTokenPayload>
 ): void {
-	app.use(
+	exp.use(
 		endpoint,
 		checkFileTokenMiddleware(jwt, currentAuthorized),
 		uploadFileMiddleware(uploadOptions),

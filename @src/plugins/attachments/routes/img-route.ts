@@ -4,13 +4,13 @@ import {imgNotFoundMiddleware} from "../middlewares/img/img-not-found-middleware
 
 
 export function imgDownloadRoute(
-	app: Express,
+	exp: Express,
 	endpoint: string,
 	fileStoragePath: string,
 	imgStoragePath: string,
 	imgMaxAge: string | number
 ): void {
-	app.use(
+	exp.use(
 		resolveImgLocationMiddleware.route(endpoint),
 		express.Router({mergeParams: true}).use(
 			resolveImgLocationMiddleware(imgStoragePath),

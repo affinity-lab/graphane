@@ -4,12 +4,12 @@ import {fileNotFoundMiddleware} from "../middlewares/download/file-not-found-mid
 
 
 export function downloadRoute(
-	app: Express,
+	exp: Express,
 	endpoint: string,
 	fileStoragePath: string,
 	fileMaxAge: string | number
 ): void {
-	app.use(
+	exp.use(
 		resolveFileLocationMiddleware.route(endpoint),
 		express.Router({mergeParams: true}).use(
 			resolveFileLocationMiddleware(),
