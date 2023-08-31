@@ -1,24 +1,23 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.exceptionHandler = void 0;
-const process_1 = __importDefault(require("process"));
+const preprocess_error_tree_1 = require("../../../error/preprocess-error-tree");
 function exceptionHandler(mainLogger, currentApplication) {
-    return (req, res, next) => {
-        process_1.default.on("uncaughtException", (e) => console.log(e));
-        try {
-            next();
+    return (error, req, res, next) => {
+        const app = currentApplication.get(req);
+        if (app?.logger !== undefined)
+            app.logger.error(error);
+        else
+            mainLogger.error(error);
+        if (error instanceof preprocess_error_tree_1.GraphaneException) {
+            res.status(error.status);
+            res.json(error.errorData);
         }
-        catch (e) {
-            const app = currentApplication.get(req);
-            if (app === undefined || app.logger === undefined)
-                mainLogger.error(e);
-            else
-                app.logger.error(e);
-            res.status(400).send(e);
+        else {
+            res.status(500);
+            res.json({ error: error.message });
         }
+        next();
     };
 }
 exports.exceptionHandler = exceptionHandler;
