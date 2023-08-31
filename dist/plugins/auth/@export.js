@@ -17,6 +17,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 require("./init-plugin");
 __exportStar(require("./authorizable"), exports);
 __exportStar(require("./current-authorized"), exports);
+__exportStar(require("./current-authorized-middleware"), exports);
 __exportStar(require("./permission-resolver"), exports);
 __exportStar(require("./auth-error"), exports);
 __exportStar(require("./guard/guard"), exports);
