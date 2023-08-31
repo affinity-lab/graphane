@@ -1,8 +1,20 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.preprocessErrorTree = void 0;
+exports.preprocessErrorTree = exports.GraphaneException = void 0;
 const snake_case_1 = require("snake-case");
 const index_1 = require("graphql/index");
+class GraphaneException extends index_1.GraphQLError {
+    get status() { return this.extensions.graphane.status; }
+    get errorData() {
+        const data = this.extensions.graphane;
+        return {
+            code: data.code,
+            message: data.status ? data.message : "",
+            info: data.status ? data.info : {}
+        };
+    }
+}
+exports.GraphaneException = GraphaneException;
 function preprocessErrorTree(errors, prefix = "") {
     for (const prop of Object.getOwnPropertyNames(errors)) {
         if (typeof errors[prop] === "object") {
