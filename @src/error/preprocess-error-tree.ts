@@ -33,7 +33,7 @@ export function preprocessErrorTree(errors: Record<string, any>, prefix: string 
 			const code: string = snakeCase(prefix + "_" + prop).toUpperCase();
 			errors[prop] = (...args: Array<any>) => {
 				const graphane = {info: null, code, message: code, ...originalMethod(...args)};
-				const error: GraphQLError = new GraphQLError(graphane.code + ": " + graphane.message);
+				const error: GraphaneException = new GraphaneException(graphane.code + ": " + graphane.message);
 				error.extensions.graphane = graphane;
 				return error;
 			};
