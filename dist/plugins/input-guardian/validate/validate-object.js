@@ -3,6 +3,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.validateObject = void 0;
 const class_validator_1 = require("class-validator");
 async function validateObject(data, onError) {
+    if (typeof data !== "object")
+        return true;
     let errors = await (0, class_validator_1.validate)(data);
     if (errors.length == 0) {
         return true;
