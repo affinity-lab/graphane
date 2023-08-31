@@ -5,6 +5,6 @@ export declare class Jwt<T> {
     private readonly expires?;
     private readonly algorithm;
     constructor(secret: string, expires?: string | undefined, algorithm?: jwt.Algorithm);
-    decode(token: string | undefined): T | undefined;
-    encode(payload: T, expires?: string): string;
+    decode<R = T>(token: string | undefined): R | undefined;
+    encode<I = T>(payload: I, expires?: string): string;
 }
