@@ -40,9 +40,8 @@ class PrefixedApplication extends prefixed_1.Prefixed {
         if (typeof name === "string")
             options.name = name;
         const middlewares = [
-            ...graphane_1.graphane.resolverDecoratorsBefore,
             typeof returnTypeFunc == "undefined" ? which(options) : which(returnTypeFunc, options),
-            ...graphane_1.graphane.resolverDecoratorsAfter
+            ...graphane_1.graphane.resolverDecorators
         ];
         return { middlewares, name: options.name };
     }
