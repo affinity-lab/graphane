@@ -1,13 +1,13 @@
-type Address = {
+export type Address = {
 	name: string,
 	email: string
 }
-type MailData = {
+export type MailData = {
 	subject: string,
 	text: string,
 	html: string
 }
-type Email = {
+export type Email = {
 	to: Address,
 	from: Address,
 	data: MailData
