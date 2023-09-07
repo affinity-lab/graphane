@@ -52,8 +52,11 @@ export class PrefixedApplication extends Prefixed {
 		} = getTypeDecoratorParams(returnTypeFuncOrOptions, maybeOptions);
 		if (options === undefined) options = {};
 		if (typeof name === "string") options.name = name;
-		const middlewares: MethodDecorator[] = [typeof returnTypeFunc == "undefined" ? which(options) : which(returnTypeFunc, options)];
-		middlewares.push(...graphane.resolverDecorators);
+		const middlewares: MethodDecorator[] = [
+			...graphane.resolverDecoratorsBefore,
+			typeof returnTypeFunc == "undefined" ? which(options) : which(returnTypeFunc, options),
+			...graphane.resolverDecoratorsAfter
+		];
 		return {middlewares, name: options.name};
 	};
 

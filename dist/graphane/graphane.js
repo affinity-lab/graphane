@@ -3,9 +3,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.graphane = void 0;
 class Graphane {
     constructor() {
-        this.resolverDecorators = [];
+        this.resolverDecoratorsAfter = [];
+        this.resolverDecoratorsBefore = [];
     }
-    addResolverDecorator(decorator) { this.resolverDecorators.push(decorator); }
+    addResolverDecoratorAfter(decorator) { this.resolverDecoratorsAfter.push(decorator); }
+    ;
+    addResolverDecoratorBefore(decorator) { this.resolverDecoratorsBefore.push(decorator); }
     ;
 }
 exports.graphane = new Graphane();
