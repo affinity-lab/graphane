@@ -10,4 +10,4 @@ export function resolveFileLocationMiddleware() {
 }
 
 resolveFileLocationMiddleware.locationParams = "/:module/:entity/:id/:catalog/:file";
-resolveFileLocationMiddleware.route = (baseUrl: string): string => baseUrl + "/:module/:entity/:id/:catalog/:file";
+resolveFileLocationMiddleware.route = (baseUrl: string): string => baseUrl + resolveFileLocationMiddleware.locationParams;

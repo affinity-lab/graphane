@@ -12,4 +12,4 @@ export function resolveImgLocationMiddleware(storagePath: string) {
 }
 
 resolveImgLocationMiddleware.locationParams = "/:module/:entity/:id/:catalog/:width.:height.:focus.:ver.:originalExt/:file.:ext";
-resolveImgLocationMiddleware.route = (baseUrl: string): string => baseUrl + "/:module/:entity/:id/:catalog/:width.:height.:focus.:ver.:originalExt/:file.:ext";
+resolveImgLocationMiddleware.route = (baseUrl: string): string => baseUrl + resolveImgLocationMiddleware.locationParams;
