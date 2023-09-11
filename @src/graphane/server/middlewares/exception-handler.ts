@@ -6,8 +6,8 @@ import {Application} from "../../application/application";
 
 
 export function exceptionHandler(mainLogger: Logger, currentApplication: CurrentApplication) {
-	return (error: Error, req: Request, res: Response, next: NextFunction): void => {
-		const app: Application | undefined = currentApplication.get(req);
+	return async (error: Error, req: Request, res: Response, next: NextFunction): Promise<void> => {
+		const app: Application | undefined = await currentApplication.fetch(req);
 		if (app?.logger !== undefined) app.logger.error(error);
 		else mainLogger.error(error);
 		if (error instanceof GraphaneException) {

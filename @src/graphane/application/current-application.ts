@@ -15,7 +15,7 @@ export class CurrentApplication {
 	public readonly fail: Fail;
 
 	async fetch(ctx: Context): Promise<Application | undefined>
-	async fetch(rea: Request): Promise<Application | undefined>
+	async fetch(reg: Request): Promise<Application | undefined>
 	async fetch(reqOrCtx: Request | Context): Promise<Application | undefined> {
 		let req: Request = reqOrCtx instanceof Context ? reqOrCtx.request : reqOrCtx;
 		if (!req.context.has("APPLICATION")) req.context.set("APPLICATION", await this.query(req));

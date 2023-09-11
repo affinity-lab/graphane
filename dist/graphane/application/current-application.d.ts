@@ -6,7 +6,7 @@ export declare class CurrentApplication {
     constructor(query: (req: Request) => Promise<Application | undefined>);
     readonly fail: Fail;
     fetch(ctx: Context): Promise<Application | undefined>;
-    fetch(rea: Request): Promise<Application | undefined>;
+    fetch(reg: Request): Promise<Application | undefined>;
     get(req: Request): Application | undefined;
     get(ctx: Context): Application | undefined;
 }
