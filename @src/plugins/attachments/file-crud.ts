@@ -30,23 +30,23 @@ export class FileCrud<Entity extends AtomWithAttachments> {
 				return this.jwt.encode({module: this.entity.module, entity: this.entity.name, id, catalog, user: this.currentAuthorized.fail.id(context.request)});
 			case "delete":
 				this.checkVariablesExist(variables, "fileName");
-				await catalogInstance.removeFiles(variables.fileName as string);
+				await catalogInstance.removeFiles(variables.fileName!);
 				return;
 			case "rename":
 				this.checkVariablesExist(variables, "fileName", "newName");
-				await catalogInstance.renameFile(variables.fileName as string, variables.newName!);
+				await catalogInstance.renameFile(variables.fileName!, variables.newName!);
 				return;
 			case "reorder":
 				this.checkVariablesExist(variables, "fileName", "index");
-				await catalogInstance.reorderFiles(variables.fileName as string, variables.index!);
+				await catalogInstance.reorderFiles(variables.fileName!, variables.index!);
 				return;
 			case "giveTitle":
 				this.checkVariablesExist(variables, "fileName", "title");
-				await catalogInstance.giveTitleToFile(variables.fileName as string, variables.title!);
+				await catalogInstance.giveTitleToFile(variables.fileName!, variables.title!);
 				return;
 			case "changeImageFocus":
 				this.checkVariablesExist(variables, "fileName", "imageFocus");
-				await catalogInstance.changeImageFocus(variables.fileName as string, variables.imageFocus as ImgFocus);
+				await catalogInstance.changeImageFocus(variables.fileName!, variables.imageFocus!);
 				return;
 			default:
 				throw AttachmentError.fileCrud.unknownCommand(command);
