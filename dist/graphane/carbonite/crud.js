@@ -10,21 +10,37 @@ class BasicCrud {
         this.storageKey = storageKey;
     }
     ;
-    async readAll(options) { return await this.entity.find(options); }
+    async readAll(options) {
+        return await this.entity.find(options);
+    }
     ;
-    async readOne(options) { return await this.entity.findOne(options) ?? undefined; }
+    async readOne(options) {
+        return await this.entity.findOne(options) ?? undefined;
+    }
     ;
-    async readOneOrFail(options) { return await this.entity.findOneOrFail(options); }
+    async readOneOrFail(options) {
+        return await this.entity.findOneOrFail(options);
+    }
     ;
-    async readOneBy(options) { return await this.entity.findOneBy(options) ?? undefined; }
+    async readOneBy(options) {
+        return await this.entity.findOneBy(options) ?? undefined;
+    }
     ;
-    async readOneByOrFail(options) { return await this.entity.findOneByOrFail(options) ?? undefined; }
+    async readOneByOrFail(options) {
+        return await this.entity.findOneByOrFail(options);
+    }
     ;
-    async readOneById(id) { return await this.entity.findOneBy({ id }) ?? undefined; }
+    async readOneById(id) {
+        return await this.entity.findOneBy({ id }) ?? undefined;
+    }
     ;
-    async readOneByIdOrFail(id) { return await this.entity.findOneByOrFail({ id }); }
+    async readOneByIdOrFail(id) {
+        return await this.entity.findOneByOrFail({ id });
+    }
     ;
-    async create(data) { return await this.entity.create(await this.loadRelations(data)).save(); }
+    async create(data) {
+        return await this.entity.create(await this.loadRelations(data)).save();
+    }
     ;
     async update(id, data) {
         return Object.assign(await this.entity.findOneByOrFail({ id }), await this.loadRelations(data)).save();

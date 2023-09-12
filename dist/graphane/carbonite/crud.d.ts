@@ -16,7 +16,7 @@ export declare class BasicCrud<Entity extends Atom> {
     readOne(options: FindOneOptions<Entity>): Promise<Entity | undefined>;
     readOneOrFail(options: FindOneOptions<Entity>): Promise<Entity>;
     readOneBy(options: FindOptionsWhere<Entity>): Promise<Entity | undefined>;
-    readOneByOrFail(options: FindOptionsWhere<Entity>): Promise<Entity | undefined>;
+    readOneByOrFail(options: FindOptionsWhere<Entity>): Promise<Entity>;
     readOneById(id: number): Promise<Entity | undefined>;
     readOneByIdOrFail(id: number): Promise<Entity>;
     create(data: PartialAtom<Entity>): Promise<Entity>;
