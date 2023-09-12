@@ -42,8 +42,8 @@ function handleFileMiddleware() {
             throw attachment_error_1.AttachmentError.upload.failed(`Upload to entity with no attachments: ${entityType.Ident}`);
         }
         const withAttachments = entityType;
-        const entity = await withAttachments.findOneBy({ id: token.id });
-        if (entity == null) {
+        const entity = await withAttachments.crud.readOneBy({ id: token.id });
+        if (entity == undefined) {
             throw attachment_error_1.AttachmentError.upload.failed(`Upload to not existing entity: ${entityType.Ident}#${token.id}`);
         }
         let file;
