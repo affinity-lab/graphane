@@ -1,4 +1,4 @@
-export default class Scheduler {
+export declare class Scheduler {
     private path?;
     static make(interval: string, job: () => void, random?: number): Descriptor;
     private jobs;

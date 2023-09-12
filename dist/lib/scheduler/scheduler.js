@@ -26,6 +26,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Scheduler = void 0;
 const cron_1 = require("cron");
 const fs = __importStar(require("fs"));
 const fast_glob_1 = __importDefault(require("fast-glob"));
@@ -70,4 +71,4 @@ class Scheduler {
         }
     }
 }
-exports.default = Scheduler;
+exports.Scheduler = Scheduler;

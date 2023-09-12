@@ -3,7 +3,7 @@ import * as fs from "fs";
 import fg from "fast-glob";
 
 
-export default class Scheduler {
+export class Scheduler {
 
 	static make(interval: string, job: () => void, random?: number): Descriptor {return {interval, job, random};}
 
