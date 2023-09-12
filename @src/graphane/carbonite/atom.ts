@@ -1,5 +1,7 @@
 import {BaseEntity, PrimaryGeneratedColumn} from "typeorm";
 import {BasicCrud} from "./crud";
+import {Field} from "type-graphql";
+import {MaterializeIt} from "../../util/materialize-it";
 
 
 export class Atom extends BaseEntity {
@@ -10,5 +12,7 @@ export class Atom extends BaseEntity {
 	@PrimaryGeneratedColumn()
 	id: number;
 
+	@Field()
+	@MaterializeIt()
 	get ident(): string {return `${(this.constructor as typeof Atom).module}/${this.constructor.name}/${this.id}`;};
 }

@@ -77,6 +77,7 @@ let ImageAttachment = ImageAttachment_1 = class ImageAttachment extends file_att
         image.dimensions = { width: img.meta.width || 0, height: img.meta.height || 0 };
         image.dominant = img.stats.dominant;
         image.isAnimated = img.meta.pages ? img.meta.pages > 1 : false;
+        image.version = Math.floor(Date.now() / 1000);
     }
     ;
 };
@@ -98,6 +99,10 @@ __decorate([
     (0, type_graphql_1.Field)(),
     __metadata("design:type", String)
 ], ImageAttachment.prototype, "focus", void 0);
+__decorate([
+    (0, type_graphql_1.Field)(),
+    __metadata("design:type", Number)
+], ImageAttachment.prototype, "version", void 0);
 exports.ImageAttachment = ImageAttachment = ImageAttachment_1 = __decorate([
     (0, type_graphql_1.ObjectType)()
 ], ImageAttachment);

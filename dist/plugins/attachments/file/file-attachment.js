@@ -25,7 +25,6 @@ let FileAttachment = FileAttachment_1 = class FileAttachment {
         file.name = descriptor.name;
         file.title = descriptor.parsedPath.base;
         file.location = catalog.owner.ident + "/" + catalog.name;
-        file.version = Math.floor(Date.now() / 1000);
     }
     ;
 };
@@ -51,10 +50,6 @@ __decorate([
     (0, type_graphql_1.Field)(),
     __metadata("design:type", String)
 ], FileAttachment.prototype, "location", void 0);
-__decorate([
-    (0, type_graphql_1.Field)(),
-    __metadata("design:type", Number)
-], FileAttachment.prototype, "version", void 0);
 exports.FileAttachment = FileAttachment = FileAttachment_1 = __decorate([
     (0, type_graphql_1.ObjectType)()
 ], FileAttachment);

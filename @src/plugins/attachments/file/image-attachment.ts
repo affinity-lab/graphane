@@ -45,6 +45,9 @@ export class ImageAttachment extends FileAttachment {
 	@Field()
 	public focus: ImgFocus = ImgFocus.ATTENTION;
 
+	@Field()
+	version: number;
+
 	static async factory(descriptor: FileDescriptor, catalog: Catalog): Promise<ImageAttachment> {
 		let image: ImageAttachment = new ImageAttachment();
 		await this.setup(image, descriptor, catalog);
@@ -63,5 +66,6 @@ export class ImageAttachment extends FileAttachment {
 		image.dimensions = {width: img.meta.width || 0, height: img.meta.height || 0};
 		image.dominant = img.stats.dominant;
 		image.isAnimated = img.meta.pages ? img.meta.pages > 1 : false;
+		image.version = Math.floor(Date.now() / 1000);
 	};
 }

@@ -7,7 +7,6 @@ export declare class FileAttachment {
     mimeType: string;
     title: string;
     location: string;
-    version: number;
     static factory(descriptor: FileDescriptor, catalog: Catalog): Promise<FileAttachment>;
     protected static setup(file: FileAttachment, descriptor: FileDescriptor, catalog: Catalog): Promise<void>;
 }

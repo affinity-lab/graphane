@@ -25,6 +25,7 @@ export declare class ImageAttachment extends FileAttachment {
     dominant: ImgRGB;
     isAnimated: boolean;
     focus: ImgFocus;
+    version: number;
     static factory(descriptor: FileDescriptor, catalog: Catalog): Promise<ImageAttachment>;
     protected static setup(image: ImageAttachment, descriptor: FileDescriptor, catalog: Catalog): Promise<void>;
 }

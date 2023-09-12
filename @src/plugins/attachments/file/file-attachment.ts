@@ -22,9 +22,6 @@ export class FileAttachment {
 	@Field()
 	location: string;
 
-	@Field()
-	version: number;
-
 	static async factory(descriptor: FileDescriptor, catalog: Catalog): Promise<FileAttachment> {
 		let file: FileAttachment = new FileAttachment();
 		await this.setup(file, descriptor, catalog);
@@ -37,6 +34,5 @@ export class FileAttachment {
 		file.name = descriptor.name;
 		file.title = descriptor.parsedPath.base;
 		file.location = catalog.owner.ident + "/" + catalog.name;
-		file.version = Math.floor(Date.now() / 1000);
 	};
 }
