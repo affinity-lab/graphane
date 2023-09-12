@@ -1,2 +1,2 @@
 "use strict";
-console.log("Auth plugin initialized.");
+console.log("👮 Auth plugin initialized.");

@@ -1,1 +1,1 @@
-console.log("Attachment plugin initialized.");
+console.log("📄️Attachment plugin initialized.");

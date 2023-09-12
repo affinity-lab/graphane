@@ -29,7 +29,7 @@ export class Scheduler {
 		if (delay === undefined) {
 			this.load();
 			this.jobs.map(job => job.start());
-			console.log("Job Scheduler started.");
+			console.log(`⏰  Job Scheduler started (${this.jobs.length} job${this.jobs.length !== 1 ? "s" : ""}).`);
 		} else {
 			setTimeout(() => this.start(), delay * 1000);
 		}

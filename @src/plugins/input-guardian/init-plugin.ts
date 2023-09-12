@@ -4,4 +4,4 @@ import {graphane} from "../../graphane/graphane";
 
 graphane.addResolverDecorator(InputGuardian);
 
-console.log("Input Guardian plugin initialized.");
+console.log("☑️ Input Guardian plugin initialized.");
