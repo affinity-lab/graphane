@@ -1,7 +1,6 @@
 import {NonEmptyArray} from "../../../util/types";
 import {Authorizable} from "../authorizable";
 import {Application} from "../../../graphane/application/application";
-import {fatalError} from "../../../error/fatal-error";
 import {AuthError} from "../auth-error";
 
 
