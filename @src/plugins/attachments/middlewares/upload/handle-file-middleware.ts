@@ -23,8 +23,8 @@ export function handleFileMiddleware() {
 			throw AttachmentError.upload.failed(`Upload to entity with no attachments: ${entityType.Ident}`);
 		}
 		const withAttachments = entityType as typeof AtomWithAttachments;
-		const entity: AtomWithAttachments | null = await withAttachments.findOneBy({id: token.id});
-		if (entity == null) {
+		const entity: AtomWithAttachments | undefined = await withAttachments.crud.readOneBy({id: token.id});
+		if (entity == undefined) {
 			throw AttachmentError.upload.failed(`Upload to not existing entity: ${entityType.Ident}#${token.id}`);
 		}
 		let file: SentFile;
