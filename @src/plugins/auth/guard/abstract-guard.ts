@@ -11,7 +11,6 @@ export abstract class AbstractGuard {
 	public app: Application;
 
 	constructor(public user: Authorizable | undefined, app?: Application) {
-		if (AbstractGuard.app.length === 0) throw fatalError("Allowed application(s) not defined in guard.");
 		if (app === undefined) throw AuthError.unauthorized();
 		this.app = app;
 	};
