@@ -6,8 +6,10 @@ const auth_error_1 = require("../auth-error");
 class AbstractGuard {
     constructor(user, app) {
         this.user = user;
+        if (AbstractGuard.app.length === 0)
+            throw (0, fatal_error_1.fatalError)("Allowed application(s) not defined in guard.");
         if (app === undefined)
-            throw (0, fatal_error_1.fatalError)("Resolver called without application.");
+            throw auth_error_1.AuthError.unauthorized();
         this.app = app;
     }
     ;
@@ -52,3 +54,4 @@ class AbstractGuard {
     ;
 }
 exports.AbstractGuard = AbstractGuard;
+AbstractGuard.app = [];

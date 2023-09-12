@@ -6,12 +6,13 @@ import {AuthError} from "../auth-error";
 
 
 export abstract class AbstractGuard {
-	static app?: Application;
+	static app: Application[] = [];
 
 	public app: Application;
 
 	constructor(public user: Authorizable | undefined, app?: Application) {
-		if (app === undefined) throw fatalError("Resolver called without application.");
+		if (AbstractGuard.app.length === 0) throw fatalError("Allowed application(s) not defined in guard.");
+		if (app === undefined) throw AuthError.unauthorized();
 		this.app = app;
 	};
 

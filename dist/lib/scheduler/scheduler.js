@@ -32,12 +32,14 @@ const fs = __importStar(require("fs"));
 const fast_glob_1 = __importDefault(require("fast-glob"));
 class Scheduler {
     static make(interval, job, random) { return { interval, job, random }; }
+    ;
     constructor(path) {
         this.path = path;
         this.jobs = [];
         if (this.path !== undefined)
-            this.path = fs.realpathSync(this.path);
+            this.path = fs.realpathSync(this.path).replaceAll("\\", "/");
     }
+    ;
     add(interval, job, random) {
         if (random !== undefined) {
             this.jobs.push(new cron_1.CronJob(interval, () => {
@@ -50,6 +52,7 @@ class Scheduler {
         }
         return true;
     }
+    ;
     start(delay) {
         if (delay === undefined) {
             this.load();
@@ -70,5 +73,6 @@ class Scheduler {
             });
         }
     }
+    ;
 }
 exports.Scheduler = Scheduler;
