@@ -1,7 +1,6 @@
 import {Context} from "../../graphane/server/context";
 import {AtomWithAttachments} from "./atom-with-attachments";
 import {Catalog} from "./catalog";
-import {ImgFocus} from "./file/image-attachment";
 import {ChangeFileInput, FileInputVariables} from "./inputs";
 import {UploadTokenPayload} from "./upload-token-payload";
 import {Jwt} from "./service-interfaces";
@@ -27,7 +26,7 @@ export class FileCrud<Entity extends AtomWithAttachments> {
 		let catalogInstance: Catalog = await this.getCatalog(id, catalog);
 		switch (command) {
 			case "upload":
-				return this.jwt.encode({module: this.entity.module, entity: this.entity.name, id, catalog, user: this.currentAuthorized.fail.id(context.request)});
+				return this.jwt.encode({module: this.entity.module, entity: this.entity.name, id, catalog, user: this.currentAuthorized.fail.id(context)});
 			case "delete":
 				this.checkVariablesExist(variables, "fileName");
 				await catalogInstance.removeFiles(variables.fileName!);

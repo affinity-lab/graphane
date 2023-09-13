@@ -21,7 +21,7 @@ class FileCrud {
         let catalogInstance = await this.getCatalog(id, catalog);
         switch (command) {
             case "upload":
-                return this.jwt.encode({ module: this.entity.module, entity: this.entity.name, id, catalog, user: this.currentAuthorized.fail.id(context.request) });
+                return this.jwt.encode({ module: this.entity.module, entity: this.entity.name, id, catalog, user: this.currentAuthorized.fail.id(context) });
             case "delete":
                 this.checkVariablesExist(variables, "fileName");
                 await catalogInstance.removeFiles(variables.fileName);
