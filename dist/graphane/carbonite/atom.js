@@ -13,11 +13,11 @@ exports.Atom = exports.META = void 0;
 const typeorm_1 = require("typeorm");
 const type_graphql_1 = require("type-graphql");
 let META = class META {
-    constructor(module, entity, ident, catalogs = []) {
+    constructor(module, entityName, ident, catalogs = []) {
         this.catalogs = catalogs;
         this.ident = ident;
         this.module = module;
-        this.entity = entity;
+        this.entityName = entityName;
     }
     ;
 };
@@ -37,7 +37,7 @@ __decorate([
 __decorate([
     (0, type_graphql_1.Field)(),
     __metadata("design:type", String)
-], META.prototype, "entity", void 0);
+], META.prototype, "entityName", void 0);
 exports.META = META = __decorate([
     (0, type_graphql_1.ObjectType)(),
     __metadata("design:paramtypes", [String, String, String, Array])

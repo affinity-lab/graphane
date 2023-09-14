@@ -5,11 +5,11 @@ import {Field, ObjectType} from "type-graphql";
 
 @ObjectType()
 export class META {
-	constructor(module: string, entity: string, ident: string, catalogs: string[] = []) {
+	constructor(module: string, entityName: string, ident: string, catalogs: string[] = []) {
 		this.catalogs = catalogs;
 		this.ident = ident;
 		this.module = module;
-		this.entity = entity;
+		this.entityName = entityName;
 	};
 
 	@Field(() => [String])
@@ -22,7 +22,7 @@ export class META {
 	module: string;
 
 	@Field()
-	entity: string;
+	entityName: string;
 }
 
 export class Atom extends BaseEntity {
