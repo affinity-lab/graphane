@@ -1,23 +1,31 @@
 import {snakeCase} from "snake-case";
-import {Field, ID, ObjectTypeOptions} from "type-graphql";
+import {Field, ID, ObjectType, ObjectTypeOptions} from "type-graphql";
 import {MethodAndPropDecorator} from "type-graphql/dist/decorators/types";
 import {Entity} from "typeorm";
 import {EntityOptions} from "typeorm/decorator/options/EntityOptions";
 import {Atom} from "../carbonite/atom";
 import {Module} from "./module";
 import {Prefixed} from "../prefixed";
-import {GraphQLJSONObject} from "graphql-type-json";
+import {GraphQLScalarType} from "graphql/type";
 
 
 type GQLEntityOptions = {objectType?: ObjectTypeOptions, entity?: EntityOptions};
 
 export type AtomClassDecorator = <TFunction extends typeof Atom>(target: TFunction) => void;
 
+@ObjectType()
+export class META extends GraphQLScalarType {
+	catalogs?: string[];
+	ident: string;
+	module: string;
+	entity: string;
+}
+
 export class PrefixedModule extends Prefixed {
 	GQLEntity(options?: GQLEntityOptions): AtomClassDecorator {
 		const entity: AtomClassDecorator = this.Entity(options?.entity);
 		const idField: MethodAndPropDecorator = Field(() => ID);
-		const metaField: MethodAndPropDecorator = Field(() => GraphQLJSONObject);
+		const metaField: MethodAndPropDecorator = Field(() => META);
 		const objectType: AtomClassDecorator = this.ObjectType(options?.objectType);
 		return <TFunction extends typeof Atom>(target: TFunction): void => {
 			entity(target);
