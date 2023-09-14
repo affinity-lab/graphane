@@ -5,5 +5,5 @@ export declare class Atom extends BaseEntity {
     static crud: BasicCrud<Atom>;
     static get Ident(): string;
     id: number;
-    get ident(): string;
+    get META(): Record<string, string | string[] | number>;
 }

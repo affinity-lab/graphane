@@ -6,6 +6,7 @@ import {EntityOptions} from "typeorm/decorator/options/EntityOptions";
 import {Atom} from "../carbonite/atom";
 import {Module} from "./module";
 import {Prefixed} from "../prefixed";
+import {GraphQLJSONObject} from "graphql-type-json";
 
 
 type GQLEntityOptions = {objectType?: ObjectTypeOptions, entity?: EntityOptions};
@@ -16,12 +17,12 @@ export class PrefixedModule extends Prefixed {
 	GQLEntity(options?: GQLEntityOptions): AtomClassDecorator {
 		const entity: AtomClassDecorator = this.Entity(options?.entity);
 		const idField: MethodAndPropDecorator = Field(() => ID);
-		const identField: MethodAndPropDecorator = Field(() => String);
+		const metaField: MethodAndPropDecorator = Field(() => GraphQLJSONObject);
 		const objectType: AtomClassDecorator = this.ObjectType(options?.objectType);
 		return <TFunction extends typeof Atom>(target: TFunction): void => {
 			entity(target);
 			idField(target.prototype, "id");
-			identField(target.prototype, "ident");
+			metaField(target.prototype, "META");
 			objectType<typeof Atom>(target);
 		};
 	};

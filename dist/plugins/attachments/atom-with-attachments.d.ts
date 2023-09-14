@@ -9,4 +9,5 @@ export declare class AtomWithAttachments extends Atom {
     protected static catalogs: Record<string, (owner: AtomWithAttachments) => Catalog>;
     attachments: Record<string, FileAttachment[]>;
     getCatalog(name: string): Catalog | undefined;
+    get META(): Record<string, string | string[] | number>;
 }

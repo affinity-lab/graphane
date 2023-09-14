@@ -14,7 +14,13 @@ const typeorm_1 = require("typeorm");
 class Atom extends typeorm_1.BaseEntity {
     static get Ident() { return `${this.module}/${this.name}`; }
     ;
-    get ident() { return `${this.constructor.module}/${this.constructor.name}/${this.id}`; }
+    get META() {
+        return {
+            ident: `${this.constructor.module}/${this.constructor.name}/${this.id}`,
+            module: this.constructor.module,
+            entity: this.constructor.name
+        };
+    }
     ;
 }
 exports.Atom = Atom;

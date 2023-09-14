@@ -24,7 +24,7 @@ let FileAttachment = FileAttachment_1 = class FileAttachment {
         file.size = await descriptor.size || 0;
         file.name = descriptor.name;
         file.title = descriptor.parsedPath.base;
-        file.location = catalog.owner.ident + "/" + catalog.name;
+        file.location = catalog.owner.META.ident + "/" + catalog.name;
     }
     ;
 };

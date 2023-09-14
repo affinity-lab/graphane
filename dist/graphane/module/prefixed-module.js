@@ -6,16 +6,17 @@ const type_graphql_1 = require("type-graphql");
 const typeorm_1 = require("typeorm");
 const module_1 = require("./module");
 const prefixed_1 = require("../prefixed");
+const graphql_type_json_1 = require("graphql-type-json");
 class PrefixedModule extends prefixed_1.Prefixed {
     GQLEntity(options) {
         const entity = this.Entity(options?.entity);
         const idField = (0, type_graphql_1.Field)(() => type_graphql_1.ID);
-        const identField = (0, type_graphql_1.Field)(() => String);
+        const metaField = (0, type_graphql_1.Field)(() => graphql_type_json_1.GraphQLJSONObject);
         const objectType = this.ObjectType(options?.objectType);
         return (target) => {
             entity(target);
             idField(target.prototype, "id");
-            identField(target.prototype, "ident");
+            metaField(target.prototype, "META");
             objectType(target);
         };
     }

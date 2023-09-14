@@ -15,4 +15,10 @@ export class AtomWithAttachments extends Atom {
 	attachments: Record<string, FileAttachment[]> = {};
 
 	getCatalog(name: string): Catalog | undefined {return (this.constructor as typeof AtomWithAttachments).catalogs[name](this);};
+
+	get META(): Record<string, string | string[] | number> {
+		const result: Record<string, string | string[] | number> = super.META;
+		result.catalogs = Object.keys((this.constructor as typeof AtomWithAttachments).catalogs);
+		return result;
+	};
 }

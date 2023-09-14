@@ -19,6 +19,12 @@ class AtomWithAttachments extends atom_1.Atom {
     }
     getCatalog(name) { return this.constructor.catalogs[name](this); }
     ;
+    get META() {
+        const result = super.META;
+        result.catalogs = Object.keys(this.constructor.catalogs);
+        return result;
+    }
+    ;
 }
 exports.AtomWithAttachments = AtomWithAttachments;
 __decorate([

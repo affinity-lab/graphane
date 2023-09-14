@@ -10,5 +10,11 @@ export class Atom extends BaseEntity {
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	get ident(): string {return `${(this.constructor as typeof Atom).module}/${this.constructor.name}/${this.id}`;};
+	get META(): Record<string, string | string[] | number> {
+		return {
+			ident: `${(this.constructor as typeof Atom).module}/${this.constructor.name}/${this.id}`,
+			module: (this.constructor as typeof Atom).module,
+			entity: this.constructor.name
+		};
+	};
 }

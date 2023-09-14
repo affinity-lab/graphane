@@ -49,7 +49,7 @@ function handleFileMiddleware() {
         let file;
         const catalog = entity.getCatalog(token.catalog);
         if (typeof catalog === "undefined") {
-            throw attachment_error_1.AttachmentError.upload.failed(`Entity: ${entity.ident} has no Catalog: ${token.catalog}`);
+            throw attachment_error_1.AttachmentError.upload.failed(`Entity: ${entity.META.ident} has no Catalog: ${token.catalog}`);
         }
         for (let key in req.files) {
             file = req.files[key];
