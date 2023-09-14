@@ -15,9 +15,16 @@ export type AtomClassDecorator = <TFunction extends typeof Atom>(target: TFuncti
 
 @ObjectType()
 export class META extends GraphQLScalarType {
+	@Field()
 	catalogs?: string[];
+
+	@Field()
 	ident: string;
+
+	@Field()
 	module: string;
+
+	@Field()
 	entity: string;
 }
 
