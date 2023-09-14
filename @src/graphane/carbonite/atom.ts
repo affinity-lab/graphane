@@ -12,8 +12,8 @@ export class Atom extends BaseEntity {
 	id: number;
 
 	@Field()
-	// @MaterializeIt()
 	get ident(): string {return `${(this.constructor as typeof Atom).module}/${this.constructor.name}/${this.id}`;};
-	@Field()
-	iasd: string = "iasd";
+
+	@Field(() => String, {description: "for testing, why?"})
+	testProp: string = "testProp";
 }
