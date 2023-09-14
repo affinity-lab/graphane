@@ -17,7 +17,10 @@ class AtomWithAttachments extends atom_1.Atom {
         super(...arguments);
         this.attachments = {};
     }
-    getCatalog(name) { return this.constructor.catalogs[name](this); }
+    getCatalog(name) {
+        const func = this.constructor.catalogs[name];
+        return func === undefined ? undefined : func(this);
+    }
     ;
     get META() {
         const result = super.META;
