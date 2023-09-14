@@ -3,7 +3,7 @@ import {Catalog} from "./catalog";
 import {FileCrud} from "./file-crud";
 import {FileAttachment} from "./file/file-attachment";
 import {BasicCrud} from "../../graphane/carbonite/crud";
-import {Atom} from "../../graphane/carbonite/atom";
+import {Atom, META} from "../../graphane/carbonite/atom";
 
 
 export class AtomWithAttachments extends Atom {
@@ -16,8 +16,8 @@ export class AtomWithAttachments extends Atom {
 
 	getCatalog(name: string): Catalog | undefined {return (this.constructor as typeof AtomWithAttachments).catalogs[name](this);};
 
-	get META(): Record<string, string | string[] | number> {
-		const result: Record<string, string | string[] | number> = super.META;
+	get META(): META {
+		const result: META = super.META;
 		result.catalogs = Object.keys((this.constructor as typeof AtomWithAttachments).catalogs);
 		return result;
 	};

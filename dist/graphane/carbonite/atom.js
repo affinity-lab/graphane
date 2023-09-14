@@ -9,17 +9,44 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Atom = void 0;
+exports.Atom = exports.META = void 0;
 const typeorm_1 = require("typeorm");
+const type_graphql_1 = require("type-graphql");
+let META = class META {
+    constructor(module, entity, ident, catalogs = []) {
+        this.catalogs = catalogs;
+        this.ident = ident;
+        this.module = module;
+        this.entity = entity;
+    }
+    ;
+};
+exports.META = META;
+__decorate([
+    (0, type_graphql_1.Field)(() => [String]),
+    __metadata("design:type", Array)
+], META.prototype, "catalogs", void 0);
+__decorate([
+    (0, type_graphql_1.Field)(),
+    __metadata("design:type", String)
+], META.prototype, "ident", void 0);
+__decorate([
+    (0, type_graphql_1.Field)(),
+    __metadata("design:type", String)
+], META.prototype, "module", void 0);
+__decorate([
+    (0, type_graphql_1.Field)(),
+    __metadata("design:type", String)
+], META.prototype, "entity", void 0);
+exports.META = META = __decorate([
+    (0, type_graphql_1.ObjectType)(),
+    __metadata("design:paramtypes", [String, String, String, Array])
+], META);
 class Atom extends typeorm_1.BaseEntity {
     static get Ident() { return `${this.module}/${this.name}`; }
     ;
     get META() {
-        return {
-            ident: `${this.constructor.module}/${this.constructor.name}/${this.id}`,
-            module: this.constructor.module,
-            entity: this.constructor.name
-        };
+        return new META(this.constructor.module, this.constructor.name, `${this.constructor.module}/${this.constructor.name}/${this.id}`);
     }
     ;
 }

@@ -1,32 +1,16 @@
 import {snakeCase} from "snake-case";
-import {Field, ID, ObjectType, ObjectTypeOptions} from "type-graphql";
+import {Field, ID, ObjectTypeOptions} from "type-graphql";
 import {MethodAndPropDecorator} from "type-graphql/dist/decorators/types";
 import {Entity} from "typeorm";
 import {EntityOptions} from "typeorm/decorator/options/EntityOptions";
-import {Atom} from "../carbonite/atom";
+import {Atom, META} from "../carbonite/atom";
 import {Module} from "./module";
 import {Prefixed} from "../prefixed";
-import {GraphQLScalarType} from "graphql/type";
 
 
 type GQLEntityOptions = {objectType?: ObjectTypeOptions, entity?: EntityOptions};
 
 export type AtomClassDecorator = <TFunction extends typeof Atom>(target: TFunction) => void;
-
-@ObjectType()
-export class META extends GraphQLScalarType {
-	@Field()
-	catalogs?: string[];
-
-	@Field()
-	ident: string;
-
-	@Field()
-	module: string;
-
-	@Field()
-	entity: string;
-}
 
 export class PrefixedModule extends Prefixed {
 	GQLEntity(options?: GQLEntityOptions): AtomClassDecorator {

@@ -1,6 +1,29 @@
 import {BaseEntity, PrimaryGeneratedColumn} from "typeorm";
 import {BasicCrud} from "./crud";
+import {Field, ObjectType} from "type-graphql";
 
+
+@ObjectType()
+export class META {
+	constructor(module: string, entity: string, ident: string, catalogs: string[] = []) {
+		this.catalogs = catalogs;
+		this.ident = ident;
+		this.module = module;
+		this.entity = entity;
+	};
+
+	@Field(() => [String])
+	catalogs?: string[];
+
+	@Field()
+	ident: string;
+
+	@Field()
+	module: string;
+
+	@Field()
+	entity: string;
+}
 
 export class Atom extends BaseEntity {
 	static module: string;
@@ -10,11 +33,11 @@ export class Atom extends BaseEntity {
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	get META(): Record<string, string | string[] | number> {
-		return {
-			ident: `${(this.constructor as typeof Atom).module}/${this.constructor.name}/${this.id}`,
-			module: (this.constructor as typeof Atom).module,
-			entity: this.constructor.name
-		};
+	get META(): META {
+		return new META(
+			(this.constructor as typeof Atom).module,
+			this.constructor.name,
+			`${(this.constructor as typeof Atom).module}/${this.constructor.name}/${this.id}`
+		);
 	};
 }
