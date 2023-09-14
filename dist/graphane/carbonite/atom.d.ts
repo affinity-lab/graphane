@@ -6,4 +6,5 @@ export declare class Atom extends BaseEntity {
     static get Ident(): string;
     id: number;
     get ident(): string;
+    iasd: string;
 }

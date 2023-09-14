@@ -12,8 +12,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Atom = void 0;
 const typeorm_1 = require("typeorm");
 const type_graphql_1 = require("type-graphql");
-const materialize_it_1 = require("../../util/materialize-it");
 class Atom extends typeorm_1.BaseEntity {
+    constructor() {
+        super(...arguments);
+        this.iasd = "iasd";
+    }
     static get Ident() { return `${this.module}/${this.name}`; }
     ;
     get ident() { return `${this.constructor.module}/${this.constructor.name}/${this.id}`; }
@@ -25,8 +28,13 @@ __decorate([
     __metadata("design:type", Number)
 ], Atom.prototype, "id", void 0);
 __decorate([
-    (0, type_graphql_1.Field)(),
-    (0, materialize_it_1.MaterializeIt)(),
+    (0, type_graphql_1.Field)()
+    // @MaterializeIt()
+    ,
     __metadata("design:type", String),
     __metadata("design:paramtypes", [])
 ], Atom.prototype, "ident", null);
+__decorate([
+    (0, type_graphql_1.Field)(),
+    __metadata("design:type", String)
+], Atom.prototype, "iasd", void 0);
