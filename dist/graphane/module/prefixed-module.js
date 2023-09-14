@@ -9,11 +9,13 @@ const prefixed_1 = require("../prefixed");
 class PrefixedModule extends prefixed_1.Prefixed {
     GQLEntity(options) {
         const entity = this.Entity(options?.entity);
-        const field = (0, type_graphql_1.Field)(() => type_graphql_1.ID);
+        const idField = (0, type_graphql_1.Field)(() => type_graphql_1.ID);
+        const identField = (0, type_graphql_1.Field)(() => String);
         const objectType = this.ObjectType(options?.objectType);
         return (target) => {
             entity(target);
-            field(target.prototype, "id");
+            idField(target.prototype, "id");
+            identField(target.prototype, "ident");
             objectType(target);
         };
     }

@@ -11,12 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Atom = void 0;
 const typeorm_1 = require("typeorm");
-const type_graphql_1 = require("type-graphql");
 class Atom extends typeorm_1.BaseEntity {
-    constructor() {
-        super(...arguments);
-        this.iasd = "iasd";
-    }
     static get Ident() { return `${this.module}/${this.name}`; }
     ;
     get ident() { return `${this.constructor.module}/${this.constructor.name}/${this.id}`; }
@@ -27,14 +22,3 @@ __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)(),
     __metadata("design:type", Number)
 ], Atom.prototype, "id", void 0);
-__decorate([
-    (0, type_graphql_1.Field)()
-    // @MaterializeIt()
-    ,
-    __metadata("design:type", String),
-    __metadata("design:paramtypes", [])
-], Atom.prototype, "ident", null);
-__decorate([
-    (0, type_graphql_1.Field)(),
-    __metadata("design:type", String)
-], Atom.prototype, "iasd", void 0);

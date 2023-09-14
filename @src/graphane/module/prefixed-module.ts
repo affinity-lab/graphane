@@ -15,11 +15,13 @@ export type AtomClassDecorator = <TFunction extends typeof Atom>(target: TFuncti
 export class PrefixedModule extends Prefixed {
 	GQLEntity(options?: GQLEntityOptions): AtomClassDecorator {
 		const entity: AtomClassDecorator = this.Entity(options?.entity);
-		const field: MethodAndPropDecorator = Field(() => ID);
+		const idField: MethodAndPropDecorator = Field(() => ID);
+		const identField: MethodAndPropDecorator = Field(() => String);
 		const objectType: AtomClassDecorator = this.ObjectType(options?.objectType);
 		return <TFunction extends typeof Atom>(target: TFunction): void => {
 			entity(target);
-			field(target.prototype, "id");
+			idField(target.prototype, "id");
+			identField(target.prototype, "ident");
 			objectType<typeof Atom>(target);
 		};
 	};
