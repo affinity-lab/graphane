@@ -30,7 +30,7 @@ export function handleFileMiddleware() {
 		if (typeof catalog === "undefined") {
 			throw AttachmentError.upload.failed(`Entity: ${entity.META.ident} has no Catalog: ${token.catalog}`);
 		}
-		for (let file of Array.isArray(req.files) ? req.files : [req.files]) {
+		for (let file of Array.isArray(req.files.files) ? req.files.files : [req.files.files]) {
 			fs.mkdirSync(file.tempFilePath + "-dir");
 			fs.renameSync(file.tempFilePath, file.tempFilePath + "-dir/" + file.name);
 			await catalog.addFiles(file.tempFilePath + "-dir/" + file.name);
