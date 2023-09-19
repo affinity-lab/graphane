@@ -1,9 +1,12 @@
+/// <reference types="node" />
 export type SentFile = {
     name: string;
-    mv: (uploadPath: string, callback?: (error: Error) => any) => Promise<any>;
-    mimetype: string;
+    data: Buffer;
+    size: number;
+    encoding: string;
     tempFilePath: string;
     truncated: boolean;
-    size: number;
+    mimetype: string;
     md5: () => string;
+    mv: (uploadPath: string, callback?: (error: Error) => any) => Promise<any>;
 };

@@ -46,13 +46,11 @@ function handleFileMiddleware() {
         if (entity == undefined) {
             throw attachment_error_1.AttachmentError.upload.failed(`Upload to not existing entity: ${entityType.Ident}#${token.id}`);
         }
-        let file;
         const catalog = entity.getCatalog(token.catalog);
         if (typeof catalog === "undefined") {
             throw attachment_error_1.AttachmentError.upload.failed(`Entity: ${entity.META.ident} has no Catalog: ${token.catalog}`);
         }
-        for (let key in req.files) {
-            file = req.files[key];
+        for (let file of Array.isArray(req.files) ? req.files : [req.files]) {
             fs.mkdirSync(file.tempFilePath + "-dir");
             fs.renameSync(file.tempFilePath, file.tempFilePath + "-dir/" + file.name);
             await catalog.addFiles(file.tempFilePath + "-dir/" + file.name);

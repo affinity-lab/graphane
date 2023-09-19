@@ -1,7 +1,6 @@
 import {Module} from "../../../../graphane/module/module";
 import {Atom} from "../../../../graphane/carbonite/atom";
 import {Catalog} from "../../catalog";
-import {SentFile} from "../../sent-file";
 import {Request, Response} from "express";
 import * as fs from "fs";
 import {UploadTokenPayload} from "../../upload-token-payload";
@@ -27,13 +26,11 @@ export function handleFileMiddleware() {
 		if (entity == undefined) {
 			throw AttachmentError.upload.failed(`Upload to not existing entity: ${entityType.Ident}#${token.id}`);
 		}
-		let file: SentFile;
 		const catalog: Catalog | undefined = entity.getCatalog(token.catalog);
 		if (typeof catalog === "undefined") {
 			throw AttachmentError.upload.failed(`Entity: ${entity.META.ident} has no Catalog: ${token.catalog}`);
 		}
-		for (let key in req.files) {
-			file = req.files[key];
+		for (let file of Array.isArray(req.files) ? req.files : [req.files]) {
 			fs.mkdirSync(file.tempFilePath + "-dir");
 			fs.renameSync(file.tempFilePath, file.tempFilePath + "-dir/" + file.name);
 			await catalog.addFiles(file.tempFilePath + "-dir/" + file.name);
