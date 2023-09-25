@@ -12,6 +12,10 @@ export declare class GraphaneException extends GraphQLError {
     get status(): number;
     get errorData(): {
         code: string;
+        message?: undefined;
+        info?: undefined;
+    } | {
+        code: string;
         message: string | undefined;
         info: Record<string, any> | undefined;
     };

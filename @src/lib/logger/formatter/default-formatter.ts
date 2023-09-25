@@ -4,7 +4,6 @@ import {Formatter} from "./formatter";
 export class DefaultFormatter extends Formatter {
 	format(message: any): string {
 		if (typeof message === "string") return message;
-
 		try {
 			return JSON.stringify(message);
 		} catch (e) {

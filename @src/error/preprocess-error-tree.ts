@@ -16,7 +16,7 @@ export class GraphaneException extends GraphQLError {
 	get status() {return this.extensions.graphane.status;}
 	get errorData() {
 		const data = this.extensions.graphane;
-		return {
+		return this.extensions.graphane.silent ? {code: data.code} : {
 			code: data.code,
 			message: data.status ? data.message : "",
 			info: data.status ? data.info : {}
