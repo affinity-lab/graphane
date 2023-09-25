@@ -1,7 +1,7 @@
 import {Formatter} from "./formatter";
 
 
-export class DefaultFormatter extends Formatter {
+export class ResolverDataFormatter extends Formatter {
     format(message: any): string | undefined {
         const data = message.resolverData;
         if (data === undefined) {
