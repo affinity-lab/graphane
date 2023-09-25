@@ -15,6 +15,7 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(require("./formatter/default-formatter"), exports);
+__exportStar(require("./formatter/resolver-data-formatter"), exports);
 __exportStar(require("./formatter/formatter"), exports);
 __exportStar(require("./writer/console-writer"), exports);
 __exportStar(require("./writer/rotating-file-writer"), exports);

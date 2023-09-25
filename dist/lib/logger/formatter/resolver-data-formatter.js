@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DefaultFormatter = void 0;
+exports.ResolverDataFormatter = void 0;
 const formatter_1 = require("./formatter");
-class DefaultFormatter extends formatter_1.Formatter {
+class ResolverDataFormatter extends formatter_1.Formatter {
     format(message) {
         const data = message.resolverData;
         if (data === undefined) {
@@ -33,4 +33,4 @@ class DefaultFormatter extends formatter_1.Formatter {
     }
     ;
 }
-exports.DefaultFormatter = DefaultFormatter;
+exports.ResolverDataFormatter = ResolverDataFormatter;
