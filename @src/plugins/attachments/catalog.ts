@@ -176,9 +176,9 @@ export class Catalog {
         if (typeof this.getFile(fileName) === "undefined") {
             throw AttachmentError.fileCrud.fileNotExists();
         }
-        fileName = "var/files/" + this.owner.META.module + "/" + this.owner.META.entityName + "/" + this.mapIdToFolderStructure(this.owner.id.toString()) + "/" + this.name + "/" + fileName;
+        let fileNameWithPath = "var/files/" + this.owner.META.module + "/" + this.owner.META.entityName + "/" + this.mapIdToFolderStructure(this.owner.id.toString()) + "/" + this.name + "/" + fileName;
         try {
-            this.storage.removeFile(this, new FileDescriptor(fileName));
+            this.storage.removeFile(this, new FileDescriptor(fileNameWithPath));
             this.owner.attachments[this.name] = this.owner.attachments[this.name].filter((item: FileAttachment): boolean => item.name !== fileName);
         } catch (e) {
             console.log(e);
