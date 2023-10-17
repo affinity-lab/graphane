@@ -185,9 +185,19 @@ class Catalog {
         if (typeof this.getFile(fileName) === "undefined") {
             throw attachment_error_1.AttachmentError.fileCrud.fileNotExists();
         }
-        this.storage.removeFile(this, new file_descriptor_1.FileDescriptor(fileName));
-        this.owner.attachments[this.name] = this.owner.attachments[this.name].filter((item) => item.name !== fileName);
+        fileName = "var/files/" + this.owner.META.module + "/" + this.owner.META.entityName + "/" + this.mapIdToFolderStructure(this.owner.id.toString()) + "/" + this.name + "/" + fileName;
+        try {
+            this.storage.removeFile(this, new file_descriptor_1.FileDescriptor(fileName));
+            this.owner.attachments[this.name] = this.owner.attachments[this.name].filter((item) => item.name !== fileName);
+        }
+        catch (e) {
+            console.log(e);
+        }
     }
     ;
+    mapIdToFolderStructure(id) {
+        let baseString = parseInt(id, 36).toString().padStart(6, "0");
+        return baseString.match(/.{2}/g).join("/");
+    }
 }
 exports.Catalog = Catalog;

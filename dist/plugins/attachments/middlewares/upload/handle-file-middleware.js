@@ -30,6 +30,10 @@ const attachment_error_1 = require("../../attachment-error");
 const atom_with_attachments_1 = require("../../atom-with-attachments");
 function handleFileMiddleware() {
     return async (req, res) => {
+        let fileArray = [];
+        Object.keys(req.files).forEach((key) => {
+            fileArray.push(req.files[key]);
+        });
         if (!req.files || Object.keys(req.files).length === 0) {
             throw attachment_error_1.AttachmentError.upload.failed("Unsuccessful file upload");
         }
@@ -50,7 +54,7 @@ function handleFileMiddleware() {
         if (typeof catalog === "undefined") {
             throw attachment_error_1.AttachmentError.upload.failed(`Entity: ${entity.META.ident} has no Catalog: ${token.catalog}`);
         }
-        for (let file of Array.isArray(req.files.files) ? req.files.files : [req.files.files]) {
+        for (let file of fileArray) {
             fs.mkdirSync(file.tempFilePath + "-dir");
             fs.renameSync(file.tempFilePath, file.tempFilePath + "-dir/" + file.name);
             await catalog.addFiles(file.tempFilePath + "-dir/" + file.name);

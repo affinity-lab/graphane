@@ -38,4 +38,5 @@ export declare class Catalog {
     changeImageFocus(fileName: string, focus: ImgFocus): Promise<void>;
     private addFile;
     private removeFile;
+    private mapIdToFolderStructure;
 }
