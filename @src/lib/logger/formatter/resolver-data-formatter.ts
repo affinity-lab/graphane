@@ -21,7 +21,7 @@ export class ResolverDataFormatter extends Formatter {
         };
         if (data.root !== undefined) {
             obj.root = {
-                type: data.root?.constructor.name,
+                type: data.root.constructor.name,
                 id: data.root.id
             };
         }

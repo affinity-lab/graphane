@@ -30,13 +30,13 @@ const attachment_error_1 = require("../../attachment-error");
 const atom_with_attachments_1 = require("../../atom-with-attachments");
 function handleFileMiddleware() {
     return async (req, res) => {
+        if (!req.files || Object.keys(req.files).length === 0) {
+            throw attachment_error_1.AttachmentError.upload.failed("Unsuccessful file upload");
+        }
         let fileArray = [];
         Object.keys(req.files).forEach((key) => {
             fileArray.push(req.files[key]);
         });
-        if (!req.files || Object.keys(req.files).length === 0) {
-            throw attachment_error_1.AttachmentError.upload.failed("Unsuccessful file upload");
-        }
         const token = req.context.get("uploadTokenPayload");
         const entityType = module_1.Module.get(token.module)?.entities[token.entity];
         if (typeof entityType === "undefined") {

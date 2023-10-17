@@ -22,7 +22,7 @@ class ResolverDataFormatter extends formatter_1.Formatter {
         };
         if (data.root !== undefined) {
             obj.root = {
-                type: data.root?.constructor.name,
+                type: data.root.constructor.name,
                 id: data.root.id
             };
         }

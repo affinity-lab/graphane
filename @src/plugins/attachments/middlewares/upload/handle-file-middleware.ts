@@ -10,13 +10,13 @@ import {AtomWithAttachments} from "../../atom-with-attachments";
 
 export function handleFileMiddleware() {
     return async (req: Request, res: Response): Promise<void> => {
-        let fileArray: Array<any> = [];
-        Object.keys(req.files as object).forEach((key) => {
-            fileArray.push(req.files[key]);
-        });
         if (!req.files || Object.keys(req.files).length === 0) {
             throw AttachmentError.upload.failed("Unsuccessful file upload");
         }
+        let fileArray: Array<any> = [];
+        Object.keys(req.files).forEach((key: string): void => {
+            fileArray.push(req.files![key]);
+        });
         const token: UploadTokenPayload = req.context.get("uploadTokenPayload");
         const entityType: typeof Atom | undefined = Module.get(token.module)?.entities[token.entity];
         if (typeof entityType === "undefined") {
